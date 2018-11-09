@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="is_sw600_land">false</bool>
+    <bool name="is_land">false</bool>
+    <bool name="is_sw600">false</bool>
+
+    <dimen name="offset_y">300dp</dimen>
+
+    <dimen name="default_cardview_elevation">2dp</dimen>
+    <dimen name="default_cardview_corner_radius">8dp</dimen>
+
+    <!-- Main Activity-->
+    <dimen name="main_title_text_size">20sp</dimen>
+    <dimen name="main_title_text_padding">4dp</dimen>
+    <dimen name="main_cardview_text_size">22sp</dimen>
+    <dimen name="main_cardview_text_padding_btm">8dp</dimen>
+    <dimen name="main_card_start_end_margin">24dp</dimen>
+    <dimen name="main_card_top_bottom_margin">8dp</dimen>
+    <dimen name="main_cardview_width">-1px</dimen>
+    <dimen name="main_cardview_height">250dp</dimen>
+
+    <!-- Explore Master -->
+    <dimen name="mission_manifest_text_size">14dp</dimen>
+    <dimen name="manifest_label_padding_end">6dp</dimen>
+    <dimen name="rover_explore_card_title_text_size">20dp</dimen>
+    <dimen name="rover_explore_cardview_height">-1px</dimen>
+    <dimen name="rover_explore_cardview_width">-1px</dimen>
+    <dimen name="rover_explore_cardview_margin_top_bottom">40dp</dimen>
+    <dimen name="rover_explore_cardview_margin_start_end">20dp</dimen>
+    <dimen name="rover_explore_card_sol_search_text_size">16sp</dimen>
+    <dimen name="rover_explore_sol_search_button_height">40dp</dimen>
+    <dimen name="rover_explore_sol_search_button_padding">10dp</dimen>
+    <dimen name="rover_explore_sol_edit_text_margin">20dp</dimen>
+    <dimen name="rover_explore_sol_edittext_width">80dp</dimen>
+
+
+    <dimen name="mars_explore_title_text_size">20sp</dimen>
+    <dimen name="mars_explore_title_text_padding">6dp</dimen>
+    <dimen name="mars_explore_cardview_top_bottom_margin">10dp</dimen>
+    <dimen name="mars_explore_cardview_width">-1px</dimen>
+    <dimen name="mars_explore_cardview_height">200dp</dimen>
+    <dimen name="mars_explore_cardview_start_end_margin">40dp</dimen>
+
+    <!-- FAB dimens -->
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+
+    <!-- Explore Details -->
+
+    <!-- Rover Photos -->
+    <dimen name="camera_label_text_size">16sp</dimen>
+    <dimen name="camera_label_margin">10dp</dimen>
+    <dimen name="photos_title_text_size">18sp</dimen>
+    <dimen name="photos_title_top_margin">4dp</dimen>
+    <dimen name="photos_card_height">200dp</dimen>
+
+    <!-- Rover Science-->
+    <dimen name="rover_science_text_size">16sp</dimen>
+    <dimen name="rover_science_text_margin">4sp</dimen>
+    <dimen name="rover_science_outside_margin">10dp</dimen>
+    <dimen name="rover_science_top_margin">0dp</dimen>
+
+    <!-- Mars Weather -->
+    <dimen name="mars_weather_label_text_size">18sp</dimen>
+    <dimen name="mars_weather_detail_text_size">16sp</dimen>
+    <dimen name="mars_weather_label_margin_start">6dp</dimen>
+    <dimen name="mars_weather_detail_margin_start">6dp</dimen>
+    <dimen name="mars_weather_title_text_size">24sp</dimen>
+    <dimen name="mars_weather_title_text_margin">10dp</dimen>
+    <dimen name="mars_weather_subtitle_text_size">16sp</dimen>
+    <dimen name="mars_weather_subtitle_text_margin">4dp</dimen>
+    <dimen name="mars_weather_title_card_margin_top_bottom">26dp</dimen>
+    <dimen name="mars_weather_title_card_margin_start_end">26dp</dimen>
+    <dimen name="mars_weather_detail_card_margin_start_end">10dp</dimen>
+    <dimen name="mars_weather_detail_card_margin_top_bottom">6dp</dimen>
+
+
+    <!-- Favorite Photos  -->
+    <dimen name="favorite_photo_card_width">100dp</dimen>
+    <dimen name="favorite_photo_card_height">100dp</dimen>
+    <dimen name="favorite_photo_card_margin">10dp</dimen>
+
+    <!-- Mars Facts -->
+    <dimen name="mars_fact_title_text_size">24sp</dimen>
+    <dimen name="mars_fact_text_size">18sp</dimen>
+    <dimen name="mars_fact_layout_margin">10dp</dimen>
+    <dimen name="mars_fact_link_margin">6dp</dimen>
+    <dimen name="mars_fact_link_padding">6dp</dimen>
+    <dimen name="mars_fact_link_text_size">16sp</dimen>
+    <dimen name="mars_fact_text_margin">10dp</dimen>
+    <dimen name="mars_fact_text_padding">6dp</dimen>
+
+    <!-- Tweets -->
+    <dimen name="tweet_profile_pic_margin_start">0dp</dimen>
+    <dimen name="tweet_title_text_margin">10dp</dimen>
+    <dimen name="tweet_photo_size">240dp</dimen>
+    <dimen name="tweet_profile_pic_size">50dp</dimen>
+    <dimen name="tweet_screen_title_text_size">20sp</dimen>
+
+    <!-- Information -->
+    <dimen name="information_dialog_text_size">16sp</dimen>
+    <dimen name="information_dialog_text_padding">16dp</dimen>
+    <dimen name="information_icon_height">24dp</dimen>
+    <dimen name="information_icon_margin_top">10dp</dimen>
+
+    <!-- Settings Credit Label  -->
+    <dimen name="credit_link_label_text_size">18sp</dimen>
+
+
+    <!--
+Refer to App Widget Documentation for margin information
+http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
+    -->
+    <dimen name="widget_margin">8dp</dimen>
+
+
+</resources>

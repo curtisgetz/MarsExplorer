@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/widget_click_box"
+    android:background="@color/blackBackground"
+    android:padding="@dimen/widget_margin">
+
+    <TextView
+        android:id="@+id/daily_fact_widget_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/white"
+        android:text="@string/daily_mars_fact"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_margin="4dp"
+        />
+    <ImageView
+        android:contentDescription="@string/background_image_of_mars_cd"
+        android:layout_below="@id/title_body_divider"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/marsplaceholderfull"
+        />
+    <LinearLayout
+        android:id="@+id/title_body_divider"
+        android:orientation="horizontal"
+        android:layout_below="@id/daily_fact_widget_title"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightText"
+        />
+
+    <TextView
+        android:layout_below="@id/title_body_divider"
+        android:id="@+id/widget_fact_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/daily_mars_fact"
+        android:textColor="@color/lightText"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
+
+
+
+</RelativeLayout>

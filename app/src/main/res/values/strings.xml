@@ -1,0 +1,239 @@
+<resources>
+    <string name="app_name">Mars Explorer</string>
+    <string name="main_explore_title">How do you want to explore Mars?</string>
+    <string name="unknown">Unknown</string>
+    <string name="explore_mars">Explore Mars</string>
+
+    <!-- Do Not Translate Rover Names-->
+    <string name="curiosity_rover" translatable="false">Curiosity</string>
+    <string name="opportunity_rover" translatable="false">Opportunity</string>
+    <string name="spirit_rover" translatable="false">Spirit</string>
+    <string name="rover_string">Rover</string>
+    <string name="sol">Sol</string>
+
+    <!-- Rover Manifest Labels -->
+    <string name="mission_status_label">Mission Status:</string>
+    <string name="launch_date_label">Launch Date:</string>
+    <string name="landing_date_label">Landing Date:</string>
+    <string name="sol_range_label">Sol Range:</string>
+    <string name="sol_range_info_CD">Click Here for information about Sol range</string>
+
+
+
+    <!-- Rover Categories Title Texts-->
+    <string name="rover_picture_category_title">Pictures Taken By This Rover</string>
+    <string name="rover_information_category_title">Rover Information</string>
+    <string name="rover_science_category_title">Rover Science Instruments</string>
+    <string name="rover_tweets_category_title">Tweets</string>
+
+    <string name="mars_weather_category_title">Weather On Mars</string>
+    <string name="mars_facts_category_title">Mars Facts</string>
+    <string name="mars_user_favorites">Your Favorites</string>
+
+    <!-- Information Dialog Texts -->
+    <string name="info_error_text">Error Loading Information</string>
+    <string name="info_sol_text_details">The term Sol is used to refer to the duration of a solar day on Mars.
+        \nA Martian solar day, or "Sol", is 24 hours, 39 minutes, and 35.244 seconds.
+        \nPhotos are organized by the Sol on which they were taken, counting up from the rover landing date.
+        \nSearch by entering a number within the sol range or by random sol.</string>
+    <string name="info_air_temp">Mars is farther from the Sun than Earth. Because of this,  Mars is colder than our planet.
+        Moreover, Martian atmosphere, which is extremely tenuous, does not retain the heat; hence
+        the difference between day and night\'s temperatures is more pronounced than in our planet.</string>
+    <string name="info_ground_temp">Martian atmosphere is extremely tenuous, about 160 times
+        thinner than Earth\'s, so heat from the Sun can easily escape. Because of this,  there are big
+        differences between ground temperature and air temperature.</string>
+    <string name="info_weather">This weather data is obtained from the Rover Environmental
+        Monitoring Station (REMS) on board the Curiosity Rover.</string>
+    <string name="info_sunrise_sunset">The duration of a Martian day, or Sol, is about 24 hours and
+        40 minutes. The duration of daylight varies along the Martian year, as on Earth</string>
+    <string name="info_atmo">Weather on Mars is more extreme than Earth\'s. Mars is cooler and with
+        bigger differences between day and night temperatures. Moreover, dust storms lash its surface.
+        However, Mars\' and Earth\'s climates have important similarities, such as the polar ice
+        caps and seasonal changes. As on Earth, on Mars we can have sunny, cloudy or windy days, for example.</string>
+    <string name="rover_manifest_pref_desc">The app can keep mission manifest details up to date in the background.
+        This will run a couple times a day and should not use much data or take much time. If you do not want to keep
+        it up to date in the background the details will be refreshed when that screen is opened and you may notice a short delay.</string>
+    <string name="tweet_pref_desc">You are not allowing Tweets. Tweets can be enabled in Settings. \n
+        Mars Explorer can notify you when Curiosity Rover publishes a Tweet. These tweets will
+        be saved after you receive a notification</string>
+    <string name="shown_photos_info_dialog">The rovers have taken a lot of photos from the surface of Mars.
+        Mars Explorer limits the number of photos by default. If you would like to get all available
+        photos when searching you can enable this in Settings. This may use more data and take longer. </string>
+
+
+    <string name="info_index_key" translatable="false">info_index_key</string>
+
+    <!-- image resource prefix -->
+    <string name="photos_category_res_prefix" translatable="false">photos_</string>
+    <string name="info_category_res_prefix" translatable="false">info_</string>
+    <string name="science_category_res_prefix" translatable="false">science_</string>
+    <string name="tweets_category_res_prefix" translatable="false">tweets_</string>
+    <string name="mars_weather_res_prefix" translatable="false">weather_</string>
+    <string name="mars_facts_res_prefix" translatable="false">facts_</string>
+    <string name="mars_favorites_res_prefix" translatable="false">favorites_</string>
+
+    <string name="title_activity_explore_detail">ExploreDetailActivity</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!-- Camera Names -->
+    <string name="FHAZ">Front Hazard Avoidance Camera</string>
+    <string name="RHAZ">Rear Hazard Avoidance Camera</string>
+    <string name="MAST">Mast Camera</string>
+    <string name="CHEMCAM">Chemistry and Camera Complex</string>
+    <string name="MAHLI">Mars Hand Lens Imager</string>
+    <string name="MARDI">Mars Descent Imager</string>
+    <string name="NAVCAM">Navigation Camera</string>
+    <string name="PANCAM">Panoramic Camera</string>
+    <string name="MINITES">Miniature Thermal Emission Spectrometer (Mini-TES)</string>
+    <string name="rover_photo_cd">Photo from Mars rover.</string>
+
+    <!-- Science instrument names for TABs-->
+    <string name="science_mast" translatable="false">MAST</string>
+    <string name="science_chemcam" translatable="false">ChemCam</string>
+    <string name="science_rems" translatable="false">REMS</string>
+    <string name="science_hazcam" translatable="false">HazCam</string>
+    <string name="science_navcam" translatable="false">NavCam</string>
+    <string name="science_mahli" translatable="false">MAHLI</string>
+    <string name="science_apxs" translatable="false">APXS</string>
+    <string name="science_chemin" translatable="false">CheMin</string>
+    <string name="science_sam" translatable="false">SAM</string>
+    <string name="science_drt" translatable="false">DRT</string>
+    <string name="science_rad" translatable="false">RAD</string>
+    <string name="science_dan" translatable="false">DAN</string>
+    <string name="science_mardi" translatable="false">MARDI</string>
+    <string name="science_arm" translatable="false">Arm</string>
+    <string name="science_legs" translatable="false">Legs</string>
+    <string name="science_power" translatable="false">Power</string>
+    <string name="science_antenna" translatable="false">Antenna</string>
+    <string name="science_brains" translatable="false">Brains</string>
+    <string name="science_pancam" translatable="false">PanCam</string>
+    <string name="science_minites" translatable="false">MiniTes</string>
+    <string name="science_mb" translatable="false">MB</string>
+    <string name="science_mi" translatable="false">MI</string>
+    <string name="science_rat" translatable="false">RAT</string>
+    <string name="science_magnet" translatable="false">Magnets</string>
+    <string name="science_solar" translatable="false">Solar Panel</string>
+    <string name="science_body" translatable="false">Body</string>
+    <string name="science_temp" translatable="false">Temp</string>
+
+
+    <!-- Keys for extras and savedInstances -->
+    <string name="explore_extra" translatable="false">explore_extra</string>
+    <string name="sol_number_extra_key" translatable="false">sol_number_extra</string>
+    <string name="explore_index_extra_key" translatable="false">explore_index_extra</string>
+    <string name="rover_index_saved_key" translatable="false">rover_index_saved_key</string>
+    <string name="sol_number_saved_key" translatable="false">sol_number_saved_key</string>
+    <string name="photo_url_extra" translatable="false">photo_url_extra</string>
+    <string name="photo_url_saved_key" translatable="false">photo_url_saved_key</string>
+    <string name="rover_photo_transition" translatable="false">rover_photo_transition</string>
+    <string name="share_photo_cd" translatable="false">Share Photo</string>
+    <string name="enter_valid_num_toast" translatable="false">Please Enter a valid number</string>
+    <string name="starting_pos_saved" translatable="false">starting_pos_saved</string>
+    <string name="url_list_saved" translatable="false">url_list_saved</string>
+    <string name="clicked_photo_pos_extra" translatable="false">clicked_photo_position_extra</string>
+    <string name="url_list_extra" translatable="false">url_list_extra</string>
+    <string name="rover_index_extra" translatable="false">rover_index_extra</string>
+    <string name="parent_activity_tag_extra" translatable="true">parent_activity_tag</string>
+    <string name="fav_menu_boolean_saved_key" translatable="false">fav_menu_boolean_saved_key</string>
+    <string name="date_string_extra" translatable="false">date_string_extra</string>
+
+
+    <!--  Snackbar Strings -->
+    <string name="internet_required">This Feature Requires Internet Connection</string>
+    <string name="unable_load_new_fact">Unable To Load New Fact</string>
+    <string name="settings_action">Settings</string>
+    <string name="limiting_photos_snack">Limiting Photos</string>
+    <string name="getting_all_photos_snack">Getting All Photos</string>
+
+    <!--  Weather Detail Labels -->
+    <string name="weather_season">Season</string>
+    <string name="weather_min_air_temp">Min Air Temp</string>
+    <string name="weather_max_air_temp">Max Air Temp</string>
+    <string name="weather_atmo">Atmospheric Opacity</string>
+    <string name="weather_sunset">Sunset</string>
+    <string name="weather_sunrise">Sunrise</string>
+    <string name="weather_min_ground_temp">Min Ground Temp</string>
+    <string name="weather_max_ground_temp">Max Ground Temp</string>
+    <string name="weather_on_mars">Weather On Mars</string>
+    <string name="mars_weather_info">Click here for information about weather on Mars</string>
+    <string name="weather_detail_info">Click here for weather detail information</string>
+
+    <!-- Units of measure strings -->
+    <string name="celsius">Celsius</string>
+    <string name="fahrenheit">Fahrenheit</string>
+    <string name="picture_of_science_instrument_cd">Picture of science instrument</string>
+    <string name="explore_option_cd">Image of explore option</string>
+    <string name="snackbar_back">Back</string>
+    <string name="no_photos">No Pictures On This Sol</string>
+    <string name="add_to_favorites_menu">Add To Favorites</string>
+
+    <!-- Sharing -->
+    <string name="share_pic_text" formatted="false">Check out this picture from the Mars Explorer
+        app!\nTaken by %1$s Rover on %2$s.\n\n%3$s</string>
+
+    <string name="simple_share_pic_text">Check out this picture from the Mars Explorer app!</string>
+
+
+    <string name="your_saved_photo_cd">Your saved photo</string>
+    <string name="delete_all_favorites_menu">Delete All Favorites</string>
+    <string name="photo_from_rover_cd">Photo from rover</string>
+    <string name="added_to_favorites">Added To Favorites</string>
+    <string name="removed_from_favorites">Removed From Favorites</string>
+    <string name="unknown_date">unknown date</string>
+    <string name="date_on_string">on</string>
+    <string name="is_favorites_key">is_favorites_key</string>
+    <string name="curiosity_rover_tweets_title">Curiosity Rover Tweets</string>
+    <string name="twitter_profile_picture_cd">Twitter Profile Picture</string>
+    <string name="mars_facts">Mars Facts</string>
+    <string name="reload_new_mars_fact">Reload New Mars Fact</string>
+
+    <string name="explore_index_saved_key">explore_index_saved_key</string>
+    <string name="picture_from_tweet_cd">Picture from Tweet</string>
+    <string name="add_widget">Add widget</string>
+    <string name="daily_mars_fact">Daily Mars Fact</string>
+    <string name="background_image_of_mars_cd">Background image of Mars</string>
+
+    <!-- - - - - - - - - - For Preferences - - - - - - - -->
+    <string name="pref_tweets_label">Curiosity Rover Tweets</string>
+    <string name="pref_tweets_summary_on">Receiving tweets from Curiosity rover</string>
+    <string name="pref_tweets_summary_off">Not receiving tweets from Curiosity Rover</string>
+    <string name="pref_subscribe_to_tweets_key" translatable="false">get_tweets</string>
+    <string name="pref_get_all_photos_label">See all photos from rovers</string>
+    <string name="pref_get_all_photos_summary_on">Showing all available photos. May use more data</string>
+    <string name="pref_get_all_photos_summary_off">Showing limited photos to save data and time</string>
+    <string name="pref_get_all_photos_key" translatable="false">limit_photos</string>
+    <string name="pref_rover_job_scheduler_key" translatable="false">rover_job_scheduler</string>
+    <string name="pref_rover_job_scheduler_label">Keep rover details up to date</string>
+    <string name="pref_rover_job_summary_off">Not keeping rover data up to date in background. Will still update when app is open</string>
+    <string name="pref_rover_job_summary_on">Allowing rover data to update in the background a couple times a day.</string>
+    <string name="pref_shown_photos_info" translatable="false">shown_photos_dialog</string>
+
+
+
+    <string name="rover_category_cd">Rover Category</string>
+    <string name="mars_category_cd">Mars Category</string>
+    <string name="is_favorite_screen_extra">is_favorite_screen</string>
+    <string name="info_icon_cd">Information Icon</string>
+    <string name="confirm_action">Confirm</string>
+    <string name="delete_all_snack">Delete All?</string>
+
+
+
+
+    <!-- Credits Dialog -->
+
+    <string name="credits_dialog">Thanks to :\n
+        NASA.gov\ntheplanets.org\nnineplanets.org\nmaas2.jiinxt.com\nIcons made by freepik.com via flaticon.com
+    </string>
+    <string name="credits">Credits…</string>
+    <string name="photo_of_rover_cd">Photo of rover</string>
+    <string name="view_photos_from_sol">View Photos From Sol #</string>
+    <string name="search_sol_button">Search Sol</string>
+    <string name="random_sol_button">Random Sol</string>
+    <string name="enter_sol_hint"><font size="12">Enter Num</font></string>
+    <string name="is_favorites_saved_key">is_favorites_saved_key</string>
+    <string name="no_favorites">No Favorites</string>
+    <string name="error_getting_weather_snack">Error Getting Weather Data</string>
+
+</resources>

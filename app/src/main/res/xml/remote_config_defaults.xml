@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<defaultsMap>
+    <entry>
+        <key>remote_test</key>
+        <value>Local</value>
+    </entry>
+    <entry>
+        <key>base_rover_photos_url</key>
+        <value>https://api.nasa.gov/mars-photos/api/v1/</value>
+    </entry>
+    <entry>
+        <key>base_manifests_url</key>
+        <value>https://api.nasa.gov/mars-photos/api/v1/</value>
+    </entry>
+    <entry>
+        <key>base_mars_weather_url</key>
+        <value>https://api.maas2.jiinxt.com/</value>
+    </entry>
+
+</defaultsMap>

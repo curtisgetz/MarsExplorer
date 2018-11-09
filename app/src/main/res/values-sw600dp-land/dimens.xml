@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="is_sw600_land">true</bool>
+
+    <!-- Main Activity-->
+    <dimen name="main_title_text_size">28sp</dimen>
+    <dimen name="main_cardview_text_size">30sp</dimen>
+    <dimen name="main_cardview_height">-1px</dimen>
+    <dimen name="main_card_start_end_margin">20dp</dimen>
+    <dimen name="main_card_top_bottom_margin">20dp</dimen>
+    <dimen name="main_cardview_width">400dp</dimen>
+
+    <!-- Explore Master -->
+    <!-- Rover Explore -->
+    <dimen name="rover_explore_card_title_text_size">24dp</dimen>
+    <dimen name="mission_manifest_text_size">14dp</dimen>
+    <dimen name="manifest_label_padding_end">6dp</dimen>
+    <dimen name="rover_explore_cardview_height">-1px</dimen>
+    <dimen name="rover_explore_cardview_width">-1px</dimen>
+    <dimen name="rover_explore_cardview_margin_top_bottom">40dp</dimen>
+    <dimen name="rover_explore_cardview_margin_start_end">20dp</dimen>
+    <dimen name="rover_explore_card_sol_search_text_size">16sp</dimen>
+    <dimen name="rover_explore_sol_search_button_height">48dp</dimen>
+    <dimen name="rover_explore_sol_search_button_padding">12dp</dimen>
+    <dimen name="rover_explore_sol_edit_text_margin">20dp</dimen>
+    <dimen name="rover_explore_sol_edittext_width">80dp</dimen>
+
+
+    <!-- MArs Fact -->
+    <dimen name="mars_fact_layout_margin">40dp</dimen>
+
+    <!-- Rover Science  -->
+    <dimen name="rover_science_top_margin">10dp</dimen>
+    <dimen name="rover_science_outside_margin">60dp</dimen>
+
+    <!--  Mars Explore -->
+    <dimen name="mars_explore_title_text_size">22sp</dimen>
+    <dimen name="mars_explore_cardview_height">240dp</dimen>
+    <dimen name="mars_explore_cardview_start_end_margin">16dp</dimen>
+
+    <!-- Favorite Photos  -->
+    <dimen name="favorite_photo_card_width">200dp</dimen>
+    <dimen name="favorite_photo_card_height">200dp</dimen>
+
+    <!-- Tweet -->
+    <dimen name="tweet_profile_pic_size">100dp</dimen>
+    <dimen name="tweet_profile_pic_margin_start">60dp</dimen>
+    <dimen name="tweet_title_text_margin">20dp</dimen>
+    <dimen name="tweet_screen_title_text_size">26sp</dimen>
+</resources>

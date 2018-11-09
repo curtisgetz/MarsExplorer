@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:id="@+id/rover_explore_root_constraintlayout"
+    tools:context=".ui.explore.RoverExploreActivity">
+
+
+    <ProgressBar
+        android:id="@+id/manifest_loading"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toRightOf="@id/mission_status_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/view_line"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/explore_master_title_text"
+        android:textSize="20sp"
+        android:padding="6dp"
+        android:textColor="@color/lightText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        tools:text="@string/curiosity_rover"/>
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/explore_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10"/>
+
+
+    <TextView
+        style="@style/MissionManifestTextLabel"
+        android:id="@+id/mission_status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mission_status_label"
+        app:layout_constraintTop_toBottomOf="@id/explore_master_title_text"
+        app:layout_constraintLeft_toLeftOf="@id/explore_guideline"/>
+
+
+    <TextView
+        style="@style/MissionManifestText"
+        android:id="@+id/mission_status_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/mission_status_label"
+        app:layout_constraintLeft_toRightOf="@id/mission_status_label"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="start"
+        tools:text="Active"/>
+
+
+    <TextView
+        style="@style/MissionManifestTextLabel"
+        android:id="@+id/launch_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/launch_date_label"
+        app:layout_constraintTop_toBottomOf="@id/mission_status_label"
+        app:layout_constraintLeft_toLeftOf="@id/explore_guideline"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/MissionManifestText"
+        android:id="@+id/launch_date_text"
+        app:layout_constraintTop_toTopOf="@id/launch_date_label"
+        app:layout_constraintLeft_toRightOf="@id/launch_date_label"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="start"
+        tools:text="November 26, 2011"/>
+
+
+    <TextView
+        style="@style/MissionManifestTextLabel"
+        android:id="@+id/landing_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/landing_date_label"
+        app:layout_constraintTop_toBottomOf="@id/launch_date_label"
+        app:layout_constraintLeft_toLeftOf="@id/explore_guideline"
+        />
+
+
+    <TextView
+        android:id="@+id/landing_date_text"
+        style="@style/MissionManifestText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="November 12, 2012"
+        android:gravity="start"
+        app:layout_constraintTop_toTopOf="@id/landing_date_label"
+        app:layout_constraintLeft_toRightOf="@id/landing_date_label"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+    <ImageView
+
+        android:id="@+id/sol_range_info_imageview"
+        android:contentDescription="@string/sol_range_info_CD"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/mission_manifest_text_size"
+        android:src="@drawable/ic_information_white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sol_range_label"
+        app:layout_constraintBottom_toBottomOf="@id/sol_range_label"
+        app:layout_constraintRight_toLeftOf="@id/explore_guideline"
+        android:layout_marginEnd="2dp"/>
+
+    <TextView
+        style="@style/MissionManifestTextLabel"
+        android:id="@+id/sol_range_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sol_range_label"
+        app:layout_constraintTop_toBottomOf="@id/landing_date_label"
+        app:layout_constraintLeft_toLeftOf="@id/explore_guideline"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/MissionManifestText"
+        android:id="@+id/sol_range_text"
+        app:layout_constraintTop_toTopOf="@id/sol_range_label"
+        app:layout_constraintLeft_toRightOf="@id/sol_range_label"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="start"
+        tools:text="1-2102"/>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:elevation="2dp"
+        android:background="@color/lightText"
+        android:layout_marginTop="10dp"
+        android:layout_margin="4dp"
+        app:layout_constraintTop_toBottomOf="@id/sol_range_label"/>
+
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/rover_options_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_line"/>
+
+
+    <View
+        android:id="@+id/sol_info_clickbox"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_line"/>
+
+
+
+</android.support.constraint.ConstraintLayout>

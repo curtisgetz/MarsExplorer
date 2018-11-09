@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/full_photo_coordinator_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blackBackground"
+    tools:context=".ui.explore_detail.rover_photos.FullPhotoFragment">
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/photo_viewpager"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/photo_share_fab"
+        app:fabSize="normal"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_share"
+        app:borderWidth="0dp"
+        android:elevation="@dimen/fab_elevation"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:contentDescription="@string/share_photo_cd"
+        />
+
+</android.support.design.widget.CoordinatorLayout>

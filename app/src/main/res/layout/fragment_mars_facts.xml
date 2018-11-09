@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+    <android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:layout_margin="@dimen/mars_fact_layout_margin"
+        android:background="@color/blackBackground"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".ui.explore_detail.mars_facts.MarsFactsFragment">
+
+        <TextView
+            android:layout_margin="10dp"
+            style="@style/MarsFactsTextTitle"
+            android:id="@+id/fact_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mars_facts"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:contentDescription="@string/reload_new_mars_fact"
+            android:id="@+id/reload_fact"
+            android:src="@drawable/ic_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+
+            app:layout_constraintEnd_toEndOf="@id/fact_name_text"
+            app:layout_constraintTop_toTopOf="@id/fact_name_text"
+            app:layout_constraintBottom_toBottomOf="@id/fact_name_text"
+            />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            app:cardCornerRadius="@dimen/default_cardview_corner_radius"
+            android:layout_height="0dp"
+            android:elevation="@dimen/default_cardview_elevation"
+            android:layout_margin="@dimen/mars_fact_layout_margin"
+            app:layout_constraintTop_toBottomOf="@id/fact_name_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/fact_url_text">
+            <ScrollView
+               android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            <TextView
+
+                style="@style/MarsFactsText"
+                tools:text="This is a fact!"
+                android:id="@+id/fact_description_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+       </ScrollView>
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            style="@style/MarsFactBottomLink"
+            android:id="@+id/fact_url_text"
+            android:layout_width="0dp"
+            tools:text="http://www.space-facts.com/Mars"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>

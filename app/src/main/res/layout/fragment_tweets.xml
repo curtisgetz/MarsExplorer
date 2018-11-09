@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    tools:context=".ui.explore_detail.tweets.TweetsFragment">
+
+    <!-- Set up only for Curiosity Rover currently. Would need some minor
+      adjustments in the future if any new Mars Rovers are added to the app
+      and also have Twitter accounts-->
+    <ImageView
+        android:contentDescription="@string/twitter_profile_picture_cd"
+        android:id="@+id/twitter_profile_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"
+        android:layout_marginStart="@dimen/tweet_profile_pic_margin_start"
+        android:layout_width="@dimen/tweet_profile_pic_size"
+        android:layout_height="@dimen/tweet_profile_pic_size"
+        android:src="@drawable/curiosity_twitter"/>
+
+    <TextView
+        android:id="@+id/tweets_title_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/tweet_title_text_margin"
+        android:gravity="center_vertical"
+        android:text="@string/curiosity_rover_tweets_title"
+        android:textSize="@dimen/tweet_screen_title_text_size"
+        app:layout_constraintTop_toTopOf="@id/twitter_profile_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/twitter_profile_image"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/tweets_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/twitter_profile_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</android.support.constraint.ConstraintLayout>

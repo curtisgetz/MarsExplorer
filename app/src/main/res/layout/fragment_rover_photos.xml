@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rover_photos_coordinator_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <android.support.constraint.ConstraintLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+
+
+            <ProgressBar
+                android:id="@+id/rover_photos_main_progress"
+                android:visibility="gone"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="100dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rover_photos_title"
+
+                />
+
+            <TextView
+                android:id="@+id/rover_photos_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                style="@style/RoverPhotosTitle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="Curiosity Rover - Sol 1201 - 10/1/2014"/>
+
+
+            <TextView
+                android:id="@+id/photos_fhaz_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CameraTextLabel"
+                android:text="@string/FHAZ"
+                app:layout_constraintTop_toBottomOf="@id/rover_photos_title"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_fhaz_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_fhaz_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview"
+                />
+
+            <TextView
+                android:id="@+id/photos_rhaz_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/RHAZ"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_1"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_rhaz_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_rhaz_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview, photos_rhaz_recyclerview"/>
+
+
+
+            <TextView
+                android:id="@+id/photos_mast_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/MAST"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_2"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_mast_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_mast_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview"
+                />
+
+
+            <TextView
+                android:id="@+id/photos_chemcam_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/CHEMCAM"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_3"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_chemcam_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_chemcam_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview"
+                />
+
+
+            <TextView
+                android:id="@+id/photos_mahli_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/MAHLI"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_4"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_mahli_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_mahli_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview"
+                />
+
+            <TextView
+                android:id="@+id/photos_mardi_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/MARDI"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_5"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_mardi_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_mardi_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview"
+                />
+
+
+            <TextView
+                android:id="@+id/photos_navcam_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/NAVCAM"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_6"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_navcam_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_navcam_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview"
+                />
+
+
+            <TextView
+                android:id="@+id/photos_pancam_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/PANCAM"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_7"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_pancam_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_pancam_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview"
+                />
+
+
+            <TextView
+                android:id="@+id/photos_minites_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/MINITES"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_8"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_minites_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_minites_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview"
+                />
+
+
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>

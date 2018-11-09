@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/mars_explore_cardview_start_end_margin"
+    android:layout_marginEnd="@dimen/mars_explore_cardview_start_end_margin"
+    tools:context=".ui.explore.MarsExploreActivity">
+
+
+    <TextView
+        style="@style/MarsExploreTitleText"
+        android:id="@+id/explore_mars_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="@string/explore_mars"
+        android:gravity="center_horizontal"/>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mars_explore_categories_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/explore_mars_title"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

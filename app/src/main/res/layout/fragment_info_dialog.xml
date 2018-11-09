@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_rounded_bg"
+    tools:context=".ui.info.InfoDialogFragment">
+
+
+    <ImageView
+        android:contentDescription="@string/info_icon_cd"
+        android:id="@+id/dialog_info_imageview"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_information_white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/information_icon_height" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:cardBackgroundColor="@color/marsOrange"
+        app:cardCornerRadius="@dimen/default_cardview_corner_radius"
+        android:elevation="1dp">
+
+        <TextView
+            android:padding="16dp"
+            style="@style/InformationText"
+            android:id="@+id/information_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+             />
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

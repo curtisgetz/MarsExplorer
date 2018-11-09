@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.explore_detail.rover_science.RoverScienceFragment">
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        style="@style/ScienceTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabTextColor="@color/marsDarkBrown"
+        app:tabIndicatorColor="@color/marsOrangeDark"
+        android:background="@color/marsOrange"
+        app:tabRippleColor="@color/blackBackground"
+        app:tabSelectedTextColor="@color/lightText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabMode="scrollable" />
+
+    <android.support.v4.view.ViewPager
+        android:layout_marginStart="@dimen/rover_science_outside_margin"
+        android:layout_marginEnd="@dimen/rover_science_outside_margin"
+        android:id="@+id/rover_science_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="6dp"
+
+        >
+
+    </android.support.v4.view.ViewPager>
+
+</android.support.constraint.ConstraintLayout>

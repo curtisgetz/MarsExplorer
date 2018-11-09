@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Data use">
+
+        <SwitchPreference
+            android:defaultValue="@bool/pref_limit_photos_default"
+            android:key="@string/pref_get_all_photos_key"
+            android:summaryOn="@string/pref_get_all_photos_summary_on"
+            android:summaryOff="@string/pref_get_all_photos_summary_off"
+            android:title="@string/pref_get_all_photos_label"
+            />
+
+
+        <SwitchPreference
+            android:defaultValue="@bool/pref_rover_job_scheduler_default"
+            android:key="@string/pref_rover_job_scheduler_key"
+            android:summaryOn="@string/pref_rover_job_summary_on"
+            android:summaryOff="@string/pref_rover_job_summary_off"
+            android:title="@string/pref_rover_job_scheduler_label"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Alerts">
+        <SwitchPreference
+            android:defaultValue="@bool/pref_tweets_default"
+            android:key="@string/pref_subscribe_to_tweets_key"
+            android:summaryOn="@string/pref_tweets_summary_on"
+            android:summaryOff="@string/pref_tweets_summary_off"
+            android:title="@string/pref_tweets_label"
+            />
+
+
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

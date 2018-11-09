@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/rover_explore_cardview_height"
+    style="@style/CardView.Light"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="@dimen/default_cardview_elevation"
+    android:layout_marginStart="@dimen/rover_explore_cardview_margin_start_end"
+    android:layout_marginEnd="@dimen/rover_explore_cardview_margin_start_end"
+    android:layout_marginTop="@dimen/rover_explore_cardview_margin_top_bottom"
+    android:layout_marginBottom="@dimen/rover_explore_cardview_margin_top_bottom"
+    app:cardCornerRadius="@dimen/default_cardview_corner_radius"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Setting generic content description. More detailed description will be set by Adapter-->
+        <ImageView
+            android:contentDescription="@string/rover_category_cd"
+            android:id="@+id/rover_explore_cardview_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            android:background="@android:color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rover_explore_cardview_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+
+        <TextView
+            android:id="@+id/rover_explore_cardview_text"
+            style="@style/RoverExploreCardViewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Pictures Taken By The Rover"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_75_horizonal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.50" />
+        
+        <android.support.constraint.Guideline
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/guideline_50_vertical"
+            app:layout_constraintGuide_percent="0.50"/>
+        
+        <TextView
+            android:id="@+id/sol_search_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RoverExploreSolSearchText"
+            android:text="@string/view_photos_from_sol"
+            app:layout_constraintTop_toTopOf="@id/guideline_75_horizonal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+        
+        <EditText
+            android:hint="@string/enter_sol_hint"
+            android:id="@+id/sol_edit_text"
+            android:layout_width="@dimen/rover_explore_sol_edittext_width"
+            android:layout_height="0dp"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            android:background="@color/lightText"
+            android:layout_marginStart="@dimen/rover_explore_sol_edit_text_margin"
+            android:layout_marginEnd="@dimen/rover_explore_sol_edit_text_margin"
+            app:layout_constraintTop_toTopOf="@id/sol_search_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/sol_search_label"/>
+        
+        <Button
+            android:id="@+id/search_sol_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/rover_explore_sol_search_button_height"
+            android:layout_margin="@dimen/rover_explore_sol_search_button_padding"
+            android:padding="@dimen/rover_explore_sol_search_button_padding"
+            app:layout_constraintTop_toBottomOf="@id/sol_search_label"
+            app:layout_constraintStart_toEndOf="@id/guideline_50_vertical"
+            android:text="@string/search_sol_button"/>
+
+        <Button
+            android:id="@+id/random_sol_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:textColor="@color/lightText"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/rover_explore_sol_search_button_height"
+            android:layout_margin="@dimen/rover_explore_sol_search_button_padding"
+            android:padding="@dimen/rover_explore_sol_search_button_padding"
+            app:layout_constraintTop_toBottomOf="@id/sol_search_label"
+            app:layout_constraintEnd_toStartOf="@id/guideline_50_vertical"
+            android:text="@string/random_sol_button"/>
+
+</android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

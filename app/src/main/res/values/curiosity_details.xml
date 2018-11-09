@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="curiosity_mast_camera_details">
+        The MastCam (Mast Camera) system provides multiple spectra and true-color imaging with two cameras. The cameras can take true-color images at 1600×1200 pixels and up to 10 frames per second hardware-compressed video at 720p (1280×720).\n
+        One MastCam camera is the Medium Angle Camera (MAC), which has a 34 mm (1.3 in) focal length, a 15° field of view, and can yield 22 cm/pixel (8.7 in/pixel) scale at 1 km (0.62 mi). The other camera in the MastCam is the Narrow Angle Camera (NAC), which has a 100 mm (3.9 in) focal length, a 5.1° field of view, and can yield 7.4 cm/pixel (2.9 in/pixel) scale at 1 km (0.62 mi).\n
+        Each camera has eight gigabytes of flash memory, which is capable of storing over 5,500 raw images, and can apply real time lossless data compression. The cameras have an autofocus capability that allows them to focus on objects from 2.1 m (6 ft 11 in) to infinity.
+    </string>
+
+    <string name="curiosity_chemcam_details">ChemCam (Chemistry and Camera Complex) is a suite of remote sensing instruments, and as the name implies, ChemCam is actually two different instruments combined as one:
+        a laser-induced breakdown spectroscopy (LIBS) and a Remote Micro Imager (RMI) telescope. The ChemCam instrument suite was developed by the French CESR laboratory and
+        the Los Alamos National Laboratory.\nThe flight model of the mast unit was delivered from the French CNES to Los Alamos National Laboratory. The purpose of the LIBS
+        instrument is to provide elemental compositions of rock and soil, while the RMI will give ChemCam scientists high-resolution images of the sampling areas of the rocks
+        and soil that LIBS targets.The LIBS instrument can target a rock or soil sample up to 7 m (23 ft) away, vaporizing a small amount of it with about 50 to 75 5-nanosecond
+        pulses from a 1067 nm infrared laser and then observing the spectrum of the light emitted by the vaporized rock.\n
+        \nChemCam has the ability to record up to 6,144 different wavelengths of ultraviolet, visible, and infrared light. Detection of the ball of luminous plasma will be done in the visible,
+        near-UV and near-infrared ranges, between 240 nm and 800 nm. The first initial laser testing of the ChemCam by Curiosity on Mars was performed on a rock, N165 ("Coronation" rock),
+        near Bradbury Landing on August 19, 2012. The ChemCam team expects to take approximately one dozen compositional measurements of rocks per day. </string>
+
+    <string name="curiosity_rems_details">REMS (Rover Environmental Monitoring Station) comprises instruments to measure the Mars environment: humidity, pressure, temperatures, wind speeds, and ultraviolet radiation.
+        It is a meteorological package that includes an ultraviolet sensor provided by the Spanish Ministry of Education and Science. The investigative team is led by
+        Javier Gómez-Elvira of the Center for Astrobiology (Madrid) and includes the Finnish Meteorological Institute as a partner. All sensors are located around three elements:
+        two booms attached to the rover\'s mast, the Ultraviolet Sensor (UVS) assembly located on the rover top deck, and the Instrument Control Unit (ICU) inside the rover body.
+        \nREMS will provide new clues about the Martian general circulation, micro scale weather systems, local hydrological cycle, destructive potential of UV radiation, and subsurface
+        habitability based on ground-atmosphere interaction</string>
+
+    <string name="curiosity_hazcam_details">HAZCAM (Hazard Avoidance Cameras) are mounted on the lower portion of the front and rear of the rover, these black-and-white cameras use visible light to capture three-dimensional (3-D) imagery.
+        This imagery safeguards against the rover getting lost or inadvertently crashing into unexpected obstacles, and works in tandem with software that allows the rover make its own safety
+        choices and to "think on its own. The cameras each have a wide field of view of about 120 degrees. The rover uses pairs of Hazcam images to map out the shape of the terrain as far as
+        3 meters (10 feet) in front of it, in a "wedge" shape that is over 4 meters wide at the farthest distance. It needs to see far to either side because unlike human eyes, the Hazcam cameras
+        cannot move independently; they\'re mounted directly to the rover body.</string>
+
+
+    <string name="curiosity_navcam_details">NAVCAMs (Navigation cameras) are mounted on the mast (the rover "neck and head), these black-and-white cameras use visible light to gather panoramic, three-dimensional (3D) imagery.
+        The Navcam is a stereo pair of cameras, each with a 45-degree field of view to support ground navigation planning by scientists and engineers. They work in cooperation with the
+        Hazcams by providing a complementary view of the terrain</string>
+
+
+    <string name="curiosity_mahli_details">MAHLI (Mars Hand Lens Imager) is a camera on the rover\'s robotic arm, and acquires microscopic images of rock and soil. MAHLI can take true-color images at 1600×1200 pixels with
+        a resolution as high as 14.5 micrometers per pixel. MAHLI has an 18.3 to 21.3 mm (0.72 to 0.84 in) focal length and a 33.8–38.5° field of view. MAHLI has both white and ultraviolet
+        LED illumination for imaging in darkness or fluorescence imaging. \nMAHLI also has mechanical focusing in a range from infinite to millimetre distances. This system can make some images
+        with focus stacking processing. MAHLI can store either the raw images or do real time lossless predictive or JPEG compression. The calibration target for MAHLI includes color references,
+        a metric bar graphic, a 1909 VDB Lincoln penny, and a stairstep pattern for depth calibration</string>
+
+
+    <string name="curiosity_apxs_details">APXS (Alpha Particle X-ray Spectrometer) irradiates samples with alpha particles and maps the spectra of X-rays that are re-emitted for determining the elemental composition of samples.
+        Curiosity\'s APXS was developed by the Canadian Space Agency. MacDonald Dettwiler (MDA), the Canadian aerospace company that built the Canadarm and RADARSAT, were responsible for the
+        engineering design and building of the APXS. The APXS science team includes members from the University of Guelph, the University of New Brunswick, the University of Western Ontario, NASA,
+        the University of California, San Diego and Cornell University. The APXS instrument takes advantage of particle-induced X-ray emission (PIXE) and X-ray fluorescence, previously exploited
+        by the Mars Pathfinder and the Mars Exploration Rovers</string>
+
+
+
+    <string name="curiosity_chemin_details">CheMin is the Chemistry and Mineralogy X-ray powder diffraction and fluorescence instrument.[96] CheMin is one of four spectrometers. It can identify and quantify
+        the abundance of the minerals on Mars. It was developed by David Blake at NASA Ames Research Center and the Jet Propulsion Laboratory, and won the 2013 NASA Government Invention of the year
+        award. The rover can drill samples from rocks and the resulting fine powder is poured into the instrument via a sample inlet tube on the top of the vehicle. A beam of X-rays is then directed
+        at the powder and the crystal structure of the minerals deflects it at characteristic angles, allowing scientists to identify the minerals being analyzed.
+        \nOn October 17, 2012, at "Rocknest", the first X-ray diffraction analysis of Martian soil was performed. The results revealed the presence of several minerals, including feldspar, pyroxenes
+        and olivine, and suggested that the Martian soil in the sample was similar to the "weathered basaltic soils" of Hawaiian volcanoes.The paragonetic tephra from a Hawaiian cinder cone has been
+        mined to create Martian regolith simulant for researchers to use since 1998.</string>
+
+    <string name="curiosity_sam_details">The SAM (Sample Analysis at Mars) instrument suite analyzes organics and gases from both atmospheric and solid samples. It consists of instruments developed by the NASA Goddard Space Flight Center,
+        the Laboratoire Inter-Universitaire des Systèmes Atmosphériques (LISA) (jointly operated by France\'s CNRS and Parisian universities), and Honeybee Robotics, along with many additional external
+        partners. The three main instruments are a Quadrupole Mass Spectrometer (QMS), a gas chromatograph (GC) and a tunable laser spectrometer (TLS). These instruments will perform precision measurements
+        of oxygen and carbon isotope ratios in carbon dioxide (CO2) and methane (CH4) in the atmosphere of Mars in order to distinguish between their geochemical or biological origin.</string>
+
+
+    <string name="curiosity_drt_details">The Dust Removal Tool (DRT) is a motorized, wire-bristle brush on the turret at the end of Curiosity\'s arm. The DRT was first used on a rock target named Ekwir_1 on January 6, 2013.
+        Honeybee Robotics built the DRT.</string>
+
+
+    <string name="curiosity_rad_details">RAD (Radiation Assessment Detector) was the first of ten MSL instruments to be turned on. Its first role was to characterize the broad spectrum of radiation environment found inside the
+        spacecraft during the cruise phase. These measurements have never been done before from the inside of a spacecraft in interplanetary space. Its primary purpose is to determine the viability
+        and shielding needs for potential human explorers, as well as to characterize the radiation environment on the surface of Mars, which it started doing immediately after MSL (Curiosity Rover)
+        landed in August 2012. Funded by the Exploration Systems Mission Directorate at NASA Headquarters and Germany\'s Space Agency (DLR), RAD was developed by Southwest Research Institute (SwRI)
+        and the extraterrestrial physics group at Christian-Albrechts-Universität zu Kiel, Germany.</string>
+
+    <string name="curiosity_dan_details">The Dynamic Albedo of Neutrons instrument is a pulsed sealed-tube neutron source and detector used to measure hydrogen or ice and water at or near the Martian surface.
+        DAN was provided by the Russian Federal Space Agency, funded by Russia and is under the leadership of Principal Investigator Igor Mitrofanov.
+        \nOn August 18, 2012 (sol 12), DAN was turned on, marking the success of a Russian-American collaboration on the surface of Mars and the first working Russian science instrument on the Martian
+        surface since Mars 3 stopped transmitting over forty years ago. The instrument is designed to detect subsurface water.
+        \nOn March 18, 2013 (sol 219), NASA reported evidence of mineral hydration, likely hydrated calcium sulfate, in several rock samples including the broken fragments of "Tintina" rock and
+        "Sutton Inlier" rock as well as in veins and nodules in other rocks like "Knorr" rock and "Wernicke" rock. Analysis using the rover\'s DAN instrument provided evidence of subsurface water,
+        amounting to as much as 4% water content, down to a depth of 60 cm (2.0 ft), in the rover\'s traverse from the Bradbury Landing site to the Yellowknife Bay area in the Glenelg terrain.</string>
+
+
+    <string name="curiosity_mardi_details">MARDI (Mars Descent Imager) was fixed to the lower front left corner of the body of Curiosity. During the descent to the Martian surface, MARDI took color images at 1600×1200 pixels
+        with a 1.3-millisecond exposure time starting at distances of about 3.7 km (2.3 mi) to near 5 m (16 ft) from the ground, at a rate of four frames per second for about two minutes.
+        MARDI has a pixel scale of 1.5 m (4.9 ft) at 2 km (1.2 mi) to 1.5 mm (0.059 in) at 2 m (6.6 ft) and has a 90° circular field of view. MARDI has eight gigabytes of internal buffer
+        memory that is capable of storing over 4,000 raw images. MARDI imaging allowed the mapping of surrounding terrain and the location of landing. JunoCam, built for the Juno spacecraft,
+        is based on MARDI</string>
+
+
+    <string name="curiosity_robotic_arm_details">The rover has a 2.1 m (6.9 ft) long robotic arm with a cross-shaped turret holding five devices that can spin through a 350° turning range.
+        The arm makes use of three joints to extend it forward and to stow it again while driving. It has a mass of 30 kg (66 lb) and its diameter, including the tools mounted on it,
+        is about 60 cm (24 in).[119] It was designed, built, and tested by MDA US Systems, building upon their prior robotic arm work on the Mars Surveyor 2001 Lander, the Phoenix lander,
+        and the two Mars Exploration Rovers, Spirit and Opportunity.
+        \nTwo of the five devices are in-situ or contact instruments known as the X-ray spectrometer (APXS), and the Mars Hand Lens Imager (MAHLI camera). The remaining three are associated
+        with sample acquisition and sample preparation functions: a percussion drill; a brush; and mechanisms for scooping, sieving, and portioning samples of powdered rock and soil.
+        The diameter of the hole in a rock after drilling is 1.6 cm (0.63 in) and up to 5 cm (2.0 in) deep. The drill carries two spare bits. The rover\'s arm and turret system can place
+        the APXS and MAHLI on their respective targets, and also obtain powdered sample from rock interiors, and deliver them to the SAM and CheMin analyzers inside the rover.
+        \nSince early 2015 the percussive mechanism in the drill that helps chisel into rock has had an intermittent electrical short. On December 1, 2016, the motor inside the drill
+        caused a malfunction that prevented the rover from moving its robotic arm and driving to another location. The fault was isolated to the drill feed brake, and internal debris
+        is suspected of causing the problem.By December 9, driving and robotic arm operations were cleared to continue, but drilling remained suspended indefinitely.
+        The Curiosity team continued to perform diagnostics and testing on the drill mechanism throughout 2017</string>
+
+
+    <string name="curiosity_legswheels_details">Curiosity inherited a number of mobility technologies from the Mars Exploration Rover mission (and its predecessor, Mars Pathfinder), including:
+        \na six-wheel drive
+        \na rocker-bogie suspension system
+        \nscene-scanning instruments mounted to a mast that assist in selecting exploration targets and driving routes
+        \nautonomous navigation software innovations that enable rovers to drive without human intervention to a desired location
+        \n\nThe mobility system is essentially the same; the primary difference is that Curiosity is the size of a miniature compact car - quite a bit larger than the golf-cart-sized Mars Exploration Rovers.
+        \nCuriosity\'s large size gives the rover advantages in mobility. For instance, it has a ground clearance of slightly more than 24 inches (60 centimeters), which enables it to climb over
+        larger rocks than ever before. This capability is further enhanced by the rocker-bogie system, which keeps the rover in balance. It is able to withstand a tilt of 45 degrees in any direction, but is
+        prevented from tilting more than 30 degrees by its on-board fault protection system.
+    </string>
+
+    <string name="curiosity_power_details">Curiosity uses a radioisotope power system to generate electricity needed to operate the rover and its instruments. Radioisotope electrical
+        power and heating systems enable science missions that require greater longevity, more diverse landing locations or more power or heat than missions limited to solar power systems.
+        \nRadioisotope power systems are generators that produce electricity from the natural decay of plutonium-238, which is a non-weapons-grade form of that radioisotope used in power
+        systems for NASA spacecraft. Heat given off by the natural decay of this isotope is converted into electricity, providing constant power during all seasons and through the day and night</string>
+
+
+    <string name="curiosity_antenna_details">Curiosity, is able to "talk" to Earth using any one of three antennas. During the mission, the rover\'s primary means of communication is via
+        UHF frequencies, similar to those used for television broadcasts. During "conversations" scheduled twice each day, NASA\'s Mars Reconnaissance Orbiter, now in flight above Mars,
+        serves as intermediary and records the information for transmission to Earth. Each conversation lasts about 15 minutes, the length of time it takes for the orbiter to pass from
+        horizon to horizon. The orbiter then relays the information to Earth.
+        \nIn a pinch, NASA\'s Odyssey spacecraft, also in orbit above Mars, serves as a backup for relaying information in the same manner. Odyssey has transmitted most of the data from
+        NASA\'s two Mars Exploration Rovers since they landed on the red planet in 2004. On occasion, the European Space Agency\'s Mars Express may also serve as intermediary.
+        \nThe rover has two other antennas for communicating directly with Earth, similar to those used on the Viking landers in the 1970s, the Pathfinder mission in the 1990s,
+        and the Mars Exploration Rovers. One is the Low-Gain Antenna, the other the High-Gain Antenna. Both are similar in appearance to satellite television dishes but transmit
+        signals at much higher frequencies known as X-band frequencies. These higher frequencies can transmit more data in the same amount of time using smaller, shorter wavelengths,
+        but the transmissions must be more narrowly focused to be received at the other end.
+        \nThe Low-Gain Antenna, transmitting broader, less focused signals, served as the rover\'s primary link to Earth for the first several sols, or Martian days, after landing.
+        These signals spread out as they leave the antenna, so that no matter which way the antenna is pointed, the signal will reach the Earth. Once mission controllers determined the
+        rover\'s precise location and attitude - that is, which way its various parts were oriented relative to the Sun and Earth - they switched communications to the High-Gain Antenna.
+        The High-Gain Antenna sends a more efficient signal focused directly at Earth, to be detected, like all transmissions from Mars, by NASA\'s Deep Space Network of antennas.
+    </string>
+
+    <string name="curiosity_brains_details">The rover computer (its "brains") is inside a module called "The Rover Compute Element" (RCE) inside the rover body. The
+        communication interface that enables the main computer to exchange data with the rover\'s instruments and sensors is called a "bus". This bus is an industry
+        standard interface bus to communicate with and control all of the rover motors, science instruments, and communication functions.
+        \nThe computer contains special memory to tolerate the extreme radiation environment from space and to safeguard against power-off cycles so the programs and
+        data will remain and will not accidentally erase when the rover shuts down at night.
+        \nOn-board memory includes 256MB of DRAM and 2 GB of Flash Memory both with error detection and correction and 256kB of EEPROM. This onboard memory is roughly
+        8 times as capable as the one onboard the Mars Exploration Rovers.
+        \nThe rover carries an Inertial Measurement Unit (IMU) that provides 3-axis information on its position, which enables the rover to make precise vertical,
+        horizontal, and side-to-side (yaw) movements. The device is used in rover navigation to support safe traverses and to estimate the degree of tilt the rover
+        is experiencing on the surface of Mars.
+        \nJust like the human brain, the rover computers register signs of health, temperature, and other features that keep the rover "alive." This main control loop
+        essentially keeps the rover "alive" by constantly checking itself to ensure that it is both able to communicate throughout the surface mission and that it remains
+        thermally stable (not too hot or too cold) at all times. It does so by periodically checking temperatures, particularly in the rover body, and responding to potential
+        overheating conditions, recording power generation and power storage data throughout the Mars sol (a Martian day), and scheduling and preparing for communication sessions.
+        \nActivities such as taking pictures, driving, and operating the instruments are performed under commands transmitted in a command sequence to the rover from the flight team.
+        The rover generates constant engineering, housekeeping and analysis telemetry and periodic event reports that are stored for eventual transmission once the flight team requests
+        the information from the rover. The rover has two "computer brains" one which is normally asleep. In case of problems the other computer brain can be awakened to take
+        over control and continue the mission.
+    </string>
+
+
+
+
+</resources>

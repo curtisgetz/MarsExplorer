@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <bool name="is_land">true</bool>
+
+    <!-- Main Activity -->
+    <dimen name="main_card_start_end_margin">20dp</dimen>
+    <dimen name="main_cardview_width">200dp</dimen>
+    <dimen name="main_cardview_height">-1px</dimen>
+
+    <!-- Favorites -->
+    <dimen name="favorite_photo_card_width">125dp</dimen>
+    <dimen name="favorite_photo_card_height">125dp</dimen>
+    <dimen name="favorite_photo_card_margin">12dp</dimen>
+
+    <!-- Mars Facts -->
+    <dimen name="mars_fact_layout_margin">20dp</dimen>
+
+    <!-- Rover Science -->
+    <dimen name="rover_science_outside_margin">20dp</dimen>
+
+    <dimen name="rover_explore_cardview_margin_top_bottom">8dp</dimen>
+
+    <!-- Mars Explore  -->
+    <dimen name="mars_explore_cardview_start_end_margin">100dp</dimen>
+
+    <!-- Mars Weather-->
+    <dimen name="mars_weather_title_card_margin_start_end">80dp</dimen>
+    <dimen name="mars_weather_detail_card_margin_start_end">40dp</dimen>
+
+</resources>

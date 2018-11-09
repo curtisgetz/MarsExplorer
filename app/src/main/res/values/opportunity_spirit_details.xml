@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="opp_spirit_pancam_details">Pancam is a high-resolution color stereo pair of CCD cameras used to image the surface and sky of Mars.
+        The cameras are located on a "camera bar" that sits on top of the mast of the rover.
+        \nEach Pancam is one of two electronic stereo cameras on Mars Exploration Rovers Spirit and Opportunity.
+        It has a filter wheel assembly that enables it to view different wavelengths of light and the pair of Pancams are mounted beside two
+        NavCams on the MER camera bar assembly.
+        \nThe focal length of the camera is 43 mm with a field of view (FOV) of 16° x 16°. The two cameras are separated by 30 cm and are mounted upside-down relative to each other.
+        \nAccording to Cornell University it can work with Mini-TES to analyze surroundings.
+        \nAccording to a paper about Mars by JPL, the Pancam system can achieve an angular resolution of 300 microradians, which is three times
+        better than the human eye. It can observe 14 spectral bands, and with two side-by side cameras can generate stereoscopic views of Mars,
+        supporting the creation of large Mars panoroamas in excess of 10 Gbit uncompressed. Spirit rover took the highest resolution image ever
+        taken on the surface of another planet up to that time when it landed in 2004.</string>
+    
+    <string name="opp_spirit_navcam_details">@string/curiosity_navcam_details</string>
+
+    <string name="opp_spirit_minites_details">The Miniature Thermal Emission Spectrometer (Mini-TES) is an infrared spectrometer used for detecting the composition
+        of a material (typically rocks) from a distance. By making its measurements in the thermal infrared part of the electromagnetic spectrum, it has the
+        ability to penetrate through the dust coatings common to the Martian surface which is usually problematic for remote sensing observations.
+        There is one on each of the two Mars Exploration Rovers (Opportunity and Spirit).
+        \nThe Mini-TES is used for identifying promising rocks and soils for closer examination, and to determine the processes that formed Martian rocks.
+        It measures the infrared radiation that the target rock or object emits in 167 different wavelengths, providing information about the target\'s composition.
+        One particular goal is to search for minerals that were formed by the action of water, such as carbonates and clays. The instrument can also look skyward to
+        provide temperature profiles of the Martian atmosphere and detect the abundance of dust and water vapor.
+        \nMini-TES weighs 2.1 kg (almost 5 lbs) and is located in the body of the rover at the bottom of the "rover neck," known as the Pancam Mast Assembly (PMA).
+        Scanning mirrors located in the Pancam Mast Assembly act like a periscope to send light down to the instrument. This structure allows Mini-TES to see the terrain around
+        the rover from the same vantage point as Pancam. Mini-TES looks one way, and the Pancams looks the other way. To make observations of the same location from
+        both of the instruments, the Pancam Mast Assembly (the rover\'s neck) must be commanded to swivel.</string>
+
+    <string name="opp_spirit_mb_details">Many of the minerals that formed rocks on Mars contain iron, and the soil is iron-rich. The Mössbauer Spectrometer is an instrument
+        that was specially designed to study iron-bearing minerals. Because this science instrument is so specialized, it can determine the composition and abundance of these
+        minerals to a high level of accuracy. This ability can also help us understand the magnetic properties of surface materials.
+        \nThe Mössbauer Spectrometer sensor head is small enough to fit in the palm of your hand. It is one of four instruments mounted on the turret at the end of the rover arm.
+        Its electronics are housed inside the body of the rover (in the Warm Electronics Box, or WEB). Measurements are taken by placing the instrument\'s sensor head directly
+        against a rock or soil sample. One Mössbauer measurement takes about 12 hours.
+    </string>
+
+
+    <string name="opp_spirit_apxs_details">The APXS determines the elemental chemistry of rocks and soils using alpha particles and X-rays. Alpha particles are emitted during
+        radioactive decay and X-rays are a type of electromagnetic radiation, like light and microwaves. The APXS carries a small alpha particle source. The alphas are emitted
+        and bounce back from a science target into a detector in the APXS, along with some X-rays that are excited from the target in the process. The energy distribution of the
+        alphas and X-rays measured by the detectors is analyzed to determine elemental composition. The elemental composition of a rock describes the amounts of different chemical
+        elements that have come together to form all of the minerals within the rock. Knowing the elemental composition of martian rocks provides scientists with information about
+        the formation of the planet\'s crust, as well as any weathering that has taken place.
+        \nAs with the other instruments on the arm of the rover, the APXS sensor head is small enough to hold in your hand. Its electronics are housed in the warm electronics box (WEB)
+        located in the body of the rover. Most APXS measurements are taken at night and require at least 10 hours of accumulation time, although just X-ray alone will only require a few hours.</string>
+
+    <string name="opp_spirit_mi_details">The Microscopic Imager is a combination of a microscope and a CCD camera that provides information on the small-scale features of martian rocks
+        and soils. It complements the findings of other science instruments by producing close-up views of surface materials. Some of those materials are in their natural state,
+        while others may be views of fresh surfaces exposed by the Rock Abrasion Tool.
+        \nMicroscopic imaging is used to analyze the size and shape of grains in sedimentary rocks, which is important for identifying whether water may have existed in the planet\'s past.
+        \nThe Microscopic Imager is located on the arm of the rover. Its field of view is 1024 x 1024 pixels in size and it has a single, broad-band filter so imaging is in black and white.</string>
+
+    <string name="opp_spirit_rat_details">The Rock Abrasion Tool is a powerful grinder, able to create a hole 45 millimeters (about 2 inches) in diameter and 5 millimeters (0.2 inches)
+        deep into a rock on the Martian surface.
+    \nThe RAT is located on the arm of the rover and weighs less than 720 grams (about 1.6 lbs). It uses three electric motors to drive rotating grinding teeth into the surface of a rock.
+        Two grinding wheels rotate at high speeds. These wheels also rotate around each other at a much slower speed so that the two grinding wheels sweep the entire cutting area.
+        The RAT is able to grind through hard volcanic rock in about two hours.</string>
+
+
+    <string name="opp_spirit_magnet_details">Mars is a dusty place and some of that dust is highly magnetic. Magnetic minerals carried in dust grains may be freeze-dried remnants of
+        the planet´s watery past. A periodic examination of these particles and their patterns of accumulation on magnets of varying strength can reveal clues about their mineralogy and
+        the planet´s geologic history.
+        \nEach rover has three sets of magnetic targets that will collect airborne dust for analysis by the science instruments. One set of magnets is carried by the Rock Abrasion Tool (RAT).
+        As the RAT grinds into martian rocks, scientists have the opportunity to study the properties of dust from these outer rock surfaces.
+        \nA second set of two magnets is mounted on the front of the rover at an angle so that non-magnetic particles will tend to fall off. These magnets are reachable for analysis by the
+        Mössbauer and APXS instruments. A third magnet is mounted on the top of the rover deck in view of the Pancam. This magnet is strong enough to deflect the paths of wind-carried, magnetic dust.</string>
+
+
+    <string name="opp_spirit_solar_details">The rover requires power to operate. Without power, it cannot move, use its science instruments, or communicate with Earth. The main source
+        of power for each rover comes from a multi-panel solar array. They look almost like "wings," but their purpose is to provide energy, not fly.
+        \nWhen fully illuminated, the rover solar arrays generate about 140 watts of power for up to four hours per sol (a Martian day). The rover needs about 100 watts (equivalent to a
+        standard light bulb in a home) to drive. Comparatively, the Sojourner rover´s solar arrays provided the 1997 Pathfinder mission with around 16 watts of power at noon on Mars.
+        That´s equivalent to the power used by an oven light. This extra power will potentially enable the rovers to conduct more science.</string>
+
+    <string name="opp_spirit_body_details">The rover body is called the warm electronics box, or "WEB" for short. Like a car body, the rover body is a strong, outer layer that protects the
+        rover\'s computer, electronics, and batteries (which are basically the equivalent of the rover´s brains and heart). The rover body thus keeps the rover´s vital organs protected and temperature-controlled.
+        \nThe warm electronics box is closed on the top by a triangular piece called the Rover Equipment Deck (RED). The Rover Equipment Deck makes the rover like a convertible car, allowing a
+        place for the rover mast and cameras to sit out in the Martian air, taking pictures and clearly observing the Martian terrain as it travels.
+        \nThe gold-painted, insulated walls of the rover body also keep heat in when the night temperatures on Mars can drop to -96 degrees Celsius (-140 degrees Fahrenheit).</string>
+
+
+    <string name="opp_spirit_brains_details">The rover computer (its "brains") is inside a module called "The Rover Electronics Module" (REM) inside the rover body.
+        The communication interface that enables the main computer to exchange data with the rover´s instruments and sensors is called a "bus" (a VME or Versa Module
+        Europa bus to be exact). This VME bus is an industry standard interface bus to communicate with and control all of the rover motors, science instruments,
+        and communication functions.
+        \nThe computer is composed of equipment comparable to a high-end, powerful laptop computer. It contains special memory to tolerate the extreme radiation environment
+        from space and to safeguard against power-off cycles so the programs and data will remain and will not accidentally erase when the rover shuts down at night.
+        \nOn-board memory includes 128 MB of DRAM with error detection and correction and 3 MB of EEPROM. That´s roughly the equivalent memory of a standard home computer.
+        This onboard memory is roughly 1000 more than the Sojourner rover from the Pathfinder mission had.
+        \nThe rover carries an Inertial Measurement Unit (IMU) that provides 3-axis information on its position, which enables the rover to make precise vertical,
+        horizontal, and side-to-side (yaw) movements. The device is used in rover navigation to support safe traverses and to estimate the degree of tilt the rover
+        is experiencing on the surface of Mars.
+        \nActivities such as taking pictures, driving, and operating the instruments are performed under commands transmitted in a command sequence to the rover from the flight team.
+        The rover generates constant engineering, housekeeping and analysis telemetry and periodic event reports that are stored for eventual transmission once the flight
+        team requests the information from the rover.
+    </string>
+
+    <string name="opp_temp_details">Like the human body, the Mars Exploration Rover cannot function well under excessively hot or cold temperatures.
+        In order to survive during all of the various mission phases, the rover´s "vital organs" must not exceed extreme temperatures of -40º Celsius to +40º
+        Celsius (-40º Fahrenheit to 104º Fahrenheit).
+    \nThe rover´s essentials, such as the batteries, electronics, and computer, which are basically the rover´s heart and brains, stay safe inside a Warm
+        Electronics Box (WEB), commonly called the "rover body." Heaters are packed inside the rover body, and like a warm coat, the WEB walls help keep heat
+        in when the night temperatures on Mars can drop to -96º Celsius (-140º Fahrenheit). Just as an athlete sweats to release heat after an intense workout,
+        the rover\'s body can also release excess heat through its radiators, similar to ones used in car engines.
+        \nThere are several methods engineers used to keep the rover at the right temperature:
+        \nPreventing heat escape through gold paint
+        \nPreventing heat escape through insulation called "aerogel"
+        \nKeeping the rover warm through heaters
+        \nMaking sure the rover is not too hot or cold through thermostats and heat switches
+        \nMaking sure the rover doesn\'t get too hot through the heat rejection system
+        \n\nMany of these methods are very important to making sure the rover doesn´t "freeze to death" in the cold of deep space or on Mars.
+    </string>
+
+
+    <string name="spirit_temp_details">Like the human body, the Mars Exploration Rover cannot function well under excessively hot or cold temperatures.
+        In order to survive during all of the various mission phases, the rover´s "vital organs" must not exceed extreme temperatures of -40º Celsius to +40º
+        Celsius (-40º Fahrenheit to 104º Fahrenheit).
+    \nThe rover´s essentials, such as the batteries, electronics, and computer, which are basically the rover´s heart and brains, stay safe inside a Warm
+        Electronics Box (WEB), commonly called the "rover body." Heaters are packed inside the rover body, and like a warm coat, the WEB walls help keep heat
+        in when the night temperatures on Mars can drop to -96º Celsius (-140º Fahrenheit). Just as an athlete sweats to release heat after an intense workout,
+        the rover\'s body can also release excess heat through its radiators, similar to ones used in car engines.
+        \nThere are several methods engineers used to keep the rover at the right temperature:
+        \nPreventing heat escape through gold paint
+        \nPreventing heat escape through insulation called "aerogel"
+        \nKeeping the rover warm through heaters
+        \nMaking sure the rover is not too hot or cold through thermostats and heat switches
+        \nMaking sure the rover doesn\'t get too hot through the heat rejection system
+        \n\nMany of these methods are very important to making sure the rover doesn´t "freeze to death" in the cold of deep space or on Mars which is likely what
+        happened to Spirit in 2010 after getting stuck in soft soil in 2009. In January of 2010 NASA decided to redefine the mission by calling it a stationary research platform.
+        \nThe last communication with the rover was on sol 2210 (March 22, 2010). JPL continued attempted to regain contact with Spirit until May 25, 2011 when NASA announced the end of contact
+        efforts and the completion of the mission
+        \nAccording to NASA, the rover likely experienced excessively cold "internal temperatures" due to "inadequate energy to run its survival heaters" that, in turn, was a result
+        of "a stressful Martian winter without much sunlight." Many critical components and connections would have been "susceptible to damage from the cold." Assets that had
+        been needed to support Spirit were transitioned to support Spirit\'s still-active twin, Opportunity, as well as the next-generation Mars rover Curiosity.</string>
+
+
+    <string name="opp_spirit_robotic_arm_details">The rover arm (also called the instrument deployment device, or IDD) holds and maneuvers the instruments that help scientists get
+        up-close and personal with Martian rocks and soil.
+        \nMuch like a human arm, the robotic arm has flexibility through three joints: the rover\'s shoulder, elbow, and wrist. The arm enables a tool belt of scientists\'
+        instruments to extend, bend, and angle precisely against a rock to work as a human geologist would: grinding away layers, taking microscopic images, and analyzing
+        the elemental composition of the rocks and soil.
+        \nAt the end of the arm is a turret, shaped like a cross. This turret, a hand-like structure, holds various tools that can spin through a 350-degree turning range.
+        \nThe four tools, or science instruments, on the robotic arm are:
+        \nThe Microscopic Imager - provides close-up images of rocks and soil
+        \nThe Mössbauer Spectrometer - analyzes the iron in rocks and soil
+        \nThe Alpha Particle X-Ray Spectrometer - analyzes the elemental composition of rocks and soil
+        \nThe Rock Abrasion Tool (RAT) - grinds away the outer surface of rock to expose fresh material
+        \n\nThe forearm also holds a small brush so that the Rock Abrasion Tool can spin against it to "brush its teeth" and rid the grinding tool of any leftover pieces of rock before its next bite.
+        \nThirty percent of the mass of the titanium robotic arm comes from the four instruments it holds at the end of the arm. This weight makes maneuvering the lightweight arm a bit of a challenge,
+        like controlling a bowling ball at the end of a fishing rod. The arm must be as lightweight as possible for the overall health of the mission, and holes are even cut out in places where there is no need for solid titanium.
+        \nOnce the arm and instruments have succeeded in one location but before the rover begins another traverse, the arm stows itself underneath the "front porch" of the rover body.
+        The elbow hooks itself back onto a pin, and the turret has a T-bar that slides back into a slotted ramp. The fit is almost as tight as a necklace clasp, and it can withstand shocks of 6 G´s
+        while roving along the rocky terrain. "Six G´s" is roughly equivalent to dropping a box onto a hard floor from a height of 20 centimeters (almost 8 inches). During launch and landing, the arm
+        is restrained by a retractable pin restraint, and can withstand even higher loads of 42 G´s.</string>
+
+
+    <string name="opp_spirit_legswheels_details">The rover has six wheels, each with its own individual motor. The two front and two rear wheels also have individual steering motors
+        (1 each). This steering capability allows the vehicle to turn in place, a full 360 degrees. The 4-wheel steering also allows the rover to swerve and curve, making arching turns.
+        \nThe rover is designed to withstand a tilt of 45 degrees in any direction without overturning. However, the rover is programmed through its "fault protection limits" in its
+        hazard avoidance software to avoid exceeding tilts of 30 degrees during its traverses.
+        \nThe rover rocker-bogie design allows the rover to go over obstacles (such as rocks) or through holes that are more than a wheel diameter (25 centimeters or 10 inches) in size.
+        Each wheel also has cleats, providing grip for climbing in soft sand and scrambling over rocks.
+        \nThe rover has a top speed on flat hard ground of 5 centimeters (2 inches) per second. However, in order to ensure a safe drive, the rover is equipped with hazard avoidance
+        software that causes the rover to stop and reassess its location every few seconds. So, over time, the vehicle achieves an average speed of 1 centimeter per second. The rover
+        is programmed to drive for roughly 10 seconds, then stop to observe and understand the terrain it has driven into for 20 seconds, before moving safely onward for another 10 seconds.</string>
+
+
+    <string name="opp_spirit_antenna_details">The rover has both a low-gain and high-gain antenna that serve as both its "voice" and its "ears". They are located on the rover equipment deck (its "back").
+        \nThe low-gain antenna sends and receives information in every direction; that is, it is "omni-directional." The antenna transmits radio waves at a low rate to the Deep Space Network (DSN)
+        antennas on Earth. The high-gain antenna can send a "beam" of information in a specific direction and it is steerable, so the antenna can move to point itself directly to any antenna on Earth.
+        The benefit of having a steerable antenna is that the entire rover doesn\'t necessarily have to change positions to talk to Earth. Like turning your neck to talk to someone beside you rather
+        than turning your entire body, the rover can save energy by moving only the antenna.
+        \nNot only can the rovers send messages directly to Earth, but they can uplink information to other spacecraft orbiting Mars, utilizing the 2001 Mars Odyssey and Mars Global Surveyor orbiters
+        as messengers who can pass along news to Earth for the rovers. The orbiters can also send messages to the rovers.
+        \nThe benefits of using the orbiting spacecraft are that the orbiters are closer to the rovers than the Deep Space Network antennas on Earth and the orbiters have Earth in their field of
+        view for much longer time periods than the rovers on the ground.</string>
+
+</resources>

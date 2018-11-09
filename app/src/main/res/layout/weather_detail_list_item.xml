@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:id="@+id/weather_detail_cardview"
+    android:elevation="@dimen/default_cardview_elevation"
+    app:cardCornerRadius="@dimen/default_cardview_corner_radius"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="@dimen/mars_weather_detail_card_margin_top_bottom"
+    app:cardBackgroundColor="@android:color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/weather_info_icon"
+            android:contentDescription="@string/weather_detail_info"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_information"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/weather_detail_label"
+            android:layout_marginStart="6dp"
+            style="@style/MarsWeatherText.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Air Temp:"/>
+
+        <TextView
+            tools:text="-68min   -5max"
+            android:layout_marginStart="6dp"
+            android:id="@+id/weather_detail_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MarsWeatherText.Detail"/>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</android.support.v7.widget.CardView>

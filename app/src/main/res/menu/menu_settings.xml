@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/settings_action"
+        android:icon="@drawable/ic_settings"
+        app:showAsAction="never"
+        android:orderInCategory="2"
+        />
+
+    <item
+        android:id="@+id/action_credits"
+        android:title="@string/credits"
+        android:icon="@drawable/ic_information_white"
+        app:showAsAction="never"
+        android:orderInCategory="3"/>
+
+
+</menu>
