@@ -44,8 +44,10 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
         void onRandomSolClick(int catIndex);
     }
 
+
     RoverCategoryAdapter(CategoryClickListener clickListener){
        this.mClickListener = clickListener;
+
     }
 
     /**
@@ -96,6 +98,7 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
         TextView mSolSearchLabel;
 
         CategoryClickListener mCatClickListener;
+
         ExploreCategory mCategory;
 
         CategoryViewHolder(View itemView, CategoryClickListener listener){
@@ -103,6 +106,7 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
             this.mCatClickListener = listener;
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+
         }
 
 
@@ -138,6 +142,7 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
             mSolSearchLabel.setVisibility(visibility);
             //if views are visible then set click listeners
             if(mSolEdit.getVisibility() == View.VISIBLE){
+
                 //click submit button when 'Done' is pressed on soft keyboard
                 //confirm input is a number, if not set it to 200
                 mSolEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -163,6 +168,7 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
                 });
             }
         }
+
 
     }
 

@@ -4,6 +4,7 @@ package com.curtisgetz.marsexplorer.ui.widget;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.curtisgetz.marsexplorer.data.MarsFact;
 import com.curtisgetz.marsexplorer.utils.RealtimeDatabaseUtils;
@@ -20,6 +21,10 @@ import java.util.Calendar;
 
 
 public class FactWidgetJobService extends JobService {
+
+    private final static String TAG = FactWidgetJobService.class.getSimpleName();
+
+
 
     @Override
     public boolean onStartJob(final JobParameters jobParameters) {

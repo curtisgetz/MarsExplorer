@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"/>
 
+
     <TextView
         android:id="@+id/explore_master_title_text"
         android:textSize="20sp"
@@ -138,7 +139,8 @@
         app:layout_constraintLeft_toRightOf="@id/sol_range_label"
         app:layout_constraintRight_toRightOf="parent"
         android:gravity="start"
-        tools:text="1-2102"/>
+        tools:text="1-2102"
+        />
 
     <View
         android:id="@+id/view_line"
@@ -152,7 +154,6 @@
 
 
     <android.support.v7.widget.RecyclerView
-
         android:id="@+id/rover_options_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -162,7 +163,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_line"/>
+        app:layout_constraintTop_toBottomOf="@id/view_line"
+        android:layoutAnimation="@anim/layout_animation_from_right"/>
 
 
     <View

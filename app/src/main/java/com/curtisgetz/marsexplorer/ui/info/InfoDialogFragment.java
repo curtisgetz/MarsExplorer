@@ -1,40 +1,45 @@
+
+
+
 package com.curtisgetz.marsexplorer.ui.info;
 
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.utils.InformationUtils;
 
-import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Dialog Fragment for showing information popups when clicked on by user
  */
 public class InfoDialogFragment extends DialogFragment {
 
     @BindView(R.id.information_text) TextView mInfoText;
 
 
+    /**
+     * Get new instance of this fragment
+     * @param context needed to get access to resources
+     * @param infoIndex index of the info requested
+     * @return the new instance of the fragment
+     */
     public static InfoDialogFragment newInstance(Context context,int infoIndex){
         InfoDialogFragment infoDialogFragment = new InfoDialogFragment();
         Bundle bundle = new Bundle();
@@ -71,7 +76,9 @@ public class InfoDialogFragment extends DialogFragment {
     }
 
 
-
+    /**
+     * Dismiss info fragment when clicked.
+     */
     @OnClick({R.id.information_text, R.id.dialog_info_imageview})
     public void closeInfo(){
         getDialog().dismiss();

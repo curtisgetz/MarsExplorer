@@ -21,7 +21,7 @@
 
 
     <!-- Rover Categories Title Texts-->
-    <string name="rover_picture_category_title">Pictures Taken By This Rover</string>
+    <string name="rover_picture_category_title">Pictures</string>
     <string name="rover_information_category_title">Rover Information</string>
     <string name="rover_science_category_title">Rover Science Instruments</string>
     <string name="rover_tweets_category_title">Tweets</string>
@@ -198,6 +198,8 @@
     <string name="pref_tweets_label">Curiosity Rover Tweets</string>
     <string name="pref_tweets_summary_on">Receiving tweets from Curiosity rover</string>
     <string name="pref_tweets_summary_off">Not receiving tweets from Curiosity Rover</string>
+    <string name="pref_coming_soon">Coming Soon</string>
+
     <string name="pref_subscribe_to_tweets_key" translatable="false">get_tweets</string>
     <string name="pref_get_all_photos_label">See all photos from rovers</string>
     <string name="pref_get_all_photos_summary_on">Showing all available photos. May use more data</string>
@@ -228,7 +230,7 @@
     </string>
     <string name="credits">Credits…</string>
     <string name="photo_of_rover_cd">Photo of rover</string>
-    <string name="view_photos_from_sol">View Photos From Sol #</string>
+    <string name="view_photos_from_sol">Search Sol #</string>
     <string name="search_sol_button">Search Sol</string>
     <string name="random_sol_button">Random Sol</string>
     <string name="enter_sol_hint"><font size="12">Enter Num</font></string>

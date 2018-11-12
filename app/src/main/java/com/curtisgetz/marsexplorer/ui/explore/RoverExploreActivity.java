@@ -22,9 +22,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.data.rover_explore.ExploreCategory;
@@ -57,7 +61,7 @@ import static android.view.View.VISIBLE;
  * Activity for exploring a Mars Rover
  */
 public class RoverExploreActivity extends MarsBaseActivity implements
-        RoverCategoryAdapter.CategoryClickListener, FullPhotoPagerFragment.FullPhotoPagerInteraction  {
+        RoverCategoryAdapter.CategoryClickListener, FullPhotoPagerFragment.FullPhotoPagerInteraction{
 
 
     private RoverCategoryAdapter mAdapter;
@@ -96,10 +100,12 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         isTwoPane = (findViewById(R.id.rover_explore_sw600land) != null);
         isSw600 = getResources().getBoolean(R.bool.is_sw600);
         setManifestViewVisibility();
-        mAdapter = new RoverCategoryAdapter(this);
         showManifestProgress();
+
+        mAdapter = new RoverCategoryAdapter(this);
         mCategoryRecycler.setLayoutManager(getLayoutManger());
         mCategoryRecycler.setAdapter(mAdapter);
+        setEnterAnimation();
 
         if(savedInstanceState == null){
             Intent intent = getIntent();
@@ -151,14 +157,12 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         mTitleText.setText(titleString);
         List<ExploreCategory> roverExploreCategories = HelperUtils.getRoverCategories(this, roverIndex);
         mAdapter.setData(roverExploreCategories);
-        EnterAnimations.setEnterAnimation(this, getLayoutManger().getOrientation(), mCategoryRecycler);
+        //EnterAnimations.setEnterAnimation(this, getLayoutManger().getOrientation(), mCategoryRecycler);
 
-        char[] array = new char[26];
-        
 
     }
 
-  //todo finish recycler view item animations
+
 
     /**
      * Handle category click
@@ -214,7 +218,7 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         String validatedSol = mViewModel.validateSolInRange(solNumber);
         if(isTwoPane){
             RoverPhotosFragment photosFragment = RoverPhotosFragment
-                    .newInstance(this, mRoverIndex, solNumber);
+                    .newInstance(this, mRoverIndex, validatedSol);
             startDetailFragment(photosFragment);
         }else {
             startExploreDetailActivity(validatedSol, catIndex);
@@ -262,6 +266,16 @@ public class RoverExploreActivity extends MarsBaseActivity implements
                 intent.putExtra(getString(R.string.parent_activity_tag_extra), this.getClass().getSimpleName());
                 startActivity(intent);
         }
+    }
+
+    /**
+     * Set an enter animation for the category cardviews. If the device is using a two pane master/detail
+     * view, then enter from the bottom. Otherwise enter from the right.
+     */
+    private void setEnterAnimation(){
+        int animId = isTwoPane ? R.anim.layout_animation_from_bottom : R.anim.layout_animation_from_right;
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, animId);
+        mCategoryRecycler.setLayoutAnimation(animation);
     }
 
 
@@ -324,7 +338,25 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * If device is in landscape and NOT sw600 then set all views visibility to View.GONE.
      */
     private void setManifestViewVisibility(){
-        int visibility = getResources().getBoolean(R.bool.is_land) ? GONE : VISIBLE;
+        int visibility;
+        if (getResources().getBoolean(R.bool.is_land) && !(getResources().getBoolean(R.bool.is_sw600_land))){
+            visibility = GONE;
+        }else {
+            visibility = VISIBLE;
+        }
+        setupManifestViews(visibility);
+
+    }
+
+    private void hideManifestVisibilityOnSoftKeyboard(){
+        setupManifestViews(GONE);
+    }
+
+    private void showManifestVisibilityOnSoftKeyboard(){
+        setupManifestViews(VISIBLE);
+    }
+
+    private void setupManifestViews(int visibility){
         mMissionStatusLabel.setVisibility(visibility);
         mMissionStatusTv.setVisibility(visibility);
         mLaunchLabel.setVisibility(visibility);
@@ -336,7 +368,6 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         mSolClickbox.setVisibility(visibility);
         mSolRangeInfoIv.setVisibility(visibility);
     }
-
 
     /**
      * Call displaySnack method on {@link FullPhotoFragment}.
@@ -380,7 +411,6 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * current image being displayed in the ViewPager.
      * @return the rover index of the current image in the ViewPager
      */
-
     @Override
     public int getRoverIndex() {
         FullPhotoFragment photoFragment = (FullPhotoFragment) getSupportFragmentManager()
@@ -392,6 +422,7 @@ public class RoverExploreActivity extends MarsBaseActivity implements
             return -1;
         }
     }
+
 
 
 }

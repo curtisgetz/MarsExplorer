@@ -41,7 +41,8 @@
             style="@style/RoverExploreCardViewText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Pictures Taken By The Rover"
+            tools:text="Pictures taken by this rover"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

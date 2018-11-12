@@ -28,8 +28,9 @@
             android:defaultValue="@bool/pref_tweets_default"
             android:key="@string/pref_subscribe_to_tweets_key"
             android:summaryOn="@string/pref_tweets_summary_on"
-            android:summaryOff="@string/pref_tweets_summary_off"
+            android:summaryOff="@string/pref_coming_soon"
             android:title="@string/pref_tweets_label"
+            android:enabled="false"
             />
 
 
