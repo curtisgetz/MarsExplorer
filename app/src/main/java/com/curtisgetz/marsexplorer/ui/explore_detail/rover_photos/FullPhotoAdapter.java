@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.widget.ImageView;
 
 import com.curtisgetz.marsexplorer.R;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.List;
 
@@ -16,12 +17,13 @@ public class FullPhotoAdapter extends FragmentPagerAdapter{
 
     private List<String> mUrls;
     @BindView(R.id.rover_photo_full_imageview)
-    ImageView mImageView;
+    PhotoView mImageView;
 
 
     FullPhotoAdapter(FragmentManager fm, Context context) {
         super(fm);
     }
+
 
     public void setData(List<String> urls){
         this.mUrls = urls;

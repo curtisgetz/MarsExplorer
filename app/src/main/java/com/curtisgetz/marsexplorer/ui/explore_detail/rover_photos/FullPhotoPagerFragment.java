@@ -4,11 +4,15 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.animation.DynamicAnimation;
+import android.support.animation.FlingAnimation;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GestureDetectorCompat;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +27,9 @@ import com.curtisgetz.marsexplorer.data.FavoriteImage;
 import com.curtisgetz.marsexplorer.ui.explore_detail.favorites.FavoriteViewModel;
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
 import com.curtisgetz.marsexplorer.utils.OnSwipeListener;
+import com.curtisgetz.marsexplorer.utils.SingleFlingListener;
+import com.github.chrisbanes.photoview.OnSingleFlingListener;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -33,9 +40,10 @@ import butterknife.Unbinder;
 
 public class FullPhotoPagerFragment extends Fragment implements View.OnTouchListener {
 
+    private static final String TAG = FullPhotoPagerFragment.class.getSimpleName();
 
     @BindView(R.id.rover_photo_full_imageview)
-    ImageView mImageView;
+    PhotoView mImageView;
 
     private GestureDetectorCompat mGestureDetector;
     private FavoriteViewModel mViewModel;
@@ -43,6 +51,17 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
     private boolean isAlreadyFavorite;
     private FullPhotoPagerInteraction mListener;
     private Unbinder mUnBinder;
+    private SingleFlingListener mFlingListener = new SingleFlingListener(){
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if(velocityY < -2200f){
+               setupFlingToCloseAnim(velocityY);
+            }
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
+    };
+
+
 
     //Interface for activity callback
     public interface FullPhotoPagerInteraction{
@@ -128,7 +147,32 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
                     .noFade()
                     .into(mImageView);
         }
+        mImageView.setOnSingleFlingListener(mFlingListener);
+
+
         return view;
+    }
+
+    /**
+     * Set up Fling animation for UP swipe of photo. AddEndListener to animation to go back when
+     * animation ends.
+     * @param velocityY velocity of user's up swipe.
+     */
+    private void setupFlingToCloseAnim(float velocityY){
+        FlingAnimation fling = new FlingAnimation(mImageView, DynamicAnimation.SCROLL_Y);
+        fling.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+            @Override
+            public void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean b, float v, float v1) {
+                if(getActivity()!=null) getActivity().onBackPressed();
+            }
+        });
+
+        fling.setStartVelocity(-velocityY)
+                .setFriction(0.1f)
+                .setMinValue(0)
+                .setMaxValue(2000)
+                .start();
+
     }
 
     @Override
@@ -157,7 +201,7 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
                 clickFavoriteMenu();
                 return true;
             case android.R.id.home:
-                if(getActivity()!=null) getActivity().onNavigateUp();
+                if(getActivity()!=null) getActivity().onBackPressed();
                 return true;
         }
         return true;
@@ -210,5 +254,13 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
         if(getActivity() != null) getActivity().invalidateOptionsMenu();
     }
 
+/*
+    private class SingleFlingListener implements OnSingleFlingListener{
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.d("PhotoView", String.format("Fling velocityX: %.2f, velocityY: %.2f", velocityX, velocityY));
+            return true;
+        }
+    }*/
 
 }

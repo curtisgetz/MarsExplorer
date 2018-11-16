@@ -8,6 +8,7 @@ package com.curtisgetz.marsexplorer.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,7 +44,10 @@ public class MarsBaseActivity extends AppCompatActivity {
             case R.id.action_credits:
                 InfoDialogFragment infoDialogFragment = InfoDialogFragment.newInstance(this, InformationUtils.CREDIT_INFO);
                 infoDialogFragment.show(getSupportFragmentManager(), InformationUtils.class.getSimpleName());
-
+                return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

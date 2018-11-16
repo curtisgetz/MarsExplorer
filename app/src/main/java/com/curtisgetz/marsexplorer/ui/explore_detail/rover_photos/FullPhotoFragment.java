@@ -23,6 +23,7 @@ import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.data.FavoriteImage;
 import com.curtisgetz.marsexplorer.ui.explore_detail.favorites.FavoriteViewModel;
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
+import com.curtisgetz.marsexplorer.utils.MarsPhotoViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class FullPhotoFragment extends Fragment   {
     @Nullable
     @BindView(R.id.photo_share_fab) FloatingActionButton mShareFab;
     @BindView(R.id.full_photo_coordinator_layout) CoordinatorLayout mCoordinator;
-    @BindView(R.id.photo_viewpager) ViewPager mViewPager;
+    @BindView(R.id.photo_viewpager) MarsPhotoViewPager mViewPager;
     FullPhotoAdapter mAdapter;
     private int mStartingPos;
     private int mRoverIndex;

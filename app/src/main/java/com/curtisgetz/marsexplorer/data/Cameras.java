@@ -140,7 +140,6 @@ public class Cameras {
             case HelperUtils.CAM_FHAZ_INDEX:
                 return (mFHAZ.size() > 0);
             case HelperUtils.CAM_RHAZ_INDEX:
-                Log.d(TAG, String.valueOf(mRHAZ.size()));
                 return (mRHAZ.size() > 0);
             case HelperUtils.CAM_MAST_INDEX:
                 return (mMAST.size() > 0);
