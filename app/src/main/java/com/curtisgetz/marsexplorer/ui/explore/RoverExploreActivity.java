@@ -20,19 +20,19 @@ import android.support.design.widget.Snackbar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.data.rover_explore.ExploreCategory;
 import com.curtisgetz.marsexplorer.data.rover_manifest.RoverManifest;
+import com.curtisgetz.marsexplorer.ui.CirclePagerIndicatorDecoration;
 import com.curtisgetz.marsexplorer.ui.MarsBaseActivity;
 import com.curtisgetz.marsexplorer.ui.explore_detail.ExploreDetailActivity;
 import com.curtisgetz.marsexplorer.ui.explore_detail.favorites.FavoritePhotosFragment;
@@ -42,7 +42,6 @@ import com.curtisgetz.marsexplorer.ui.explore_detail.rover_photos.RoverPhotosFra
 import com.curtisgetz.marsexplorer.ui.explore_detail.rover_science.RoverScienceFragment;
 import com.curtisgetz.marsexplorer.ui.explore_detail.tweets.TweetsFragment;
 import com.curtisgetz.marsexplorer.ui.info.InfoDialogFragment;
-import com.curtisgetz.marsexplorer.utils.EnterAnimations;
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
 import com.curtisgetz.marsexplorer.utils.InformationUtils;
 import com.curtisgetz.marsexplorer.utils.JsonUtils;
@@ -90,6 +89,8 @@ public class RoverExploreActivity extends MarsBaseActivity implements
     @BindView(R.id.rover_explore_root_constraintlayout) ConstraintLayout mConstraintLayout;
 
 
+//todo  handle sols with no photos
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,10 +104,9 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         showManifestProgress();
 
         mAdapter = new RoverCategoryAdapter(this);
-        mCategoryRecycler.setLayoutManager(getLayoutManger());
-        mCategoryRecycler.setAdapter(mAdapter);
-        setEnterAnimation();
+        setupRecyclerView();
 
+       // setEnterAnimation();
         if(savedInstanceState == null){
             Intent intent = getIntent();
             if (intent == null) {
@@ -130,11 +130,23 @@ public class RoverExploreActivity extends MarsBaseActivity implements
             }
         });
         populateUI(mRoverIndex);
+
         if(!hasDownloadedManifests) {
             //don't download new manifest every time. Data doesn't change often.
             mViewModel.downloadNewManifests(getApplicationContext());
             hasDownloadedManifests = true;
         }
+    }
+
+    /**
+     * Set up RecyclerView and add PagerSnapHelper with page indicators.
+     */
+    private void setupRecyclerView(){
+        mCategoryRecycler.setLayoutManager(getLayoutManger());
+        mCategoryRecycler.setAdapter(mAdapter);
+        PagerSnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(mCategoryRecycler);
+        mCategoryRecycler.addItemDecoration(new CirclePagerIndicatorDecoration());
     }
 
     /**
@@ -157,8 +169,6 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         mTitleText.setText(titleString);
         List<ExploreCategory> roverExploreCategories = HelperUtils.getRoverCategories(this, roverIndex);
         mAdapter.setData(roverExploreCategories);
-        //EnterAnimations.setEnterAnimation(this, getLayoutManger().getOrientation(), mCategoryRecycler);
-
 
     }
 

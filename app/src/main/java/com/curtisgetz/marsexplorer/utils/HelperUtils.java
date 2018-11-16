@@ -52,7 +52,7 @@ public final class HelperUtils {
     public final static int ROVER_TWEETS_CAT_INDEX = 3;
 
     //Set available categories for each rover
-    private final static int[] CURIOSITY_CATEGORIES = {ROVER_PICTURES_CAT_INDEX,
+    public final static int[] CURIOSITY_CATEGORIES = {ROVER_PICTURES_CAT_INDEX,
             ROVER_INFO_CAT_INDEX, ROVER_SCIENCE_CAT_INDEX, MARS_FAVORITES_CAT_INDEX};
     private final static int[] OPPORTUNITY_CATEGORIES = {ROVER_PICTURES_CAT_INDEX,
             ROVER_INFO_CAT_INDEX, ROVER_SCIENCE_CAT_INDEX, MARS_FAVORITES_CAT_INDEX};

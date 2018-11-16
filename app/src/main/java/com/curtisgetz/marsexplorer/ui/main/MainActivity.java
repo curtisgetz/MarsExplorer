@@ -16,9 +16,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
+
 
 import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.data.MainExploreType;
@@ -42,6 +40,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
+/**
+ * Mars Explorer's main activity
+ */
 public class MainActivity extends MarsBaseActivity implements MainExploreAdapter.ExploreClickListener {
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
@@ -90,7 +92,7 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
         setupRemoteConfig();
         setupViewModel();
         EnterAnimations.setEnterAnimation(this, getLayoutManager().getOrientation(), mConstraintLayout);
-//        setEnterAnimation();
+
         checkPlayServices();
 
     }
@@ -152,13 +154,20 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
         return  tweet;
     }
 
-
+    /**
+     * Saved Tweet object to database. Used for Firebase Cloud Messages when Curiosity Rover tweets.
+     * Will likely change when backend is set up. Was used for project submission
+     * @param tweet Tweet object extracted from FCM
+     */
     private void saveTweetToDb(Tweet tweet) {
         MarsRepository repository = MarsRepository.getInstance(getApplication());
         repository.insertTweet(tweet);
     }
 
 
+    /**
+     * Set up View Model. Call setData on Adapter when data changes
+     */
     private void setupViewModel() {
         ExploreTypeViewModel viewModel = ViewModelProviders.of(this).get(ExploreTypeViewModel.class);
         viewModel.addExploreTypesToDB(getApplicationContext());
@@ -172,6 +181,10 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
     }
 
 
+    /**
+     * Handle clicks on main explore categories. Opens either MarsExploreActivity or RoverExploreActivity
+     * @param clickedPos position of clicked category
+     */
     @Override
     public void onExploreClick(int clickedPos) {
         MainExploreType exploreType = mAdapter.getExploreType(clickedPos);
@@ -187,6 +200,9 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
     }
 
 
+    /**
+     * Set up Firebase Remote Config
+     */
     private void setupRemoteConfig() {
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
@@ -194,6 +210,9 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
 
     }
 
+    /**
+     * Fetch any new remote config values
+     */
     private void fetchRemoteConfig() {
         //Fetch any new Remote Config values
         long cacheExpiration = 14400; // 4 hours in seconds.
@@ -212,12 +231,13 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
                     }
                 });
     }
+
     /**
      * Check the device to make sure it has the Google Play Services APK. If
      * it doesn't, display a dialog that allows users to download the APK from
      * the Google Play Store or enable it in the device's system settings.
      */
-    private boolean checkPlayServices() {
+    private void checkPlayServices() {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
         int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
         if (resultCode != ConnectionResult.SUCCESS) {
@@ -228,62 +248,11 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
                 Log.i(TAG, "This device is not supported.");
                 finish();
             }
-            return false;
+
         }
-        return true;
+
     }
 
-    /**
-     * Setup Enter animations
-     */
-   /* private void setEnterAnimation(){
-        int layoutOrientation = getLayoutManager().getOrientation();
-        Log.d(TAG + " ********", String.valueOf(layoutOrientation));
-        int count = mConstraintLayout.getChildCount();
-        float offset = getResources().getDimensionPixelSize(R.dimen.offset_y);
-        Interpolator interpolator =
-                AnimationUtils.loadInterpolator(this, android.R.interpolator.linear_out_slow_in);
-
-        if(layoutOrientation == LinearLayoutManager.HORIZONTAL) {
-            animateFromSide(count, offset, interpolator);
-        }else {
-            animateFromBottom(count, offset, interpolator);
-        }
-    }
-
-    private void animateFromBottom(int count, float offset, Interpolator interpolator){
-        for(int i = 0; i < count; i++ ) {
-            View view = mConstraintLayout.getChildAt(i);
-            view.setVisibility(View.VISIBLE);
-            view.setTranslationY(offset);
-            view.setAlpha(0.85f);
-
-            view.animate()
-                    .translationY(0f)
-                    .alpha(1f)
-                    .setInterpolator(interpolator)
-                    .setDuration(1000L)
-                    .start();
-            offset *= 1.5f;
-        }
-    }
-
-    private void animateFromSide(int count, float offset, Interpolator interpolator){
-        for(int i = 0; i < count; i++ ) {
-            View view = mConstraintLayout.getChildAt(i);
-            view.setVisibility(View.VISIBLE);
-            view.setTranslationX(offset);
-            view.setAlpha(0.85f);
-
-            view.animate()
-                    .translationX(0f)
-                    .alpha(1f)
-                    .setInterpolator(interpolator)
-                    .setDuration(1000L)
-                    .start();
-            offset *= 1.5f;
-        }
-    }*/
 
 
 }
