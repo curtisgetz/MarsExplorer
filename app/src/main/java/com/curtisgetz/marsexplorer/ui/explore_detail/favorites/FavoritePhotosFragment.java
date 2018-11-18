@@ -24,7 +24,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.data.FavoriteImage;
@@ -49,6 +50,10 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
     RecyclerView mRecyclerView;
     @BindView(R.id.favorite_photo_coordinator)
     CoordinatorLayout mCoordinator;
+    @BindView(R.id.no_favorite_message_icon)
+    ImageView mNoFavIcon;
+    @BindView(R.id.no_favorites_textview)
+    TextView mNoFavTextView;
 
     private FavoriteViewModel mViewModel;
     private FavoritesAdapter mAdapter;
@@ -85,18 +90,14 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
             mViewModel.getFavorites().observe(this, new Observer<List<FavoriteImage>>() {
                 @Override
                 public void onChanged(@Nullable List<FavoriteImage> favoriteImages) {
-                    mAdapter.setData(favoriteImages);
+                    if(favoriteImages == null) return;
+                    updateUI(favoriteImages);
+//
                 }
             });
         }
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-
-        setHasOptionsMenu(false);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -125,6 +126,28 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
         if(width < 800) return 3;
         if(isTwoPane) return 4;
         return 3;
+    }
+
+    /**
+     * Updates Adapter with favorite images if available, if none then displays message informing user
+     * there are no favorites saved yet
+     * @param images List of FavoriteImage objects from View Model
+     */
+    private void updateUI(List<FavoriteImage> images) {
+        mAdapter.setData(images);
+        if(images.size() < 1){
+            showNoFavoritesMessage();
+        }else {
+            hideNoFavoritesMessage();
+        }
+    }
+
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        setHasOptionsMenu(false);
     }
 
     @Override
@@ -174,6 +197,23 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
             }
         });
         snackbar.show();
+    }
+
+    /**
+     * Shows message informing user there are no favorites saved yet
+     */
+    private void showNoFavoritesMessage(){
+        mNoFavIcon.setVisibility(View.VISIBLE);
+        mNoFavTextView.setVisibility(View.VISIBLE);
+
+    }
+
+    /**
+     * Hides message informing user there are no favorites saved yet
+     */
+    private void hideNoFavoritesMessage(){
+        mNoFavIcon.setVisibility(View.GONE);
+        mNoFavTextView.setVisibility(View.GONE);
     }
 
     @Override

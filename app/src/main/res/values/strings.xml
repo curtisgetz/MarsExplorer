@@ -238,5 +238,7 @@
     <string name="no_favorites">No Favorites</string>
     <string name="error_getting_weather_snack">Error Getting Weather Data</string>
     <string name="widget_click_for_more">Click for more…</string>
+    <string name="no_favorites_message">No Favorites Saved \nYour Favorite Images Will Be Displayed Here</string>
+    <string name="no_favorites_to_display_icon_cd">No Favorites To Display Icon</string>
 
 </resources>
