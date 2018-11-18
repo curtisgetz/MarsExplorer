@@ -237,5 +237,6 @@
     <string name="is_favorites_saved_key">is_favorites_saved_key</string>
     <string name="no_favorites">No Favorites</string>
     <string name="error_getting_weather_snack">Error Getting Weather Data</string>
+    <string name="widget_click_for_more">Click for more…</string>
 
 </resources>
