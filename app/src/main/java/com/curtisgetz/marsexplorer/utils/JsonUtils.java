@@ -1,6 +1,7 @@
 package com.curtisgetz.marsexplorer.utils;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.data.Cameras;
@@ -12,62 +13,127 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
+/**
+ * Class with Json logic
+ */
 public final class JsonUtils {
 
 
 
 
 //JSON keys---------------------------------
+    /**
+     * JSON key for photos
+     */
     private final static String  NASA_PHOTOS = "photos";
     //next level
+    /**
+     * JSON key for cameras
+     */
     private final static String NASA_PHOTO_CAMERA = "camera";
+    /**
+     * JSON of image source
+     */
     private final static String NASA_IMAGE = "img_src";
+    /**
+     * JSON key for Earth date
+     */
     private final static String NASA_DATE = "earth_date";
+    /**
+     * JSON key for name of camera
+     */
     private final static String NASA_NAME = "name";
-
+    /**
+     * JSON key for sol
+     */
+    private final static String NASA_SOL = "sol";
+    /**
+     * JSON key for rover manifest
+     */
     private final static String MANIFEST_KEY = "photo_manifest";
 
-    //MAN IFEST KEYS
+    //MANIFEST KEYS
+    /**
+     * Rover manifest JSON keys
+     */
     private final static String ROVER_LAND_DATE = "landing_date", ROVER_LAUNCH_DATE = "launch_date",
             ROVER_STATUS = "status", ROVER_MAX_SOL = "max_sol",
             ROVER_MAX_DATE = "max_date", ROVER_TOTAL_PHOTOS = "total_photos";
 
 
     //rover cameras
+    /**
+     * JSON keys for each camera
+     */
     private final static String ROVER_FHAZ ="FHAZ",
             ROVER_RHAZ ="RHAZ",ROVER_MAST ="MAST",
             ROVER_CHEMCAM ="CHEMCAM",ROVER_MAHLI ="MAHLI",
             ROVER_MARDI ="MARDI",ROVER_NAVCAM ="NAVCAM",
             ROVER_PANCAM ="PANCAM", ROVER_MINITES ="MINITES";
 
-    //if it jason parse fails, use "unknown"  if parsing the image url then Picasso will load the 'error' image specified.
+    /**
+     * Fallback String for JSON parsing
+     */
     private final static String FALLBACK_STRING = "unknown";
 
 
     //weather json keys
-
+    /**
+     * JSON key for request status from weather API
+     */
     private final static String WEATHER_STATUS = "status";
+    /**
+     * JSON key for sol from weather API
+     */
     private final static String WEATHER_SOL = "sol";
+    /**
+     * JSON key for minimum air temperature from weather API
+     */
     private final static String WEATHER_MIN_TEMP = "min_temp";
+    /**
+     * JSON key for maximum air temperature from weather API
+     */
     private final static String WEATHER_MAX_TEMP = "max_temp";
+    /**
+     * JSON key for atmospheric opacity from weather API
+     */
     private final static String WEATHER_ATMO_OPACITY = "atmo_opacity";
+    /**
+     * JSON key for sunset time from weather API
+     */
     private final static String WEATHER_SUNSET = "sunset";
+    /**
+     * JSON key for sunrise time from weather API
+     */
     private final static String WEATHER_SUNRISE = "sunrise";
+    /**
+     * JSON key for minimum ground temperature from weather API
+     */
     private final static String WEATHER_MIN_GROUND_TEMP = "min_gts_temp";
+    /**
+     * JSON key for maximum ground temperature from weather API
+     */
     private final static String WEATHER_MAX_GROUND_TEMP = "max_gts_temp";
-    //array of which weather details to display
+    /**
+     * Array of weather details to display
+     */
     private final static String[] WEATHER_DETAILS_TO_DISPLAY = {WEATHER_MIN_TEMP,WEATHER_MAX_TEMP,
             WEATHER_ATMO_OPACITY,WEATHER_SUNSET,WEATHER_SUNRISE,WEATHER_MIN_GROUND_TEMP,
             WEATHER_MAX_GROUND_TEMP};
 
-//JSON keys---------------------------------
 
-
-
-    public static List<WeatherDetail> getWeatherDetail(Context context, String url) throws JSONException{
-        JSONObject mainObject = new JSONObject(url);
+    /**
+     * Get a List of weather details. Gets items set in WEATHER_DETAILS_TO_DISPLAY.
+     * @param context needed to call addTempUnit
+     * @param json json text received
+     * @return List of {@link WeatherDetail} objects or null if http status is not OK (200)
+     * @throws JSONException if unable to parse JSON
+     */
+    public static List<WeatherDetail> getWeatherDetail(Context context, String json) throws JSONException{
+        JSONObject mainObject = new JSONObject(json);
 
         int status = mainObject.optInt(WEATHER_STATUS, 0);
         if(status != 200) {
@@ -86,7 +152,11 @@ public final class JsonUtils {
         return weatherDetails;
     }
 
-
+    /**
+     * Helper method to get weather Index from JSON key
+     * @param jsonKey Json key for weather detail item
+     * @return index for that weather detail item
+     */
     private static int getWeatherIndexByJsonKey(String jsonKey){
         switch (jsonKey){
             case WEATHER_MIN_TEMP:
@@ -109,6 +179,13 @@ public final class JsonUtils {
 
     }
 
+    /**
+     * Helper method to append temperature unit after value
+     * @param context needed to access resources
+     * @param jsonKey json key of weather detail
+     * @param value value of weather detail to append unit to
+     * @return value with unit appended
+     */
     private static String addTempUnit(Context context, String jsonKey, String value){
         switch (jsonKey){
             case WEATHER_MIN_TEMP:
@@ -120,9 +197,17 @@ public final class JsonUtils {
                 return value;
         }
     }
-    public static RoverManifest getRoverManifest(int roverIndex, String url) throws JSONException {
 
-        JSONObject mainObject = new JSONObject(url);
+    /**
+     * Get rover manifest object
+     * @param roverIndex index of rover
+     * @param json json text received
+     * @return new {@link RoverManifest} object created from parsed JSON
+     * @throws JSONException if parsing fails
+     */
+    public static RoverManifest getRoverManifest(int roverIndex, String json) throws JSONException {
+
+        JSONObject mainObject = new JSONObject(json);
 
         if(!mainObject.has(MANIFEST_KEY)) return null;
         JSONObject manifestObject = mainObject.getJSONObject(MANIFEST_KEY);
@@ -142,7 +227,36 @@ public final class JsonUtils {
         return null;
     }
 
-    public static Cameras getCameraUrls(int roverIndex, String url) throws JSONException {
+    /**
+     * Checks if sol has any images.
+     * @param jason JSON text to check for images
+     * @return true if there are images or false if there are no images or an error parsing
+     */
+    public static boolean isSolActive(String jason){
+        try {
+            JSONObject cameraJSON = new JSONObject(jason);
+            if(!cameraJSON.has(NASA_PHOTOS)) return false;
+            JSONArray jsonArray = cameraJSON.getJSONArray(NASA_PHOTOS);
+            if(jsonArray.length() < 1) {
+                return false;
+            }else {
+                Log.d("REPOSITORY", "LENGTH IS MORE");
+            }
+        }catch (JSONException e){
+            return false;
+        }
+       return true;
+
+    }
+
+    /**
+     * Returns a Cameras object with images organized into Lists based on the Camera
+     * @param roverIndex index of rover
+     * @param json json text received
+     * @return new {@link Cameras} object created with sorted image urls
+     * @throws JSONException if parsing fails
+     */
+    public static Cameras getCameraUrls(int roverIndex, String json) throws JSONException {
 
         List<String> fhaz = new ArrayList<>(),
                 rhaz = new ArrayList<>(), mast = new ArrayList<>(),
@@ -151,13 +265,20 @@ public final class JsonUtils {
                 pancam = new ArrayList<>(), minites = new ArrayList<>();
 
         String earthDate= "";
+        String sol;
 
-        JSONObject cameraJSON = new JSONObject(url);
+        JSONObject cameraJSON = new JSONObject(json);
         //Check for 'photos' key to see if there are any results, return null if no results
         if(!cameraJSON.has(NASA_PHOTOS)) return null;
 
+
         JSONArray jsonArray = cameraJSON.getJSONArray(NASA_PHOTOS);
+
         if(jsonArray.length() > 0){
+            //Get sol.  Only needed one time. Will be the same for all cameras/images
+            JSONObject solObject = jsonArray.getJSONObject(0);
+            sol = solObject.optString(NASA_SOL, FALLBACK_STRING);
+
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 JSONObject cameraObject = jsonObject.getJSONObject(NASA_PHOTO_CAMERA);
@@ -199,12 +320,14 @@ public final class JsonUtils {
                         break;
                 }
             }
+        }else {
+            //return null to tell there are no images.  Instead of returning empty lists
+            Log.d("JSON", "RETURNING NULL FOR NO CAMERAS");
+            return null;
         }
         return new Cameras(roverIndex, fhaz, rhaz, navcam, mast, chemcam, mahli, mardi,  pancam,
-                minites, earthDate);
+                minites, earthDate, sol);
     }
-
-
 
 
     public static String getDateString(String earthDate) throws ArrayIndexOutOfBoundsException{

@@ -20,8 +20,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 public class CirclePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
-    private int colorActive = 0xDEf0e7e7;
-    private int colorInactive = 0x33e1e4e9;
+    private int colorActive = 0xDEf0E7E7;
+    private int colorInactive = 0x4Dd9d9d9;
 
     private static final float DP = Resources.getSystem().getDisplayMetrics().density;
 

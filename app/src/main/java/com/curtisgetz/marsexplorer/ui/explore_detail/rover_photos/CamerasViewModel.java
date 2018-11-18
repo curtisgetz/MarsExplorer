@@ -1,5 +1,6 @@
 package com.curtisgetz.marsexplorer.ui.explore_detail.rover_photos;
 
+
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
@@ -10,10 +11,18 @@ import com.curtisgetz.marsexplorer.utils.HelperUtils;
 
 import java.util.List;
 
-public class CamerasViewModel extends  ViewModel {
-
-
+/**
+ * View Model for list of camera urls
+ */
+class CamerasViewModel extends  ViewModel {
+    /**
+     * LiveData wrapped Cameras object
+     */
     private LiveData<Cameras> mCameras;
+    /**
+     * Reference to Mars Repository
+     */
+    @SuppressWarnings("FieldCanBeLocal")
     private MarsRepository mRepository;
 
 
@@ -22,19 +31,21 @@ public class CamerasViewModel extends  ViewModel {
         mCameras = mRepository.getCameras(application.getApplicationContext(), roverIndex, solNumber);
     }
 
-    public LiveData<Cameras> getCameras(){
+    LiveData<Cameras> getCameras(){
         return mCameras;
     }
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-    }
-
-    public List<String> getImageUrlsForCamera(int cameraIndex){
+    /**
+     * Get a List of urls for the specified camera
+     * @param cameraIndex index of camera to get images from
+     * @return List of urls (if any)
+     */
+    List<String> getImageUrlsForCamera(int cameraIndex){
         // if there are no images for the camera, return null.
         // Otherwise return a List of Strings (the urls)
         Cameras cameras = mCameras.getValue();
+        // Attempt to get closest sol with images if this sol has no images
+
         if(cameras == null || !(cameras.isCameraActive(cameraIndex))) return null;
         switch (cameraIndex){
             case HelperUtils.CAM_FHAZ_INDEX:
@@ -59,6 +70,5 @@ public class CamerasViewModel extends  ViewModel {
                 return null;
         }
     }
-
 
 }

@@ -88,7 +88,6 @@ public class MarsFactsViewModel extends AndroidViewModel {
 
     /**
      * A lifecycle-aware observable that sends only new updates after subscription.
-     *
      */
     private SingleLiveEvent<Boolean> mHitMaxQuery = new SingleLiveEvent<>();
 

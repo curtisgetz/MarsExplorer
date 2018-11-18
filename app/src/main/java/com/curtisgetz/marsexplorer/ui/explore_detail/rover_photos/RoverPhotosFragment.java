@@ -1,7 +1,6 @@
 package com.curtisgetz.marsexplorer.ui.explore_detail.rover_photos;
 
 
-import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -48,6 +47,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     private CamerasViewModel mViewModel;
     private String mDateString;
     private Unbinder mUnBinder;
+    private boolean queryMoreSols = true;
     private static boolean hasShownPrefSnack = false;
 
     //RecyclerViews for each camera
@@ -111,7 +111,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
 
         shownPhotoLimitDialog();
         displayPrefSnack();
-        hideAllViews();
+        hideAllCameraViews();
         showMainProgress();
 
         if(savedInstanceState == null){
@@ -242,13 +242,15 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mMinitesLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
-        hideMainProgress();
+
         if(!anyCameras){
             displayNoCameraSnack();
         }else {
             updateTitleText();
         }
+        hideMainProgress();
     }
+
 
 
     private void displayPrefSnack(){
@@ -300,12 +302,13 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
         String roverName = HelperUtils.getRoverNameByIndex(getContext(), mRoverIndex);
         Cameras cameras = mViewModel.getCameras().getValue();
         if(cameras == null) return;
+        mSol = cameras.getSol();
         mDateString = cameras.getEarthDate();
         String title = TextUtils.join(" - ", new String[] {roverName, mSol, mDateString});
         mTitleText.setText(title);
     }
 
-    private void hideAllViews(){
+    private void hideAllCameraViews(){
         mFhazLabel.setVisibility(View.GONE);
         mFhazRecyclerView.setVisibility(View.GONE);
         mRhazLabel.setVisibility(View.GONE);

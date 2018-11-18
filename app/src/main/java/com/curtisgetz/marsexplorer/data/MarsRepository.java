@@ -10,6 +10,8 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
+import android.net.NetworkRequest;
+import android.util.Log;
 
 import com.curtisgetz.marsexplorer.data.room.AppDataBase;
 import com.curtisgetz.marsexplorer.data.room.MarsDao;
@@ -19,6 +21,7 @@ import com.curtisgetz.marsexplorer.utils.HelperUtils;
 import com.curtisgetz.marsexplorer.utils.JsonUtils;
 import com.curtisgetz.marsexplorer.utils.NetworkUtils;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -95,6 +98,8 @@ public class MarsRepository {
         });
     }
 
+
+
     /**
      * Get Cameras object from NASA.gov API query for specified rover and sol
      * @param context needed to build url and parse Json
@@ -102,15 +107,30 @@ public class MarsRepository {
      * @param sol needed for API query
      * @return LiveData wrapped Cameras object
      */
-    public LiveData<Cameras> getCameras(final Context context, final int roverIndex, final String sol){
+    public MutableLiveData<Cameras> getCameras(final Context context, final int roverIndex, final String sol){
+        final int MAX_QUERY = 50;
         final MutableLiveData<Cameras> cameras = new MutableLiveData<>();
         AppExecutors.getInstance().networkIO().execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    URL solRequestUrl = NetworkUtils.buildPhotosUrl(context, roverIndex, sol);
-                    String jsonResponse = NetworkUtils.getResponseFromHttpUrl(context, solRequestUrl);
-                    cameras.postValue(JsonUtils.getCameraUrls(roverIndex, jsonResponse));
+                    URL findRequestUrl = NetworkUtils.buildPhotosCheckUrl(context, roverIndex, sol);
+                    String jsonResponse = NetworkUtils.getResponseFromHttpUrl(context, findRequestUrl);
+                    if(JsonUtils.isSolActive(jsonResponse)){
+                        //If there are images then return the post the values to cameras.
+                        URL solRequestUrl = NetworkUtils.buildPhotosUrl(context, roverIndex, sol);
+                        String cameraJson = NetworkUtils.getResponseFromHttpUrl(context, solRequestUrl);
+                        cameras.postValue(JsonUtils.getCameraUrls(roverIndex, cameraJson));
+                    //if no cameras then attempt to round up to nearest sol with images and postValue.
+                    // if unable to find an active sol after running through MAX number of times
+                    // then return the orginal sol and UI will display a message informing the user
+                    //there are no images on this sol
+                    }else {
+                        String newSol = findNextActiveSol(context, sol, roverIndex);
+                        URL solRequestUrl = NetworkUtils.buildPhotosUrl(context, roverIndex,newSol);
+                        String cameraJson = NetworkUtils.getResponseFromHttpUrl(context, solRequestUrl);
+                        cameras.postValue(JsonUtils.getCameraUrls(roverIndex, cameraJson));
+                    }
 
                 }catch (Exception e){
                     e.printStackTrace();
@@ -118,6 +138,39 @@ public class MarsRepository {
             }
         });
         return cameras;
+    }
+
+    /**
+     * Finds the next sol with images and returns that sol.
+     * @param context needed to build URL and parse Json
+     * @param sol original sol searched
+     * @param roverIndex index of rover being searched
+     * @return the next sol with images, or the original sol if hit MAX_QUERY
+     */
+    private String findNextActiveSol(Context context, String sol, int roverIndex ){
+        final int MAX_QUERY = 50;
+        //Search for nearest sol (up to MAX_QUERY_COUNT number of times if the sol searched
+        // is empty
+        int queryCount = 0;
+        String checkUrl = "";
+        String newSol = sol;
+        Integer solInt = Integer.parseInt(sol);
+
+        while (queryCount < MAX_QUERY && !JsonUtils.isSolActive(checkUrl)) {
+            try {
+                solInt++;
+                newSol = String.valueOf(solInt);
+                URL findUrl = NetworkUtils.buildPhotosCheckUrl(context, roverIndex, newSol);
+                checkUrl = NetworkUtils.getResponseFromHttpUrl(context, findUrl);
+                queryCount++;
+                Log.d("REPOSITORY", String.valueOf(queryCount) + " ** " + newSol);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return sol;
+            }
+        }
+        return newSol;
+
     }
 
     /**

@@ -43,6 +43,10 @@ public class Cameras {
     @NonNull
     private String mEarthDate;
 
+    private String mSol;
+
+
+    //todo remove unused constructor
     public Cameras(int index, @NonNull List<String> fhaz, @NonNull List<String> rhaz,
                    @NonNull List<String> navcam, @NonNull List<String> mast,
                    @NonNull List<String> chemcam, @NonNull List<String> mahli,
@@ -64,6 +68,27 @@ public class Cameras {
         mEarthDate = earthDate;
     }
 
+    public Cameras(int index, @NonNull List<String> fhaz, @NonNull List<String> rhaz,
+                   @NonNull List<String> navcam, @NonNull List<String> mast,
+                   @NonNull List<String> chemcam, @NonNull List<String> mahli,
+                   @NonNull List<String> mardi, @NonNull List<String> pancam,
+                   @NonNull List<String> minites, @NonNull String earthDate, String sol){
+        mRoverIndex = index;
+        mFHAZ = fhaz;
+        mRHAZ = rhaz;
+        mNAVCAM = navcam;
+
+        mMAST = mast;
+        mCHEMCAM = chemcam;
+        mMAHLI = mahli;
+        mMARDI = mardi;
+
+        mPANCAM = pancam;
+        mMINITES = minites;
+
+        mEarthDate = earthDate;
+        mSol = sol;
+    }
 
     public List<String> getFHAZ() { return mFHAZ;}
     public List<String> getRHAZ() {return mRHAZ;}
@@ -160,4 +185,11 @@ public class Cameras {
         }
     }
 
+    public String getSol() {
+        return mSol;
+    }
+
+    public void setSol(String sol) {
+        this.mSol = sol;
+    }
 }

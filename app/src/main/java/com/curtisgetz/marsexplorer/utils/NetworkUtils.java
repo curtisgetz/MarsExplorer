@@ -47,6 +47,32 @@ public final class NetworkUtils {
     private static final int DEFAULT_READ_TIMEOUT = 10000;
 
 
+    public static URL buildPhotosCheckUrl(Context context, int roverIndex, String sol){
+        //Get BASE Url from Firebase Remote Config
+        FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        String baseUrl = firebaseRemoteConfig.getString(PHOTOS_BASE_REMOTE_CONFIG_KEY);
+        //get rover name from HelperUtils
+        String rover = HelperUtils.getRoverNameByIndex(context, roverIndex);
+
+
+        Uri builtUri = Uri.parse(baseUrl).buildUpon()
+                .appendPath(ROVERS)
+                .appendPath(rover)
+                .appendPath(PHOTOS)
+                .appendQueryParameter(SOL, sol)
+                .appendQueryParameter(PAGE, "1")
+                .appendQueryParameter(API_KEY, NASA_API)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        }catch (MalformedURLException e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
     //build URL for requesting rover photos by Sol number(as a String, validated before here)
     public static URL buildPhotosUrl(Context context,int roverIndex, String sol){
         //check preferences to see if user wants to limit number of photos
