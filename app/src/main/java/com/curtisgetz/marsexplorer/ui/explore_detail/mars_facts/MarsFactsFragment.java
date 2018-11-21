@@ -156,7 +156,7 @@ public class MarsFactsFragment extends Fragment {
     }
 
     //open link to source of fact
-    @OnClick(R.id.fact_url_text)
+    @OnClick({R.id.fact_url_text, R.id.fact_link_icon})
     public void onUrlClick(){
         MarsFact fact = getFactFromViewModel();
         if(fact == null)return;

@@ -84,7 +84,7 @@
     <dimen name="mars_fact_title_text_size">24sp</dimen>
     <dimen name="mars_fact_text_size">18sp</dimen>
     <dimen name="mars_fact_layout_margin">10dp</dimen>
-    <dimen name="mars_fact_link_margin">6dp</dimen>
+    <dimen name="mars_fact_link_margin">12dp</dimen>
     <dimen name="mars_fact_link_padding">6dp</dimen>
     <dimen name="mars_fact_link_text_size">16sp</dimen>
     <dimen name="mars_fact_text_margin">10dp</dimen>

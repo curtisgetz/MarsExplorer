@@ -59,6 +59,10 @@ public class FactWidgetJobService extends JobService {
         return true;
     }
 
+    /**
+     * Get the description from the {@link MarsFact} object and update all widgets with the text
+     * @param fact Fact object to extract description from
+     */
     private void setupFact(MarsFact fact) {
         if(fact == null) return;
         //get fact and update widgets with the shortDescription

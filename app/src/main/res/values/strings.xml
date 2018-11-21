@@ -240,5 +240,6 @@
     <string name="widget_click_for_more">Click for more…</string>
     <string name="no_favorites_message">No Favorites Saved \nYour Favorite Images Will Be Displayed Here</string>
     <string name="no_favorites_to_display_icon_cd">No Favorites To Display Icon</string>
+    <string name="link_to_fact_source">Link to fact source</string>
 
 </resources>

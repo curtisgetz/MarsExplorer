@@ -172,16 +172,20 @@ public class MarsFactsViewModel extends AndroidViewModel {
     private String getRandomDay(){
         //get random int between 1 and 365
         return String.valueOf(new Random().nextInt(365) + 1);
-
     }
 
 
-    public void loadNewFact(){
+    void loadNewFact(){
         mFactsChildNode = getRandomDay();
         getFactChild();
     }
 
-    public LiveData<Boolean> hitMaxQuery(){
+    /**
+     * Returns mHitMaxQuery boolean value. Used to limit the number of attempts to load a Fact when
+     * the first attempt does not return a Fact from the database
+     * @return true if the number of attempts made reaches the max allowed. False otherwise
+     */
+    LiveData<Boolean> hitMaxQuery(){
         return mHitMaxQuery;
     }
 
