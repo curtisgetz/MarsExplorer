@@ -89,8 +89,6 @@ public class RoverExploreActivity extends MarsBaseActivity implements
     @BindView(R.id.rover_explore_root_constraintlayout) ConstraintLayout mConstraintLayout;
 
 
-//todo  handle sols with no photos
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +104,6 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         mAdapter = new RoverCategoryAdapter(this);
         setupRecyclerView();
 
-       // setEnterAnimation();
         if(savedInstanceState == null){
             Intent intent = getIntent();
             if (intent == null) {
@@ -136,6 +133,12 @@ public class RoverExploreActivity extends MarsBaseActivity implements
             mViewModel.downloadNewManifests(getApplicationContext());
             hasDownloadedManifests = true;
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(getString(R.string.rover_index_saved_key), mRoverIndex);
     }
 
     /**
@@ -171,7 +174,6 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         mAdapter.setData(roverExploreCategories);
 
     }
-
 
 
     /**
@@ -277,17 +279,6 @@ public class RoverExploreActivity extends MarsBaseActivity implements
                 startActivity(intent);
         }
     }
-
-    /**
-     * Set an enter animation for the category cardviews. If the device is using a two pane master/detail
-     * view, then enter from the bottom. Otherwise enter from the right.
-     */
-    private void setEnterAnimation(){
-        int animId = isTwoPane ? R.anim.layout_animation_from_bottom : R.anim.layout_animation_from_right;
-        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, animId);
-        mCategoryRecycler.setLayoutAnimation(animation);
-    }
-
 
     /**
      * Handle clicks for sol information. Shows {@link InfoDialogFragment} with info about the sol range
