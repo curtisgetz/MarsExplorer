@@ -39,6 +39,9 @@
         <item name="android:background">?attr/colorPrimary</item>
     </style>
 
+    <style name="RoverExploreTheme" parent="AppTheme.NoActionBar">
+
+    </style>
 
     <style name="MainTitleText" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/lightText</item>

@@ -11,6 +11,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.Nullable;
@@ -22,12 +23,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.data.rover_explore.ExploreCategory;
@@ -133,6 +137,24 @@ public class RoverExploreActivity extends MarsBaseActivity implements
             mViewModel.downloadNewManifests(getApplicationContext());
             hasDownloadedManifests = true;
         }
+
+        if(isTwoPane || !isSw600) {
+            mConstraintLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    Rect rect = new Rect();
+                    mConstraintLayout.getWindowVisibleDisplayFrame(rect);
+                    int heightDiff = convertPixelsToDip(mConstraintLayout.getRootView().getHeight() - (rect.bottom - rect.top));
+                    if (heightDiff >= 100) {
+                        //keyboard on screen
+                        hideManifestVisibilityOnSoftKeyboard();
+                    } else {
+                        //keyboard hidden
+                        showManifestVisibilityOnSoftKeyboard();
+                    }
+                }
+            });
+        }
     }
 
     @Override
@@ -142,14 +164,27 @@ public class RoverExploreActivity extends MarsBaseActivity implements
     }
 
     /**
+     * Convert pixels to density independent pixels
+     * @param pixels number of pixels
+     * @return number of density independent pixels on this device
+     */
+    private int convertPixelsToDip(int pixels){
+       return   pixels / ((getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+
+    /**
      * Set up RecyclerView and add PagerSnapHelper with page indicators.
      */
     private void setupRecyclerView(){
         mCategoryRecycler.setLayoutManager(getLayoutManger());
         mCategoryRecycler.setAdapter(mAdapter);
-        PagerSnapHelper snapHelper = new PagerSnapHelper();
-        snapHelper.attachToRecyclerView(mCategoryRecycler);
-        mCategoryRecycler.addItemDecoration(new CirclePagerIndicatorDecoration());
+        //add page indicators and SnapHelper if using horizontal layout
+        if(getLayoutManger().getOrientation() == LinearLayoutManager.HORIZONTAL) {
+            PagerSnapHelper snapHelper = new PagerSnapHelper();
+            snapHelper.attachToRecyclerView(mCategoryRecycler);
+            mCategoryRecycler.addItemDecoration(new CirclePagerIndicatorDecoration());
+        }
     }
 
     /**
@@ -158,8 +193,14 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * @return LinearLayoutManager
      */
     private LinearLayoutManager getLayoutManger(){
-        return isSw600 ? new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                : new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        if(isSw600 && !isTwoPane){
+            return new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        }else {
+            return new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        }
+        //isSw600 ? new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+          //      : new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
     }
 
     /**

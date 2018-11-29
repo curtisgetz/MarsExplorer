@@ -72,6 +72,7 @@
             />
         
         <EditText
+            android:importantForAutofill="no"
             android:hint="@string/enter_sol_hint"
             android:id="@+id/sol_edit_text"
             android:layout_width="@dimen/rover_explore_sol_edittext_width"
