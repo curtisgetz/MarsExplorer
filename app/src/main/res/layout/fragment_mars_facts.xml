@@ -27,9 +27,8 @@
             android:id="@+id/reload_fact"
             android:src="@drawable/ic_refresh"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginEnd="20dp"
-
             app:layout_constraintEnd_toEndOf="@id/fact_name_text"
             app:layout_constraintTop_toTopOf="@id/fact_name_text"
             app:layout_constraintBottom_toBottomOf="@id/fact_name_text"

@@ -24,6 +24,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AnimationUtils;
@@ -169,7 +170,11 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * @return number of density independent pixels on this device
      */
     private int convertPixelsToDip(int pixels){
-       return   pixels / ((getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        float density = metrics.density;
+        if(density == 0f) density = 1.0f;
+        float returnValue =  pixels / density;
+        return (int) returnValue;
     }
 
 
