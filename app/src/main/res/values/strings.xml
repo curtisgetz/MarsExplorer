@@ -241,5 +241,10 @@
     <string name="no_favorites_message">No Favorites Saved \nYour Favorite Images Will Be Displayed Here</string>
     <string name="no_favorites_to_display_icon_cd">No Favorites To Display Icon</string>
     <string name="link_to_fact_source">Link to fact source</string>
+    <string name="enter_sol">Enter Sol</string>
+    <string name="search_by_sol">Search By Sol</string>
+    <string name="sol_search_dialog_message" formatted="false">Enter a number between %1$s</string>
+    <string name="sol_dialog_cancel">Cancel</string>
+    <string name="sol_dialog_positive_button">Search</string>
 
 </resources>

@@ -10,7 +10,9 @@ package com.curtisgetz.marsexplorer.ui.explore;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -20,15 +22,22 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -47,6 +56,7 @@ import com.curtisgetz.marsexplorer.ui.explore_detail.rover_photos.RoverPhotosFra
 import com.curtisgetz.marsexplorer.ui.explore_detail.rover_science.RoverScienceFragment;
 import com.curtisgetz.marsexplorer.ui.explore_detail.tweets.TweetsFragment;
 import com.curtisgetz.marsexplorer.ui.info.InfoDialogFragment;
+import com.curtisgetz.marsexplorer.ui.main.MainActivity;
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
 import com.curtisgetz.marsexplorer.utils.InformationUtils;
 import com.curtisgetz.marsexplorer.utils.JsonUtils;
@@ -267,13 +277,83 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
     /**
      * Handle sol search button click
-     * @param solNumber user input for sol number to search
      * @param catIndex explore category index
      */
     @Override
-    public void onSolSearchClick(String solNumber, int catIndex) {
-        //validate sol input is in range then start ExploreDetailActivity
-        String validatedSol = mViewModel.validateSolInRange(solNumber);
+    public void onSolSearchClick(int catIndex) {
+        //Get sol range, Then show dialog for user to enter Sol
+        RoverManifest roverManifest = mViewModel.getManifest().getValue();
+        final String solRange;
+        if(roverManifest == null){
+            solRange = "";
+        }else {
+            solRange = roverManifest.getSolRange();
+        }
+
+        buildSolSearchDialog(catIndex, solRange).show();
+    }
+
+    /**
+     * Build Alert Dialog for getting user input for Sol search
+     * @param catIndex index of Rover category
+     * @param solRange Sol range from Rover Manifest
+     * @return return the built AlertDialog
+     */
+    private AlertDialog buildSolSearchDialog(final int catIndex,String solRange){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+
+        final View dialogView = inflater.inflate(R.layout.enter_sol_dialog, mConstraintLayout, false);
+        dialogBuilder.setView(dialogView);
+
+        final EditText editText =  (EditText) dialogView.findViewById(R.id.enter_sol_dialog_edit);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId == EditorInfo.IME_ACTION_DONE){
+                    String inputSolNum = editText.getText().toString().trim();
+                    startSolSearch(inputSolNum, catIndex);
+                }
+                return false;
+            }
+        });
+
+        dialogBuilder.setTitle(R.string.search_by_sol);
+        String dialogMessage = getString(R.string.sol_search_dialog_message, solRange);
+        dialogBuilder.setMessage(dialogMessage);
+        dialogBuilder.setPositiveButton(R.string.sol_dialog_positive_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String inputSolNum = editText.getText().toString().trim();
+                startSolSearch(inputSolNum, catIndex);
+            }
+        });
+        dialogBuilder.setNegativeButton(R.string.sol_dialog_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        final AlertDialog alertDialog = dialogBuilder.create();
+        //Show soft keyboard if edittext is focused
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                }
+            }
+        });
+
+        return alertDialog;
+    }
+
+
+
+
+    private void startSolSearch(String inputSol, int catIndex){
+        String validatedSol = mViewModel.validateSolInRange(inputSol);
         if(isTwoPane){
             RoverPhotosFragment photosFragment = RoverPhotosFragment
                     .newInstance(this, mRoverIndex, validatedSol);

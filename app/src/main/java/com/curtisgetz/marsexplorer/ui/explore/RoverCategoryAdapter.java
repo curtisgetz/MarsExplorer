@@ -40,7 +40,7 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
 
     public interface CategoryClickListener{
         void onCategoryClick(int clickedPos);
-        void onSolSearchClick(String solNumber, int exploreIndex);
+        void onSolSearchClick(int exploreIndex);
         void onRandomSolClick(int catIndex);
     }
 
@@ -136,12 +136,27 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
         private void setupViews(int visibility){
             mImageView.setContentDescription(mCategory.getContentDescription());
             //set visibility of Views for searching rover pictures
-            mSolEdit.setVisibility(visibility);
+           // mSolEdit.setVisibility(visibility);
             mSolRandBtn.setVisibility(visibility);
             mSolSearchBtn.setVisibility(visibility);
             mSolSearchLabel.setVisibility(visibility);
             //if views are visible then set click listeners
-            if(mSolEdit.getVisibility() == View.VISIBLE){
+            if(mSolSearchBtn.getVisibility() == View.VISIBLE){
+                mSolSearchBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mCatClickListener.onSolSearchClick(mCategory.getmCatIndex());
+                    }
+                });
+                mSolRandBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mCatClickListener.onRandomSolClick(mCategory.getmCatIndex());
+                    }
+                });
+            }
+
+         /*   if(mSolEdit.getVisibility() == View.VISIBLE){
 
                 //click submit button when 'Done' is pressed on soft keyboard
                 //confirm input is a number, if not set it to 200
@@ -166,7 +181,7 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
                         mCatClickListener.onRandomSolClick(mCategory.getmCatIndex());
                     }
                 });
-            }
+            }*/
         }
 
 

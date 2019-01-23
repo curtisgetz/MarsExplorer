@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+   <!-- <TextView
+        android:id="@+id/enter_sol_dialog_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/MarsExploreTitleText"
+        android:gravity="center"
+        android:text="Enter Sol Number "/>-->
+
+
+    <EditText
+        android:importantForAutofill="no"
+        android:id="@+id/enter_sol_dialog_edit"
+        android:layout_width="0dp"
+        android:maxLength="5"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:inputType="number"
+        android:hint="@string/enter_sol"/>
+
+</android.support.constraint.ConstraintLayout>

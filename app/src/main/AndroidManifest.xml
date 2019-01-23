@@ -23,7 +23,7 @@
         </activity>
         <activity
             android:name=".ui.explore.RoverExploreActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".ui.main.MainActivity"/>
         <activity android:name=".ui.explore_detail.ExploreDetailActivity" />
         <activity
