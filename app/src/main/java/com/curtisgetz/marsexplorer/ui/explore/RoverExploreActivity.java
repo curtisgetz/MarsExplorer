@@ -7,6 +7,7 @@
 package com.curtisgetz.marsexplorer.ui.explore;
 
 
+import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -33,6 +34,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -75,7 +77,8 @@ import static android.view.View.VISIBLE;
  * Activity for exploring a Mars Rover
  */
 public class RoverExploreActivity extends MarsBaseActivity implements
-        RoverCategoryAdapter.CategoryClickListener, FullPhotoPagerFragment.FullPhotoPagerInteraction{
+        RoverCategoryAdapter.CategoryClickListener, FullPhotoPagerFragment.FullPhotoPagerInteraction,
+        SolSearchDialogFragment.SearchDialogInteraction{
 
 
     private RoverCategoryAdapter mAdapter;
@@ -274,6 +277,17 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         }
     }
 
+    @Override
+    public void onCalendarSolClick(int catIndex) {
+
+    }
+
+
+    @Override
+    public void onDialogSearchClick(String solInput) {
+        int catIndex = HelperUtils.ROVER_PICTURES_CAT_INDEX;
+        startSolSearch(solInput, catIndex);
+    }
 
     /**
      * Handle sol search button click
@@ -290,66 +304,11 @@ public class RoverExploreActivity extends MarsBaseActivity implements
             solRange = roverManifest.getSolRange();
         }
 
-        buildSolSearchDialog(catIndex, solRange).show();
+        SolSearchDialogFragment dialogFragment = SolSearchDialogFragment.newInstance(getApplicationContext(), solRange);
+        dialogFragment.show(getSupportFragmentManager(), SolSearchDialogFragment.class.getSimpleName());
+
+
     }
-
-    /**
-     * Build Alert Dialog for getting user input for Sol search
-     * @param catIndex index of Rover category
-     * @param solRange Sol range from Rover Manifest
-     * @return return the built AlertDialog
-     */
-    private AlertDialog buildSolSearchDialog(final int catIndex,String solRange){
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = getLayoutInflater();
-
-        final View dialogView = inflater.inflate(R.layout.enter_sol_dialog, mConstraintLayout, false);
-        dialogBuilder.setView(dialogView);
-
-        final EditText editText =  (EditText) dialogView.findViewById(R.id.enter_sol_dialog_edit);
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_DONE){
-                    String inputSolNum = editText.getText().toString().trim();
-                    startSolSearch(inputSolNum, catIndex);
-                }
-                return false;
-            }
-        });
-
-        dialogBuilder.setTitle(R.string.search_by_sol);
-        String dialogMessage = getString(R.string.sol_search_dialog_message, solRange);
-        dialogBuilder.setMessage(dialogMessage);
-        dialogBuilder.setPositiveButton(R.string.sol_dialog_positive_button, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String inputSolNum = editText.getText().toString().trim();
-                startSolSearch(inputSolNum, catIndex);
-            }
-        });
-        dialogBuilder.setNegativeButton(R.string.sol_dialog_cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        final AlertDialog alertDialog = dialogBuilder.create();
-        //Show soft keyboard if edittext is focused
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-                }
-            }
-        });
-
-        return alertDialog;
-    }
-
-
 
 
     private void startSolSearch(String inputSol, int catIndex){

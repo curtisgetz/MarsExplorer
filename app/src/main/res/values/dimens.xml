@@ -28,8 +28,8 @@
     <dimen name="rover_explore_cardview_margin_top_bottom">40dp</dimen>
     <dimen name="rover_explore_cardview_margin_start_end">20dp</dimen>
     <dimen name="rover_explore_card_sol_search_text_size">16sp</dimen>
-    <dimen name="rover_explore_sol_search_button_height">40dp</dimen>
-    <dimen name="rover_explore_sol_search_button_padding">10dp</dimen>
+    <dimen name="rover_explore_sol_search_button_height">60dp</dimen>
+    <dimen name="rover_explore_sol_search_button_padding">4dp</dimen>
     <dimen name="rover_explore_sol_edit_text_margin">20dp</dimen>
     <dimen name="rover_explore_sol_edittext_width">80dp</dimen>
 

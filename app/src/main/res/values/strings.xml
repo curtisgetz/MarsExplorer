@@ -243,8 +243,10 @@
     <string name="link_to_fact_source">Link to fact source</string>
     <string name="enter_sol">Enter Sol</string>
     <string name="search_by_sol">Search By Sol</string>
-    <string name="sol_search_dialog_message" formatted="false">Enter a number between %1$s</string>
+    <string name="sol_search_dialog_message" formatted="false">Sol Range: %1$s</string>
     <string name="sol_dialog_cancel">Cancel</string>
     <string name="sol_dialog_positive_button">Search</string>
+    <string name="sol_range_bundle_key">sol_range_bundle_key</string>
+    <string name="cat_index_key">cat_index_key</string>
 
 </resources>

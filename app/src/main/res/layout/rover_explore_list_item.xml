@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <android.support.constraint.Guideline
-            android:id="@+id/guideline_75_horizonal"
+            android:id="@+id/guideline_50_horizontal"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:orientation="horizontal"
@@ -61,17 +61,18 @@
             android:id="@+id/guideline_50_vertical"
             app:layout_constraintGuide_percent="0.50"/>
         
-        <TextView
+     <!--   <TextView
             android:id="@+id/sol_search_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/RoverExploreSolSearchText"
             android:text="@string/view_photos_from_sol"
-            app:layout_constraintTop_toTopOf="@id/guideline_75_horizonal"
+            app:layout_constraintTop_toTopOf="@id/guideline_50_horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             />
-        
-        <EditText
+        -->
+       <!-- <EditText
+
             android:importantForAutofill="no"
             android:hint="@string/enter_sol_hint"
             android:id="@+id/sol_edit_text"
@@ -84,17 +85,55 @@
             android:layout_marginEnd="@dimen/rover_explore_sol_edit_text_margin"
             app:layout_constraintTop_toTopOf="@id/sol_search_label"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/sol_search_label"/>
-        <Button
-            android:id="@+id/search_sol_button"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/rover_explore_sol_search_button_height"
-            android:layout_margin="@dimen/rover_explore_sol_search_button_padding"
-            android:padding="@dimen/rover_explore_sol_search_button_padding"
-            app:layout_constraintTop_toBottomOf="@id/sol_search_label"
-            app:layout_constraintStart_toEndOf="@id/guideline_50_vertical"
-            android:text="@string/enter_sol"/>
+            app:layout_constraintBottom_toBottomOf="@id/sol_search_label"/>-->
+
+        <LinearLayout
+            android:id="@+id/sol_search_button_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_50_horizontal"
+            >
+            <Button
+                android:id="@+id/search_sol_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/rover_explore_sol_search_button_height"
+                android:layout_margin="@dimen/rover_explore_sol_search_button_padding"
+                android:padding="@dimen/rover_explore_sol_search_button_padding"
+                android:text="@string/enter_sol"/>
+
+            <Button
+                android:id="@+id/random_sol_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@color/lightText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/rover_explore_sol_search_button_height"
+                android:layout_margin="@dimen/rover_explore_sol_search_button_padding"
+                android:padding="@dimen/rover_explore_sol_search_button_padding"
+                android:text="@string/random_sol_button"/>
+
+            <Button
+                android:id="@+id/calendar_sol_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="@color/lightText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/rover_explore_sol_search_button_height"
+                android:layout_margin="@dimen/rover_explore_sol_search_button_padding"
+                android:padding="@dimen/rover_explore_sol_search_button_padding"
+                android:text="Select Date"
+                />
+
+
+        </LinearLayout>
+
+
+
 <!--
         <Button
             android:id="@+id/search_sol_button"
@@ -107,18 +146,6 @@
             app:layout_constraintStart_toEndOf="@id/guideline_50_vertical"
             android:text="@string/search_sol_button"/>
 -->
-
-        <Button
-            android:id="@+id/random_sol_button"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:textColor="@color/lightText"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/rover_explore_sol_search_button_height"
-            android:layout_margin="@dimen/rover_explore_sol_search_button_padding"
-            android:padding="@dimen/rover_explore_sol_search_button_padding"
-            app:layout_constraintTop_toBottomOf="@id/sol_search_label"
-            app:layout_constraintEnd_toStartOf="@id/guideline_50_vertical"
-            android:text="@string/random_sol_button"/>
 
 </android.support.constraint.ConstraintLayout>
 

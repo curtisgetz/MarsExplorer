@@ -16,6 +16,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.curtisgetz.marsexplorer.R;
@@ -42,6 +43,7 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
         void onCategoryClick(int clickedPos);
         void onSolSearchClick(int exploreIndex);
         void onRandomSolClick(int catIndex);
+        void onCalendarSolClick(int catIndex);
     }
 
 
@@ -88,14 +90,18 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
         ImageView mImageView;
         @BindView(R.id.rover_explore_cardview_text)
         TextView mTextView;
-        @BindView(R.id.sol_edit_text)
-        EditText mSolEdit;
+        @BindView(R.id.sol_search_button_bar)
+        LinearLayout mSolSearchBtnBar;
+        //@BindView(R.id.sol_edit_text)
+       // EditText mSolEdit;
         @BindView(R.id.search_sol_button)
         Button mSolSearchBtn;
         @BindView(R.id.random_sol_button)
         Button mSolRandBtn;
-        @BindView(R.id.sol_search_label)
-        TextView mSolSearchLabel;
+        //@BindView(R.id.sol_search_label)
+        // mSolSearchLabel;
+        @BindView(R.id.calendar_sol_button)
+        Button mSolCalendarBtn;
 
         CategoryClickListener mCatClickListener;
 
@@ -136,22 +142,30 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
         private void setupViews(int visibility){
             mImageView.setContentDescription(mCategory.getContentDescription());
             //set visibility of Views for searching rover pictures
+            mSolSearchBtnBar.setVisibility(visibility);
            // mSolEdit.setVisibility(visibility);
             mSolRandBtn.setVisibility(visibility);
             mSolSearchBtn.setVisibility(visibility);
-            mSolSearchLabel.setVisibility(visibility);
+           // mSolSearchLabel.setVisibility(visibility);
             //if views are visible then set click listeners
             if(mSolSearchBtn.getVisibility() == View.VISIBLE){
+                final int catIndex = mCategory.getmCatIndex();
                 mSolSearchBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mCatClickListener.onSolSearchClick(mCategory.getmCatIndex());
+                        mCatClickListener.onSolSearchClick(catIndex);
                     }
                 });
                 mSolRandBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mCatClickListener.onRandomSolClick(mCategory.getmCatIndex());
+                        mCatClickListener.onRandomSolClick(catIndex);
+                    }
+                });
+                mSolCalendarBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mCatClickListener.onCalendarSolClick(catIndex);
                     }
                 });
             }
