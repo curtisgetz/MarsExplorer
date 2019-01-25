@@ -42,9 +42,14 @@ import butterknife.Unbinder;
  */
 public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.PhotoClickListener {
 
+    public static int SEARCH_BY_DATE = 0;
+    public static int SEARCH_BY_SOL = 1;
+
     private String mSol;
+    private String mDateInput;
     private int mRoverIndex;
     private CamerasViewModel mViewModel;
+    private SolFromDateViewModel mSolDateViewModel;
     private String mDateString;
     private Unbinder mUnBinder;
     private boolean queryMoreSols = true;
@@ -87,11 +92,16 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
 
 
 
-    public static RoverPhotosFragment newInstance(Context context, int roverIndex, String sol){
+
+
+
+    public static RoverPhotosFragment newInstance(Context context, int roverIndex, String sol, int searchType, String date){
         RoverPhotosFragment fragment = new RoverPhotosFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(context.getResources().getString(R.string.rover_index_extra), roverIndex);
         bundle.putString(context.getResources().getString(R.string.sol_number_extra_key), sol);
+        bundle.putInt(context.getString(R.string.photo_search_type), searchType);
+        bundle.putString(context.getString(R.string.date_extra), date);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -116,17 +126,46 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
 
         if(savedInstanceState == null){
             Bundle bundle = getArguments();
-            mSol = bundle.getString(getString(R.string.sol_number_extra_key));
+
             mRoverIndex = bundle.getInt(getString(R.string.rover_index_extra));
+            int searchType = bundle.getInt(getString(R.string.photo_search_type));
+            if(searchType == SEARCH_BY_DATE){
+                String date = bundle.getString(getString(R.string.date_extra));
+                SolFromDateVMFactory solDateFactory = new SolFromDateVMFactory(getActivity().getApplication(), mRoverIndex,date);
+                mSolDateViewModel = ViewModelProviders.of(this, solDateFactory).get(SolFromDateViewModel.class);
+                mSolDateViewModel.getSolLiveData().observe(this, new Observer<String>() {
+                    @Override
+                    public void onChanged(@Nullable String sol) {
+                        if(sol == null) return;
+                        setupCameraViewModel(sol);
+                    }
+                });
+            }else {
+                mSol = bundle.getString(getString(R.string.sol_number_extra_key));
+                setupCameraViewModel(mSol);
+            }
+
+
+
         }else {
             mSol = savedInstanceState.getString(getString(R.string.sol_number_saved_key),
                     HelperUtils.DEFAULT_SOL_NUMBER);
             mRoverIndex = savedInstanceState.getInt(getString(R.string.rover_index_saved_key),
                     HelperUtils.CURIOSITY_ROVER_INDEX);
+
+            setupCameraViewModel(mSol);
         }
 
         setRoverTitle();
-        CamerasVMFactory factory = new CamerasVMFactory(getActivity().getApplication(), mRoverIndex, mSol);
+        
+
+        return view;
+    }
+
+
+    private void setupCameraViewModel(String sol){
+        mSol = sol;
+        CamerasVMFactory factory = new CamerasVMFactory(getActivity().getApplication(), mRoverIndex, sol);
         mViewModel = ViewModelProviders.of(this, factory).get(CamerasViewModel.class);
         mViewModel.getCameras().observe(this, new Observer<Cameras>() {
             @Override
@@ -134,10 +173,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
                 setupUI();
             }
         });
-        return view;
     }
-
-
 
     @Override
     public void onDestroyView() {

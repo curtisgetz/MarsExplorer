@@ -29,6 +29,7 @@ class CamerasViewModel extends  ViewModel {
     CamerasViewModel(Application application, int roverIndex, String solNumber) {
         mRepository = MarsRepository.getInstance(application);
         mCameras = mRepository.getCameras(application.getApplicationContext(), roverIndex, solNumber);
+      //  mRepository.getSolFromDate(application.getApplicationContext(), roverIndex, "2019-1-22");
     }
 
     LiveData<Cameras> getCameras(){

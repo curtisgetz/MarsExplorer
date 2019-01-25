@@ -19,6 +19,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.constraint.solver.widgets.Helper;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
@@ -62,8 +63,11 @@ import com.curtisgetz.marsexplorer.ui.main.MainActivity;
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
 import com.curtisgetz.marsexplorer.utils.InformationUtils;
 import com.curtisgetz.marsexplorer.utils.JsonUtils;
+import com.curtisgetz.marsexplorer.utils.NetworkUtils;
 
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import butterknife.BindView;
@@ -78,7 +82,7 @@ import static android.view.View.VISIBLE;
  */
 public class RoverExploreActivity extends MarsBaseActivity implements
         RoverCategoryAdapter.CategoryClickListener, FullPhotoPagerFragment.FullPhotoPagerInteraction,
-        SolSearchDialogFragment.SearchDialogInteraction{
+        SolSearchDialogFragment.SearchDialogInteraction, SolDatePickerDialogFragment.DateDialogInteraction{
 
 
     private RoverCategoryAdapter mAdapter;
@@ -279,9 +283,22 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
     @Override
     public void onCalendarSolClick(int catIndex) {
-
+        SolDatePickerDialogFragment dialogFragment = SolDatePickerDialogFragment.newInstance();
+        dialogFragment.show(getSupportFragmentManager(), SolDatePickerDialogFragment.class.getSimpleName());
     }
 
+    @Override
+    public void onDialogDateSelect(String date) {
+        if(isTwoPane){
+            RoverPhotosFragment roverPhotosFragment = RoverPhotosFragment.newInstance(getApplicationContext(),
+                    mRoverIndex, null, RoverPhotosFragment.SEARCH_BY_DATE, date);
+            startDetailFragment(roverPhotosFragment);
+        }else{
+            startExploreDetailActivity(null,
+                    HelperUtils.ROVER_PICTURES_CAT_INDEX, RoverPhotosFragment.SEARCH_BY_DATE, date);
+        }
+
+    }
 
     @Override
     public void onDialogSearchClick(String solInput) {
@@ -310,15 +327,19 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
     }
 
-
+    /**
+     * Start {@link RoverPhotosFragment} and search the Sol entered
+     * @param inputSol Sol input to search
+     * @param catIndex Explore category
+     */
     private void startSolSearch(String inputSol, int catIndex){
         String validatedSol = mViewModel.validateSolInRange(inputSol);
         if(isTwoPane){
             RoverPhotosFragment photosFragment = RoverPhotosFragment
-                    .newInstance(this, mRoverIndex, validatedSol);
+                    .newInstance(this, mRoverIndex, validatedSol, RoverPhotosFragment.SEARCH_BY_SOL, null);
             startDetailFragment(photosFragment);
         }else {
-            startExploreDetailActivity(validatedSol, catIndex);
+            startExploreDetailActivity(validatedSol, catIndex, RoverPhotosFragment.SEARCH_BY_SOL, null);
         }
     }
 
@@ -330,10 +351,11 @@ public class RoverExploreActivity extends MarsBaseActivity implements
     public void onRandomSolClick(int catIndex) {
         if(isTwoPane){
             RoverPhotosFragment photosFragment = RoverPhotosFragment
-                    .newInstance(this, mRoverIndex, mViewModel.getRandomSol());
+                    .newInstance(this, mRoverIndex, mViewModel.getRandomSol(), RoverPhotosFragment.SEARCH_BY_SOL, null);
             startDetailFragment(photosFragment);
         }else {
-            startExploreDetailActivity(mViewModel.getRandomSol(), catIndex);
+            int searchType = RoverPhotosFragment.SEARCH_BY_SOL;
+            startExploreDetailActivity(mViewModel.getRandomSol(), catIndex, searchType, null);
         }
     }
 
@@ -353,12 +375,14 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * @param catIndex explore category index. Used by {@link ExploreDetailActivity} to start the
      *                 correct Fragment
      */
-    private void startExploreDetailActivity(String solNumber, int catIndex){
+    private void startExploreDetailActivity(String solNumber, int catIndex, int searchType, String date){
         if(isNetworkAvailable()) {
                 Intent intent = new Intent(getApplicationContext(), ExploreDetailActivity.class);
                 intent.putExtra(getString(R.string.explore_index_extra_key), catIndex);
                 intent.putExtra(getString(R.string.rover_index_extra), mRoverIndex);
                 intent.putExtra(getString(R.string.sol_number_extra_key), solNumber);
+                intent.putExtra(getString(R.string.photo_search_type), searchType);
+                intent.putExtra(getString(R.string.date_extra), date);
                 //add extra so ExploreDetailActivity knows it's parent and can enable up navigation
                 intent.putExtra(getString(R.string.parent_activity_tag_extra), this.getClass().getSimpleName());
                 startActivity(intent);

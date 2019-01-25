@@ -6,16 +6,22 @@
 package com.curtisgetz.marsexplorer.ui.explore;
 
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 import android.content.Context;
+import android.support.constraint.solver.widgets.Helper;
+import android.util.Log;
 
 import com.curtisgetz.marsexplorer.data.MarsRepository;
 import com.curtisgetz.marsexplorer.data.rover_manifest.RoverManifest;
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 
@@ -26,6 +32,9 @@ class RoverManifestViewModel extends ViewModel {
 
     private LiveData<RoverManifest> mManifest;
     private MarsRepository mRepository;
+    @SuppressLint("SimpleDateFormat")
+    private SimpleDateFormat mManifestDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private long mMinEpochFallback = HelperUtils.SPIRIT_LANDING_EPOCH;
 
 
     RoverManifestViewModel(int roverIndex, Application application){
@@ -79,5 +88,45 @@ class RoverManifestViewModel extends ViewModel {
         int randomNum = randomRand.nextInt((maxSol - minSol) + 1) + minSol;
         return String.valueOf(randomNum);
     }
+
+
+    public String getSolFromDate(){
+        if(mManifest.getValue() == null) return HelperUtils.DEFAULT_SOL_NUMBER;
+        return null;
+    }
+
+
+
+    public long getMaxEpoch(){
+        RoverManifest roverManifest = mManifest.getValue();
+        if(roverManifest == null) return mMinEpochFallback;
+
+        return 0L;
+
+    }
+
+    //min launch is june 10 2003
+    public long getMinEpoch(){
+        RoverManifest roverManifest = mManifest.getValue();
+        if(roverManifest == null) return mMinEpochFallback;
+        return dateToEpoch(roverManifest.getLandingDate());
+    }
+
+    private long dateToEpoch(String date){
+
+        Date landingDate;
+        try{
+            landingDate = mManifestDateFormat.parse(date);
+        }catch (ParseException e){
+            Log.e("Epoch", e.toString());
+            return mMinEpochFallback;
+        }
+
+        long epoch = landingDate.getTime();
+        Log.e("EPOCH", String.valueOf(epoch));
+        return epoch;
+    }
+
+
 
 }

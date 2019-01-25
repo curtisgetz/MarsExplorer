@@ -116,9 +116,12 @@ public class ExploreDetailActivity extends MarsBaseActivity implements
             case HelperUtils.ROVER_PICTURES_CAT_INDEX:
                 mCurrentSol = intent.getStringExtra(getString(R.string.sol_number_extra_key));
                 mRoverIndex = intent.getIntExtra(getString(R.string.rover_index_extra), HelperUtils.CURIOSITY_ROVER_INDEX);
-                bundle.putInt(getString(R.string.rover_index_extra), mRoverIndex);
+                int searchType = intent.getIntExtra(getString(R.string.photo_search_type), RoverPhotosFragment.SEARCH_BY_SOL);
+                String date = intent.getStringExtra(getString(R.string.date_extra));
+          /*      bundle.putInt(getString(R.string.rover_index_extra), mRoverIndex);
                 bundle.putString(getString(R.string.sol_number_extra_key), mCurrentSol);
-                RoverPhotosFragment roverPhotosFragment = RoverPhotosFragment.newInstance(this, mRoverIndex, mCurrentSol);
+                bundle.putInt(getString());*/
+                RoverPhotosFragment roverPhotosFragment = RoverPhotosFragment.newInstance(this, mRoverIndex, mCurrentSol, searchType, date);
                 getSupportFragmentManager().beginTransaction().replace(
                         R.id.explore_detail_container, roverPhotosFragment).commit();
                 break;

@@ -29,6 +29,8 @@ public final class HelperUtils {
 
     public final static String DEFAULT_SOL_NUMBER = "200";
 
+    public final static  long SPIRIT_LANDING_EPOCH = 1073174400L; // June 10, 2003, Spirit's landing date
+
     //EXPLORE INDICES
     public final static int MARS_EXPLORE_INDEX = 0;
     public final static int CURIOSITY_ROVER_INDEX = 1;

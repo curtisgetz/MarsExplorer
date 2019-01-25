@@ -248,5 +248,7 @@
     <string name="sol_dialog_positive_button">Search</string>
     <string name="sol_range_bundle_key">sol_range_bundle_key</string>
     <string name="cat_index_key">cat_index_key</string>
+    <string name="photo_search_type">photo_search_type</string>
+    <string name="date_extra">date_extra</string>
 
 </resources>

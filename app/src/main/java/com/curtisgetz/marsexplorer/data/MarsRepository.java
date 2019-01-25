@@ -98,6 +98,26 @@ public class MarsRepository {
         });
     }
 
+    public MutableLiveData<String> getSolFromDate(final Context context, final int roverIndex, final String date){
+        final MutableLiveData<String> sol = new MutableLiveData<>();
+        AppExecutors.getInstance().networkIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                URL url = NetworkUtils.buildDateToSolUrl(context, roverIndex, date);
+                try{
+                    String json = NetworkUtils.getResponseFromHttpUrl(url);
+                    String solString = JsonUtils.extractSolFromDateUrl(json);
+                    sol.postValue(solString);
+                    Log.e("JSON", solString);
+                }catch (IOException e){
+
+                }
+            }
+        });
+
+        return sol;
+    }
+
 
 
     /**

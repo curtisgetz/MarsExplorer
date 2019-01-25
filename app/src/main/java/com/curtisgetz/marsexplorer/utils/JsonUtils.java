@@ -1,6 +1,7 @@
 package com.curtisgetz.marsexplorer.utils;
 
 import android.content.Context;
+import android.support.constraint.solver.widgets.Helper;
 import android.util.Log;
 
 import com.curtisgetz.marsexplorer.R;
@@ -329,6 +330,27 @@ public final class JsonUtils {
                 minites, earthDate, sol);
     }
 
+    public static String extractSolFromDateUrl(String json){
+        String sol = HelperUtils.DEFAULT_SOL_NUMBER;;
+        try{
+            JSONObject jsonObject = new JSONObject(json);
+            //Check for 'photos' key to see if there are any results, return null if no results
+            if(!jsonObject.has(NASA_PHOTOS)) return null;
+
+            JSONArray jsonArray = jsonObject.getJSONArray(NASA_PHOTOS);
+            if(jsonArray.length() > 0) {
+                //Get sol.
+                JSONObject solObject = jsonArray.getJSONObject(0);
+                sol = solObject.optString(NASA_SOL, HelperUtils.DEFAULT_SOL_NUMBER);
+            }
+
+
+        }catch (Exception e){
+
+        }
+
+        return sol;
+    }
 
     public static String getDateString(String earthDate) throws ArrayIndexOutOfBoundsException{
         String[] dateStrings = earthDate.split("-");

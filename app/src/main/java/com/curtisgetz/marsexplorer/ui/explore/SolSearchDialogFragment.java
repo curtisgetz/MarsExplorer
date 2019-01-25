@@ -1,25 +1,24 @@
 package com.curtisgetz.marsexplorer.ui.explore;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.curtisgetz.marsexplorer.R;
-import com.curtisgetz.marsexplorer.data.rover_manifest.RoverManifest;
-import com.curtisgetz.marsexplorer.utils.HelperUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,7 +74,7 @@ public class SolSearchDialogFragment extends DialogFragment {
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         }
 
-        View view = inflater.inflate(R.layout.enter_sol_dialog, container, false);
+        View view = inflater.inflate(R.layout.fragment_sol_search_dialog, container, false);
 
         mUnBinder = ButterKnife.bind(this, view);
         Bundle bundle = getArguments();
@@ -88,11 +87,43 @@ public class SolSearchDialogFragment extends DialogFragment {
             mSolRange = savedInstanceState.getString(getString(R.string.sol_range_bundle_key));
         }
 
-
+        setEditTextListeners();
         String title = getString(R.string.sol_search_dialog_message, mSolRange);
         mTitleText.setText(title);
 
        return view;
+    }
+
+    /**
+     * Set listeners on EditText.
+     * One to show keyboard automatically.
+     * One for "DONE" listener
+     */
+    private void setEditTextListeners(){
+
+        mEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId == EditorInfo.IME_ACTION_DONE){
+                   submitSolToListener();
+                }
+                return false;
+            }
+        });
+
+        mEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus && getDialog().getWindow() != null){
+                    getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                }
+            }
+        });
+
+    }
+
+    private void submitSolToListener(){
+        mListener.onDialogSearchClick(mEditText.getText().toString().trim());
     }
 
     @Override
@@ -108,7 +139,7 @@ public class SolSearchDialogFragment extends DialogFragment {
 
     @OnClick(R.id.sol_search_dialog_search_btn)
     public void onSearchClick(){
-        mListener.onDialogSearchClick(mEditText.getText().toString().trim());
+        submitSolToListener();
     }
 
 

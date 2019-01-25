@@ -32,6 +32,7 @@ public final class NetworkUtils {
     private final static String API_KEY = "api_key";
     private final static String PAGE = "page";
     private final static String SOL = "sol";
+    private final static String EARTH_DATE = "earth_date";
 
     //A mission manifest is available for each Rover at /manifests/rover_name.
     // This manifest will list details of the Rover's mission to help narrow down photo queries to the API.
@@ -73,7 +74,39 @@ public final class NetworkUtils {
         return url;
     }
 
-    //build URL for requesting rover photos by Sol number(as a String, validated before here)
+    public static URL buildDateToSolUrl(Context context,int roverIndex,  String date){
+        //Get BASE Url from Firebase Remote Config
+        FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        String baseUrl = firebaseRemoteConfig.getString(PHOTOS_BASE_REMOTE_CONFIG_KEY);
+
+        String rover = HelperUtils.getRoverNameByIndex(context, roverIndex);
+
+        Uri builtUri = Uri.parse(baseUrl).buildUpon()
+                .appendPath(ROVERS)
+                .appendPath(rover)
+                .appendPath(PHOTOS)
+                .appendQueryParameter(EARTH_DATE, date)
+                .appendQueryParameter(PAGE, "1")
+                .appendQueryParameter(API_KEY, NASA_API)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        }catch (MalformedURLException e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    /**
+     * build URL for requesting rover photos by Sol number(as a String, validated before here)
+     * @param context for accessing Resources
+     * @param roverIndex index of rover
+     * @param sol sol to search
+     * @return Built URL for getting photos
+     */
+    //
     public static URL buildPhotosUrl(Context context,int roverIndex, String sol){
         //check preferences to see if user wants to limit number of photos
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
