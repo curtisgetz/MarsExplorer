@@ -228,14 +228,15 @@ public final class JsonUtils {
         return null;
     }
 
+
     /**
      * Checks if sol has any images.
-     * @param jason JSON text to check for images
+     * @param json JSON text to check for images
      * @return true if there are images or false if there are no images or an error parsing
      */
-    public static boolean isSolActive(String jason){
+    public static boolean isSolActive(String json){
         try {
-            JSONObject cameraJSON = new JSONObject(jason);
+            JSONObject cameraJSON = new JSONObject(json);
             if(!cameraJSON.has(NASA_PHOTOS)) return false;
             JSONArray jsonArray = cameraJSON.getJSONArray(NASA_PHOTOS);
             if(jsonArray.length() < 1) {
@@ -330,8 +331,13 @@ public final class JsonUtils {
                 minites, earthDate, sol);
     }
 
+    /**
+     * Get sol number from date searched
+     * @param json json to parse
+     * @return String value of the sol number
+     */
     public static String extractSolFromDateUrl(String json){
-        String sol = HelperUtils.DEFAULT_SOL_NUMBER;;
+        String sol = null; // = HelperUtils.DEFAULT_SOL_NUMBER;
         try{
             JSONObject jsonObject = new JSONObject(json);
             //Check for 'photos' key to see if there are any results, return null if no results
@@ -346,7 +352,7 @@ public final class JsonUtils {
 
 
         }catch (Exception e){
-
+            sol = null;
         }
 
         return sol;

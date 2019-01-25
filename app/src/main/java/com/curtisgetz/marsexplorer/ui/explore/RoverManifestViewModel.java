@@ -12,7 +12,6 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 import android.content.Context;
-import android.support.constraint.solver.widgets.Helper;
 import android.util.Log;
 
 import com.curtisgetz.marsexplorer.data.MarsRepository;
@@ -34,7 +33,7 @@ class RoverManifestViewModel extends ViewModel {
     private MarsRepository mRepository;
     @SuppressLint("SimpleDateFormat")
     private SimpleDateFormat mManifestDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private long mMinEpochFallback = HelperUtils.SPIRIT_LANDING_EPOCH;
+    private long mMinMillisecondsFallback = HelperUtils.SPIRIT_LANDING_MILLISECONDS;
 
 
     RoverManifestViewModel(int roverIndex, Application application){
@@ -90,41 +89,31 @@ class RoverManifestViewModel extends ViewModel {
     }
 
 
-    public String getSolFromDate(){
-        if(mManifest.getValue() == null) return HelperUtils.DEFAULT_SOL_NUMBER;
-        return null;
-    }
-
-
-
-    public long getMaxEpoch(){
+    public long getMinDateMilliseconds(){
         RoverManifest roverManifest = mManifest.getValue();
-        if(roverManifest == null) return mMinEpochFallback;
-
-        return 0L;
-
+        if(roverManifest == null) return mMinMillisecondsFallback;
+        return dateToMilliseconds(roverManifest.getLandingDate());
     }
 
-    //min launch is june 10 2003
-    public long getMinEpoch(){
+    public long getMaxDateMilliseconds(){
         RoverManifest roverManifest = mManifest.getValue();
-        if(roverManifest == null) return mMinEpochFallback;
-        return dateToEpoch(roverManifest.getLandingDate());
+        if(roverManifest == null) {
+            Date date = new Date();
+            return date.getTime();
+        }
+        return dateToMilliseconds(roverManifest.getMaxDate());
     }
 
-    private long dateToEpoch(String date){
+    private long dateToMilliseconds(String date){
 
         Date landingDate;
         try{
             landingDate = mManifestDateFormat.parse(date);
         }catch (ParseException e){
-            Log.e("Epoch", e.toString());
-            return mMinEpochFallback;
+            return mMinMillisecondsFallback;
         }
 
-        long epoch = landingDate.getTime();
-        Log.e("EPOCH", String.valueOf(epoch));
-        return epoch;
+        return landingDate.getTime();
     }
 
 

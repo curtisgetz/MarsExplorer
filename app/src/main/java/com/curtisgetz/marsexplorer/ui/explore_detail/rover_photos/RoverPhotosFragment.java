@@ -46,13 +46,11 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     public static int SEARCH_BY_SOL = 1;
 
     private String mSol;
-    private String mDateInput;
     private int mRoverIndex;
     private CamerasViewModel mViewModel;
     private SolFromDateViewModel mSolDateViewModel;
     private String mDateString;
     private Unbinder mUnBinder;
-    private boolean queryMoreSols = true;
     private static boolean hasShownPrefSnack = false;
 
     //RecyclerViews for each camera
@@ -145,8 +143,6 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
                 setupCameraViewModel(mSol);
             }
 
-
-
         }else {
             mSol = savedInstanceState.getString(getString(R.string.sol_number_saved_key),
                     HelperUtils.DEFAULT_SOL_NUMBER);
@@ -162,7 +158,10 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
         return view;
     }
 
-
+    /**
+     * Setup View Model for Cameras
+     * @param sol the sol to search for pictures
+     */
     private void setupCameraViewModel(String sol){
         mSol = sol;
         CamerasVMFactory factory = new CamerasVMFactory(getActivity().getApplication(), mRoverIndex, sol);
@@ -188,12 +187,17 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
         outState.putInt(getString(R.string.rover_index_saved_key), mRoverIndex);
     }
 
-
+    /**
+     * Create a Linear Layout Manager for each RecyclerView
+     * @return A new Horizontal Linear Layout Manager
+     */
     private LinearLayoutManager createLayoutManager(){
         return new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
     }
 
-
+    /**
+     * Set up Recycler Views for cameras with pictures
+     */
     private void setupUI(){
         //if camera has any images then setup adapter and show views.
         boolean anyCameras = false;
@@ -288,7 +292,9 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     }
 
 
-
+    /**
+     * Display a SnackBar message informing the user if images are being limited or if all are being displayed
+     */
     private void displayPrefSnack(){
         if(hasShownPrefSnack) return;
 
@@ -410,6 +416,10 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
 
     }
 
+    /**
+     * Show info Dialog Fragment informing user the app is not downloading all images by default.
+     * Set SharedPreferences so this is only displayed on first run
+     */
     private void shownPhotoLimitDialog(){
         //see if dialog has been shown to user before.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());

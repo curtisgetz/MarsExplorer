@@ -29,7 +29,13 @@ public final class HelperUtils {
 
     public final static String DEFAULT_SOL_NUMBER = "200";
 
-    public final static  long SPIRIT_LANDING_EPOCH = 1073174400L; // June 10, 2003, Spirit's landing date
+    public final static String CURIOSITY_LANDING_DATE = "2012-08-06";
+    public final static String OPPORTUNITY_LANDING_DATE = "2004-01-25";
+    public final static String SPIRIT_LANDING_DATE = "2004-01-04";
+
+    public final static long SPIRIT_LANDING_MILLISECONDS = 1055203200000L; // June 10, 2003, Spirit's landing date
+    public final static long OPPORTUNITY_LANDING_MILLISECONDS = 1074988800000L; // Jan 25, 2004
+    public final static long CURIOSITY_LANDING_MILLISECONDS = 1344211200000L; // Aug 6, 2012
 
     //EXPLORE INDICES
     public final static int MARS_EXPLORE_INDEX = 0;

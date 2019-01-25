@@ -8,17 +8,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
-import java.util.Calendar;
+import com.curtisgetz.marsexplorer.R;
+import com.curtisgetz.marsexplorer.utils.HelperUtils;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import java.util.Calendar;
 
 public class SolDatePickerDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
@@ -32,8 +28,12 @@ public class SolDatePickerDialogFragment extends DialogFragment implements DateP
         void onDialogDateSelect(String date);
     }
 
-    public static SolDatePickerDialogFragment newInstance(){
-        return new SolDatePickerDialogFragment();
+    public static SolDatePickerDialogFragment newInstance(Context context, int roverIndex){
+        Bundle bundle =new Bundle();
+        SolDatePickerDialogFragment fragment = new SolDatePickerDialogFragment();
+        bundle.putInt(context.getString(R.string.rover_index_extra), roverIndex);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     public SolDatePickerDialogFragment() {
@@ -65,23 +65,22 @@ public class SolDatePickerDialogFragment extends DialogFragment implements DateP
 
         //create new DatePickerDialog and return it
         DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-        mViewModel.getMaxEpoch();
-        //dialog.getDatePicker().setMinDate();
-       // dialog.getDatePicker().setMaxDate();
-
+        //Set min and max dates
+        dialog.getDatePicker().setMinDate(mViewModel.getMinDateMilliseconds());
+        dialog.getDatePicker().setMaxDate(mViewModel.getMaxDateMilliseconds());
         return  dialog;
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Toast.makeText(getActivity(), "TEST", Toast.LENGTH_LONG).show();
         String monthString = String.valueOf(month+1);
         String yearString = String.valueOf(year);
         String dayString = String.valueOf(dayOfMonth);
-        StringBuilder builder = new StringBuilder();
+        //StringBuilder builder = new StringBuilder();
         char dash = '-';
-        String date = builder.append(yearString).append(dash).append(monthString).append(dash).append(dayString).toString();
-        mListener.onDialogDateSelect(date);
+        String dateString = yearString + dash + monthString + dash + dayString;
+       // String date = builder.append(yearString).append(dash).append(monthString).append(dash).append(dayString).toString();
+        mListener.onDialogDateSelect(dateString);
     }
 
     @Override
