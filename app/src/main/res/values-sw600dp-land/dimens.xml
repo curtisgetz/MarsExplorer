@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <bool name="is_sw600_land">true</bool>
+    <bool name="hide_manifest">false</bool>
+
 
     <!-- Main Activity-->
     <dimen name="main_title_text_size">28sp</dimen>

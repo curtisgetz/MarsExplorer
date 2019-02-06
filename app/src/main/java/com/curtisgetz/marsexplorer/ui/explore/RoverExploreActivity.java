@@ -83,34 +83,49 @@ import static android.view.View.VISIBLE;
  */
 public class RoverExploreActivity extends MarsBaseActivity implements
         RoverCategoryAdapter.CategoryClickListener, FullPhotoPagerFragment.FullPhotoPagerInteraction,
-        SolSearchDialogFragment.SearchDialogInteraction, SolDatePickerDialogFragment.DateDialogInteraction{
+        SolSearchDialogFragment.SearchDialogInteraction, SolDatePickerDialogFragment.DateDialogInteraction {
 
 
     private RoverCategoryAdapter mAdapter;
     private int mRoverIndex;
     private boolean isTwoPane;
     private boolean isSw600;
+    private boolean isLandNotSw600;
     private RoverManifestViewModel mViewModel;
     private static boolean hasDownloadedManifests = false;
 
-    @BindView(R.id.rover_options_recycler) RecyclerView mCategoryRecycler;
-    @BindView(R.id.explore_master_title_text) TextView mTitleText;
-    @BindView(R.id.mission_status_text)TextView mMissionStatusTv;
-    @BindView(R.id.launch_date_text) TextView mLaunchTv;
-    @BindView(R.id.landing_date_text)TextView mLandingTv;
-    @BindView(R.id.sol_range_text) TextView mSolRangeTv;
-    @BindView(R.id.manifest_loading) ProgressBar mManifestProgress;
-    @BindView(R.id.explore_detail_coordinatorlayout) CoordinatorLayout mCoordinatorLayout;
+    @BindView(R.id.rover_options_recycler)
+    RecyclerView mCategoryRecycler;
+    @BindView(R.id.explore_master_title_text)
+    TextView mTitleText;
+    @BindView(R.id.mission_status_text)
+    TextView mMissionStatusTv;
+    @BindView(R.id.launch_date_text)
+    TextView mLaunchTv;
+    @BindView(R.id.landing_date_text)
+    TextView mLandingTv;
+    @BindView(R.id.sol_range_text)
+    TextView mSolRangeTv;
+    @BindView(R.id.manifest_loading)
+    ProgressBar mManifestProgress;
+    @BindView(R.id.explore_detail_coordinatorlayout)
+    CoordinatorLayout mCoordinatorLayout;
 
-    @BindView(R.id.mission_status_label) TextView mMissionStatusLabel;
-    @BindView(R.id.launch_date_label) TextView mLaunchLabel;
-    @BindView(R.id.landing_date_label)TextView mLandLabel;
-    @BindView(R.id.sol_range_label)TextView mSolRangeLabel;
-    @BindView(R.id.sol_info_clickbox) View mSolClickbox;
-    @BindView(R.id.sol_range_info_imageview)ImageView mSolRangeInfoIv;
+    @BindView(R.id.mission_status_label)
+    TextView mMissionStatusLabel;
+    @BindView(R.id.launch_date_label)
+    TextView mLaunchLabel;
+    @BindView(R.id.landing_date_label)
+    TextView mLandLabel;
+    @BindView(R.id.sol_range_label)
+    TextView mSolRangeLabel;
+    @BindView(R.id.sol_info_clickbox)
+    View mSolClickbox;
+    @BindView(R.id.sol_range_info_imageview)
+    ImageView mSolRangeInfoIv;
 
-    @BindView(R.id.rover_explore_root_constraintlayout) ConstraintLayout mConstraintLayout;
-
+    @BindView(R.id.rover_explore_root_constraintlayout)
+    ConstraintLayout mConstraintLayout;
 
 
     @Override
@@ -121,21 +136,22 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
         isTwoPane = (findViewById(R.id.rover_explore_sw600land) != null);
         isSw600 = getResources().getBoolean(R.bool.is_sw600);
+        isLandNotSw600 = getResources().getBoolean(R.bool.hide_manifest);
         setManifestViewVisibility();
         showManifestProgress();
 
         mAdapter = new RoverCategoryAdapter(this);
         setupRecyclerView();
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             Intent intent = getIntent();
             if (intent == null) {
                 finish();
-            }else {
+            } else {
                 mRoverIndex = intent.getIntExtra(getString(R.string.explore_extra),
                         HelperUtils.CURIOSITY_ROVER_INDEX);
             }
-        }else {
+        } else {
             mRoverIndex = savedInstanceState.getInt(getString(R.string.rover_index_saved_key),
                     HelperUtils.CURIOSITY_ROVER_INDEX);
         }
@@ -151,29 +167,19 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         });
         populateUI(mRoverIndex);
 
-        if(!hasDownloadedManifests) {
+        if (!hasDownloadedManifests) {
             //don't download new manifest every time. Data doesn't change often.
             mViewModel.downloadNewManifests(getApplicationContext());
             hasDownloadedManifests = true;
         }
 
-        if(isTwoPane || !isSw600) {
-            mConstraintLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    Rect rect = new Rect();
-                    mConstraintLayout.getWindowVisibleDisplayFrame(rect);
-                    int heightDiff = convertPixelsToDip(mConstraintLayout.getRootView().getHeight() - (rect.bottom - rect.top));
-                    if (heightDiff >= 100) {
-                        //keyboard on screen
-                        hideManifestVisibilityOnSoftKeyboard();
-                    } else {
-                        //keyboard hidden
-                        showManifestVisibilityOnSoftKeyboard();
-                    }
-                }
-            });
+
+        if(isLandNotSw600){
+            hideManifestVisibilityOnSoftKeyboard();
+        }else {
+            showManifestVisibilityOnSoftKeyboard();
         }
+
     }
 
     @Override
@@ -183,27 +189,13 @@ public class RoverExploreActivity extends MarsBaseActivity implements
     }
 
     /**
-     * Convert pixels to density independent pixels
-     * @param pixels number of pixels
-     * @return number of density independent pixels on this device
-     */
-    private int convertPixelsToDip(int pixels){
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        float density = metrics.density;
-        if(density == 0f) density = 1.0f;
-        float returnValue =  pixels / density;
-        return (int) returnValue;
-    }
-
-
-    /**
      * Set up RecyclerView and add PagerSnapHelper with page indicators.
      */
-    private void setupRecyclerView(){
+    private void setupRecyclerView() {
         mCategoryRecycler.setLayoutManager(getLayoutManger());
         mCategoryRecycler.setAdapter(mAdapter);
         //add page indicators and SnapHelper if using horizontal layout
-        if(getLayoutManger().getOrientation() == LinearLayoutManager.HORIZONTAL) {
+        if (getLayoutManger().getOrientation() == LinearLayoutManager.HORIZONTAL) {
             PagerSnapHelper snapHelper = new PagerSnapHelper();
             snapHelper.attachToRecyclerView(mCategoryRecycler);
             mCategoryRecycler.addItemDecoration(new CirclePagerIndicatorDecoration());
@@ -213,24 +205,26 @@ public class RoverExploreActivity extends MarsBaseActivity implements
     /**
      * Get a layout manager for Recyclerview based on the screen density and orientation.
      * Use a vertical layout if sw600 only. If sw600-land then still use horizontal.
+     *
      * @return LinearLayoutManager
      */
-    private LinearLayoutManager getLayoutManger(){
+    private LinearLayoutManager getLayoutManger() {
 
-        if(isSw600 && !isTwoPane){
+        if (isSw600 && !isTwoPane) {
             return new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        }else {
+        } else {
             return new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         }
         //isSw600 ? new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-          //      : new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        //      : new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
     }
 
     /**
      * Set title text and set data in Adapter
+     *
      * @param roverIndex use rover index to get rover name and List of ExploreCategory objects
      */
-    private void populateUI(int roverIndex){
+    private void populateUI(int roverIndex) {
         String roverName = HelperUtils.getRoverNameByIndex(this, roverIndex);
         String titleString = roverName + " " + getString(R.string.rover_string);
         mTitleText.setText(titleString);
@@ -242,14 +236,15 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
     /**
      * Handle category click
+     *
      * @param catIndex index of clicked category
      */
     @Override
     public void onCategoryClick(int catIndex) {
         //if two pane then create fragment for detail layout
-        if(isTwoPane){
+        if (isTwoPane) {
             Fragment fragment;
-            switch (catIndex){
+            switch (catIndex) {
                 case HelperUtils.ROVER_SCIENCE_CAT_INDEX:
                 case HelperUtils.ROVER_INFO_CAT_INDEX:
                     fragment = RoverScienceFragment.newInstance(this, mRoverIndex, catIndex);
@@ -265,15 +260,15 @@ public class RoverExploreActivity extends MarsBaseActivity implements
             }
             startDetailFragment(fragment);
 
-        //if not two pane then start ExploreDetail Activity
-        }else {
-            switch (catIndex){
+            //if not two pane then start ExploreDetail Activity
+        } else {
+            switch (catIndex) {
                 // don't allow click on photo category,   only the sol buttons
                 case HelperUtils.ROVER_PICTURES_CAT_INDEX:
                     return;
                 default:
                     //Send explore index and rover index to ExploreActivity
-                    Intent intent = new Intent(getApplicationContext(), ExploreDetailActivity.class );
+                    Intent intent = new Intent(getApplicationContext(), ExploreDetailActivity.class);
                     intent.putExtra(getString(R.string.explore_index_extra_key), catIndex);
                     intent.putExtra(getString(R.string.rover_index_extra), mRoverIndex);
                     intent.putExtra(getString(R.string.parent_activity_tag_extra), RoverExploreActivity.class.getSimpleName());
@@ -291,11 +286,11 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
     @Override
     public void onDialogDateSelect(String date) {
-        if(isTwoPane){
+        if (isTwoPane) {
             RoverPhotosFragment roverPhotosFragment = RoverPhotosFragment.newInstance(getApplicationContext(),
                     mRoverIndex, null, RoverPhotosFragment.SEARCH_BY_DATE, date);
             startDetailFragment(roverPhotosFragment);
-        }else{
+        } else {
             startExploreDetailActivity(null,
                     HelperUtils.ROVER_PICTURES_CAT_INDEX, RoverPhotosFragment.SEARCH_BY_DATE, date);
         }
@@ -310,6 +305,7 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
     /**
      * Handle sol search button click
+     *
      * @param catIndex explore category index
      */
     @Override
@@ -317,9 +313,9 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         //Get sol range, Then show dialog for user to enter Sol
         RoverManifest roverManifest = mViewModel.getManifest().getValue();
         final String solRange;
-        if(roverManifest == null){
+        if (roverManifest == null) {
             solRange = "";
-        }else {
+        } else {
             solRange = roverManifest.getSolRange();
         }
 
@@ -331,31 +327,33 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
     /**
      * Start {@link RoverPhotosFragment} and search the Sol entered
+     *
      * @param inputSol Sol input to search
      * @param catIndex Explore category
      */
-    private void startSolSearch(String inputSol, int catIndex){
+    private void startSolSearch(String inputSol, int catIndex) {
         String validatedSol = mViewModel.validateSolInRange(inputSol);
-        if(isTwoPane){
+        if (isTwoPane) {
             RoverPhotosFragment photosFragment = RoverPhotosFragment
                     .newInstance(this, mRoverIndex, validatedSol, RoverPhotosFragment.SEARCH_BY_SOL, null);
             startDetailFragment(photosFragment);
-        }else {
+        } else {
             startExploreDetailActivity(validatedSol, catIndex, RoverPhotosFragment.SEARCH_BY_SOL, null);
         }
     }
 
     /**
      * Handle random sol button click.
+     *
      * @param catIndex explore category index.
      */
     @Override
     public void onRandomSolClick(int catIndex) {
-        if(isTwoPane){
+        if (isTwoPane) {
             RoverPhotosFragment photosFragment = RoverPhotosFragment
                     .newInstance(this, mRoverIndex, mViewModel.getRandomSol(), RoverPhotosFragment.SEARCH_BY_SOL, null);
             startDetailFragment(photosFragment);
-        }else {
+        } else {
             int searchType = RoverPhotosFragment.SEARCH_BY_SOL;
             startExploreDetailActivity(mViewModel.getRandomSol(), catIndex, searchType, null);
         }
@@ -363,31 +361,33 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
     /**
      * Starts the Fragment in explore_detail_container
+     *
      * @param fragment Fragment to start
      */
-    private void startDetailFragment(Fragment fragment){
+    private void startDetailFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.explore_detail_container, fragment).commit();
     }
 
     /**
      * Create Intent with Extras to start {@link ExploreDetailActivity}
+     *
      * @param solNumber sol number that is currently being searched. Either from user input or
      *                  randomly generated.
-     * @param catIndex explore category index. Used by {@link ExploreDetailActivity} to start the
-     *                 correct Fragment
+     * @param catIndex  explore category index. Used by {@link ExploreDetailActivity} to start the
+     *                  correct Fragment
      */
-    private void startExploreDetailActivity(String solNumber, int catIndex, int searchType, String date){
-        if(isNetworkAvailable()) {
-                Intent intent = new Intent(getApplicationContext(), ExploreDetailActivity.class);
-                intent.putExtra(getString(R.string.explore_index_extra_key), catIndex);
-                intent.putExtra(getString(R.string.rover_index_extra), mRoverIndex);
-                intent.putExtra(getString(R.string.sol_number_extra_key), solNumber);
-                intent.putExtra(getString(R.string.photo_search_type), searchType);
-                intent.putExtra(getString(R.string.date_extra), date);
-                //add extra so ExploreDetailActivity knows it's parent and can enable up navigation
-                intent.putExtra(getString(R.string.parent_activity_tag_extra), this.getClass().getSimpleName());
-                startActivity(intent);
+    private void startExploreDetailActivity(String solNumber, int catIndex, int searchType, String date) {
+        if (isNetworkAvailable()) {
+            Intent intent = new Intent(getApplicationContext(), ExploreDetailActivity.class);
+            intent.putExtra(getString(R.string.explore_index_extra_key), catIndex);
+            intent.putExtra(getString(R.string.rover_index_extra), mRoverIndex);
+            intent.putExtra(getString(R.string.sol_number_extra_key), solNumber);
+            intent.putExtra(getString(R.string.photo_search_type), searchType);
+            intent.putExtra(getString(R.string.date_extra), date);
+            //add extra so ExploreDetailActivity knows it's parent and can enable up navigation
+            intent.putExtra(getString(R.string.parent_activity_tag_extra), this.getClass().getSimpleName());
+            startActivity(intent);
         }
     }
 
@@ -395,7 +395,7 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * Handle clicks for sol information. Shows {@link InfoDialogFragment} with info about the sol range
      */
     @OnClick({R.id.sol_info_clickbox, R.id.sol_range_label})
-    public void solInfo(){
+    public void solInfo() {
         InfoDialogFragment infoDialogFragment = InfoDialogFragment.newInstance(this, InformationUtils.SOL_RANGE_INFO);
         infoDialogFragment.show(getSupportFragmentManager(), InfoDialogFragment.class.getSimpleName());
     }
@@ -404,9 +404,9 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * Shows rover manifest details in UI. Get RoverManifest from {@link RoverManifestViewModel} and
      * update TextViews with details.
      */
-    private void populateManifestUI(){
+    private void populateManifestUI() {
         RoverManifest roverManifest = mViewModel.getManifest().getValue();
-        if(roverManifest == null)return;
+        if (roverManifest == null) return;
         hideManifestProgress();
         mMissionStatusTv.setText(HelperUtils.capitalizeFirstLetter(roverManifest.getStatus()));
         mLandingTv.setText(JsonUtils.getDateString(roverManifest.getLandingDate()));
@@ -417,28 +417,29 @@ public class RoverExploreActivity extends MarsBaseActivity implements
     /**
      * Show ProgressBar while rover manifest details are being loaded
      */
-    private void showManifestProgress(){
+    private void showManifestProgress() {
         mManifestProgress.setVisibility(View.VISIBLE);
     }
 
     /**
      * Hide ProgressBar when rover manifest details are loaded
      */
-    private void hideManifestProgress(){
+    private void hideManifestProgress() {
         mManifestProgress.setVisibility(GONE);
     }
 
     /**
      * Check if network is available and device is connected
+     *
      * @return true if network is available and device is connected
      */
-    private boolean isNetworkAvailable()  {
+    private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
-                = (ConnectivityManager)  getSystemService(Context.CONNECTIVITY_SERVICE);
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if((networkInfo != null && networkInfo.isConnected())){
+        if ((networkInfo != null && networkInfo.isConnected())) {
             return true;
-        }else {
+        } else {
             Snackbar.make(mCoordinatorLayout, R.string.internet_required,
                     Snackbar.LENGTH_LONG).show();
             return false;
@@ -449,26 +450,26 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * Set the visibility of the rover manifest TextViews based on screen density and orientation.
      * If device is in landscape and NOT sw600 then set all views visibility to View.GONE.
      */
-    private void setManifestViewVisibility(){
+    private void setManifestViewVisibility() {
         int visibility;
-        if (getResources().getBoolean(R.bool.is_land) && !(getResources().getBoolean(R.bool.is_sw600_land))){
+        if (getResources().getBoolean(R.bool.is_land) && !(getResources().getBoolean(R.bool.is_sw600_land))) {
             visibility = GONE;
-        }else {
+        } else {
             visibility = VISIBLE;
         }
         setupManifestViews(visibility);
 
     }
 
-    private void hideManifestVisibilityOnSoftKeyboard(){
+    private void hideManifestVisibilityOnSoftKeyboard() {
         setupManifestViews(GONE);
     }
 
-    private void showManifestVisibilityOnSoftKeyboard(){
+    private void showManifestVisibilityOnSoftKeyboard() {
         setupManifestViews(VISIBLE);
     }
 
-    private void setupManifestViews(int visibility){
+    private void setupManifestViews(int visibility) {
         mMissionStatusLabel.setVisibility(visibility);
         mMissionStatusTv.setVisibility(visibility);
         mLaunchLabel.setVisibility(visibility);
@@ -485,6 +486,7 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * Call displaySnack method on {@link FullPhotoFragment}.
      * This will allow the CoordinatorLayout to handle displaying the SnackBar and moving the FAB
      * out of the way
+     *
      * @param message the message to display in the SnackBar
      */
     @Override
@@ -502,6 +504,7 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * Allows communication between {@link FullPhotoFragment} and {@link FullPhotoPagerFragment}.
      * Called when the user presses the FAB to share an image and gets the date of the current image
      * being displayed in the ViewPager.
+     *
      * @return the date, as a String, of the current image in the ViewPager.
      */
     @Override
@@ -521,6 +524,7 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      * Allows communication between {@link FullPhotoFragment} and {@link FullPhotoPagerFragment}.
      * Called when the user presses the FAB to share an image and gets the rover index of the
      * current image being displayed in the ViewPager.
+     *
      * @return the rover index of the current image in the ViewPager
      */
     @Override
@@ -534,7 +538,6 @@ public class RoverExploreActivity extends MarsBaseActivity implements
             return -1;
         }
     }
-
 
 
 }

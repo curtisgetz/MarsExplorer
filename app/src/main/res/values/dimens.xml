@@ -3,6 +3,7 @@
     <bool name="is_sw600_land">false</bool>
     <bool name="is_land">false</bool>
     <bool name="is_sw600">false</bool>
+    <bool name="hide_manifest">false</bool>
 
     <dimen name="offset_y">300dp</dimen>
 
