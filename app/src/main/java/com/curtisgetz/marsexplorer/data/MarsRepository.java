@@ -144,7 +144,14 @@ public class MarsRepository {
 
     }
 
-    public String findNextActiveDate(Context context, int roverIndex, String dateString){
+    /**
+     * Find next date with photos
+     * @param context context to get resources
+     * @param roverIndex index of rover
+     * @param dateString String of date to start searching
+     * @return String of next active date
+     */
+    private String findNextActiveDate(Context context, int roverIndex, String dateString){
         String format = "yyyy-MM-dd";
         final int MAX_QUERY = 50;
         int queryCount = 0;

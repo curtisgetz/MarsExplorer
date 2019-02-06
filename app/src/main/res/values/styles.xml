@@ -10,10 +10,25 @@
         <item name="android:textColor">@color/lightText</item>
         <item name="popupMenuStyle">@style/MarsPopupMenu</item>
         <item name="actionBarPopupTheme">@style/MarsPopupMenu</item>
-
+        <item name="android:datePickerDialogTheme">@style/DatePickerDialogTheme</item>
 
     </style>
 
+<!--Theme.AppCompat.Light.Dialog.Alert  -->
+    <style name="DatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/marsLightOrange</item>
+        <item name="android:textColor">@color/blackBackground</item>
+        <item name="android:datePickerStyle">@style/DatePickerDialogStyle</item>
+    </style>
+
+   <style name="DatePickerDialogStyle" parent="android:Widget.Material.DatePicker">
+       <item name="android:headerBackground">@color/marsLightOrange</item>
+       <item name="android:dayOfWeekBackground">@color/lightText</item>
+       <item name="android:headerMonthTextAppearance"></item>
+
+
+
+   </style>
 
     <style name="MarsPopupMenu" parent="Widget.AppCompat.ListPopupWindow">
         <item name="android:textColor">@color/blackBackground</item>

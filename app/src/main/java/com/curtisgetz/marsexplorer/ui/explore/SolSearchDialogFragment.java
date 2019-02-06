@@ -124,6 +124,7 @@ public class SolSearchDialogFragment extends DialogFragment {
 
     private void submitSolToListener(){
         mListener.onDialogSearchClick(mEditText.getText().toString().trim());
+        getDialog().dismiss();
     }
 
     @Override

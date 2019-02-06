@@ -21,6 +21,9 @@
 
     <dimen name="rover_explore_cardview_margin_top_bottom">8dp</dimen>
 
+    <dimen name="rover_explore_sol_search_button_padding">10dp</dimen>
+    <dimen name="sol_search_button_bar_padding">20dp</dimen>
+
     <!-- Mars Explore  -->
     <dimen name="mars_explore_cardview_start_end_margin">100dp</dimen>
 

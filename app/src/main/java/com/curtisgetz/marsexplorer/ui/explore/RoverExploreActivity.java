@@ -7,6 +7,7 @@
 package com.curtisgetz.marsexplorer.ui.explore;
 
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -285,6 +286,7 @@ public class RoverExploreActivity extends MarsBaseActivity implements
     public void onCalendarSolClick(int catIndex) {
         SolDatePickerDialogFragment dialogFragment = SolDatePickerDialogFragment.newInstance(this, mRoverIndex);
         dialogFragment.show(getSupportFragmentManager(), SolDatePickerDialogFragment.class.getSimpleName());
+
     }
 
     @Override

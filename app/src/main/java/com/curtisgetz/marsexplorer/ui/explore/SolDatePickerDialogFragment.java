@@ -8,11 +8,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.widget.DatePicker;
-import android.widget.Toast;
 
-import com.curtisgetz.marsexplorer.R;
-import com.curtisgetz.marsexplorer.utils.HelperUtils;
+import android.widget.DatePicker;
+
 
 import java.util.Calendar;
 
@@ -29,11 +27,7 @@ public class SolDatePickerDialogFragment extends DialogFragment implements DateP
     }
 
     public static SolDatePickerDialogFragment newInstance(Context context, int roverIndex){
-        Bundle bundle =new Bundle();
-        SolDatePickerDialogFragment fragment = new SolDatePickerDialogFragment();
-        bundle.putInt(context.getString(R.string.rover_index_extra), roverIndex);
-        fragment.setArguments(bundle);
-        return fragment;
+        return new SolDatePickerDialogFragment();
     }
 
     public SolDatePickerDialogFragment() {
@@ -58,28 +52,30 @@ public class SolDatePickerDialogFragment extends DialogFragment implements DateP
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
+
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+
         //create new DatePickerDialog and return it
-        DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(),this, year, month, day);
         //Set min and max dates
         dialog.getDatePicker().setMinDate(mViewModel.getMinDateMilliseconds());
         dialog.getDatePicker().setMaxDate(mViewModel.getMaxDateMilliseconds());
         return  dialog;
     }
 
+
+
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String monthString = String.valueOf(month+1);
         String yearString = String.valueOf(year);
         String dayString = String.valueOf(dayOfMonth);
-        //StringBuilder builder = new StringBuilder();
         char dash = '-';
         String dateString = yearString + dash + monthString + dash + dayString;
-       // String date = builder.append(yearString).append(dash).append(monthString).append(dash).append(dayString).toString();
         mListener.onDialogDateSelect(dateString);
     }
 
