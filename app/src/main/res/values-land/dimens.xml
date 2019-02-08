@@ -20,6 +20,13 @@
 
     <!-- Rover Science -->
     <dimen name="rover_science_outside_margin">20dp</dimen>
+    <dimen name="rover_explore_recycler_start_end_margin">100dp</dimen>
+
+    <!-- Full Photo  -->
+    <dimen name="photo_cardview_height">@dimen/match_parent</dimen>
+    <dimen name="photo_cardview_width">@dimen/wrap_content</dimen>
+
+
 
     <dimen name="rover_explore_cardview_margin_top_bottom">8dp</dimen>
 

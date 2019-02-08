@@ -19,7 +19,7 @@ public class RoverManifestVMFactory extends ViewModelProvider.NewInstanceFactory
     private Application mApplication;
     private final int mRoverIndex;
 
-    RoverManifestVMFactory(int roverIndex, Application application){
+    RoverManifestVMFactory(int roverIndex, Application application) {
         this.mApplication = application;
         this.mRoverIndex = roverIndex;
     }

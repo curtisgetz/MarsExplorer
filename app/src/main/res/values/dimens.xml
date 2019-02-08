@@ -5,6 +5,9 @@
     <bool name="is_sw600">false</bool>
     <bool name="hide_manifest">false</bool>
 
+    <item name="wrap_content" format="integer" type="dimen">-2</item>
+    <item name="match_parent" format="integer" type="dimen">-1</item>
+
     <dimen name="offset_y">300dp</dimen>
 
     <dimen name="default_cardview_elevation">2dp</dimen>
@@ -34,6 +37,7 @@
     <dimen name="rover_explore_sol_edit_text_margin">20dp</dimen>
     <dimen name="rover_explore_sol_edittext_width">80dp</dimen>
     <dimen name="sol_search_button_bar_padding">20dp</dimen>
+    <dimen name="rover_explore_recycler_start_end_margin">0dp</dimen>
 
 
     <dimen name="mars_explore_title_text_size">20sp</dimen>
@@ -76,6 +80,9 @@
     <dimen name="mars_weather_detail_card_margin_start_end">10dp</dimen>
     <dimen name="mars_weather_detail_card_margin_top_bottom">6dp</dimen>
 
+    <!-- Full Photo  -->
+    <dimen name="photo_cardview_height">@dimen/wrap_content</dimen>
+    <dimen name="photo_cardview_width">@dimen/match_parent</dimen>
 
     <!-- Favorite Photos  -->
     <dimen name="favorite_photo_card_width">100dp</dimen>

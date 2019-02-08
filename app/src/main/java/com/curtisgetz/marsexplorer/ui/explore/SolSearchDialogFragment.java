@@ -37,11 +37,11 @@ public class SolSearchDialogFragment extends DialogFragment {
     private SearchDialogInteraction mListener;
     private String mSolRange = "";
 
-    public interface SearchDialogInteraction{
+    public interface SearchDialogInteraction {
         void onDialogSearchClick(String solInput);
     }
 
-    public static SolSearchDialogFragment newInstance(Context context, String solRange){
+    public static SolSearchDialogFragment newInstance(Context context, String solRange) {
         SolSearchDialogFragment fragment = new SolSearchDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putString(context.getString(R.string.sol_range_bundle_key), solRange);
@@ -49,15 +49,15 @@ public class SolSearchDialogFragment extends DialogFragment {
         return fragment;
     }
 
-    public SolSearchDialogFragment(){
+    public SolSearchDialogFragment() {
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof SearchDialogInteraction){
+        if (context instanceof SearchDialogInteraction) {
             mListener = (SearchDialogInteraction) context;
-        }else {
+        } else {
             throw new RuntimeException(context.toString() + " must implement SearchDialogInteraction");
         }
 
@@ -79,11 +79,11 @@ public class SolSearchDialogFragment extends DialogFragment {
         mUnBinder = ButterKnife.bind(this, view);
         Bundle bundle = getArguments();
 
-        if(savedInstanceState == null){
-            if(bundle != null){
+        if (savedInstanceState == null) {
+            if (bundle != null) {
                 mSolRange = bundle.getString(getString(R.string.sol_range_bundle_key));
             }
-        }else {
+        } else {
             mSolRange = savedInstanceState.getString(getString(R.string.sol_range_bundle_key));
         }
 
@@ -91,7 +91,7 @@ public class SolSearchDialogFragment extends DialogFragment {
         String title = getString(R.string.sol_search_dialog_message, mSolRange);
         mTitleText.setText(title);
 
-       return view;
+        return view;
     }
 
     /**
@@ -99,13 +99,13 @@ public class SolSearchDialogFragment extends DialogFragment {
      * One to show keyboard automatically.
      * One for "DONE" listener
      */
-    private void setEditTextListeners(){
+    private void setEditTextListeners() {
 
         mEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_DONE){
-                   submitSolToListener();
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    submitSolToListener();
                 }
                 return false;
             }
@@ -114,7 +114,7 @@ public class SolSearchDialogFragment extends DialogFragment {
         mEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus && getDialog().getWindow() != null){
+                if (hasFocus && getDialog().getWindow() != null) {
                     getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
                 }
             }
@@ -122,7 +122,7 @@ public class SolSearchDialogFragment extends DialogFragment {
 
     }
 
-    private void submitSolToListener(){
+    private void submitSolToListener() {
         mListener.onDialogSearchClick(mEditText.getText().toString().trim());
         getDialog().dismiss();
     }
@@ -134,12 +134,12 @@ public class SolSearchDialogFragment extends DialogFragment {
     }
 
     @OnClick(R.id.sol_search_dialog_cancel_btn)
-    public void onCancelClick(){
+    public void onCancelClick() {
         getDialog().dismiss();
     }
 
     @OnClick(R.id.sol_search_dialog_search_btn)
-    public void onSearchClick(){
+    public void onSearchClick() {
         submitSolToListener();
     }
 

@@ -73,14 +73,14 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
             intent.putExtra(getString(R.string.parent_activity_tag_extra), MainActivity.class.getSimpleName());
 
             //if app was in background then attempt to create tweet and save to DB here before starting intent
-            if(extras.containsKey(MarsFirebaseMessagingService.JSON_KEY_TWEET_ID)){
+            if (extras.containsKey(MarsFirebaseMessagingService.JSON_KEY_TWEET_ID)) {
                 Tweet tweet = createTweetFromIntent(extras);
-                if(tweet != null){
+                if (tweet != null) {
                     saveTweetToDb(tweet);
                     startTweetFragment(intent);
                 }
-            //if app was in foreground then Tweet will already be saved to database
-            } else if(extras.containsKey(getString(R.string.explore_index_extra_key))){
+                //if app was in foreground then Tweet will already be saved to database
+            } else if (extras.containsKey(getString(R.string.explore_index_extra_key))) {
                 startTweetFragment(intent);
             }
         }
@@ -101,13 +101,14 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
      * Get a LinearLayoutManger based on screen orientation. If in landscape then use a horizontal
      * layout. Otherwise use vertical.
      * Call setEnterAnimation and pass the orientation
+     *
      * @return int LinearLayoutManager.HORIZONTAL if device is in landscape, otherwise VERTICAL
      */
-    private LinearLayoutManager getLayoutManager(){
+    private LinearLayoutManager getLayoutManager() {
         int orientation;
-        if(getResources().getBoolean(R.bool.is_land)){
+        if (getResources().getBoolean(R.bool.is_land)) {
             orientation = LinearLayoutManager.HORIZONTAL;
-        }else {
+        } else {
             orientation = LinearLayoutManager.VERTICAL;
         }
         return new LinearLayoutManager(this, orientation, false);
@@ -116,9 +117,10 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
     /**
      * Will start {@link ExploreDetailActivity} with the Intent that is passed .
      * Includes Extras to start TweetsFragment.
+     *
      * @param intent the Intent for ExploreDetailActivity
      */
-    private void startTweetFragment(Intent intent){
+    private void startTweetFragment(Intent intent) {
         startActivity(intent);
     }
 
@@ -126,10 +128,11 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
     /**
      * Handles incoming Firebase Cloud Messages. Attempts to construct a Tweet object from the
      * message data.
+     *
      * @param extras bundle from Intent
      * @return the Tweet object constructed from bundle Extras
      */
-    private Tweet createTweetFromIntent(Bundle extras){
+    private Tweet createTweetFromIntent(Bundle extras) {
         int tweetId;
         int userId;
         //try parsing ints for ID fields.  If it fails then stop and return null, otherwise
@@ -137,26 +140,27 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
         try {
             tweetId = Integer.parseInt(extras.getString(MarsFirebaseMessagingService.JSON_KEY_TWEET_ID));
             userId = Integer.parseInt(extras.getString(MarsFirebaseMessagingService.JSON_KEY_USER_ID));
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             e.printStackTrace();
             return null;
         }
         String userName = extras.getString(MarsFirebaseMessagingService.JSON_KEY_USER_NAME);
-        String tweetDate =  extras.getString(MarsFirebaseMessagingService.JSON_KEY_TWEET_DATE);
-        String tweetText =  extras.getString(MarsFirebaseMessagingService.JSON_KEY_TWEET_TEXT);
+        String tweetDate = extras.getString(MarsFirebaseMessagingService.JSON_KEY_TWEET_DATE);
+        String tweetText = extras.getString(MarsFirebaseMessagingService.JSON_KEY_TWEET_TEXT);
         String tweetPhoto = extras.getString(MarsFirebaseMessagingService.JSON_KEY_TWEET_PHOTO);
 
         Tweet tweet = new Tweet(tweetId, userId, userName, tweetDate, tweetText);
         //if there is an image url, set it
-        if(tweetPhoto != null && !tweetPhoto.isEmpty()){
+        if (tweetPhoto != null && !tweetPhoto.isEmpty()) {
             tweet.setTweetPhotoUrl(tweetPhoto);
         }
-        return  tweet;
+        return tweet;
     }
 
     /**
      * Saved Tweet object to database. Used for Firebase Cloud Messages when Curiosity Rover tweets.
      * Will likely change when backend is set up. Was used for project submission
+     *
      * @param tweet Tweet object extracted from FCM
      */
     private void saveTweetToDb(Tweet tweet) {
@@ -183,6 +187,7 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
 
     /**
      * Handle clicks on main explore categories. Opens either MarsExploreActivity or RoverExploreActivity
+     *
      * @param clickedPos position of clicked category
      */
     @Override
@@ -225,7 +230,7 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             mFirebaseRemoteConfig.activateFetched();
                         }
                     }
@@ -252,7 +257,6 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
         }
 
     }
-
 
 
 }

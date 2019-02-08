@@ -20,13 +20,11 @@ public class SolDatePickerDialogFragment extends DialogFragment implements DateP
     private RoverManifestViewModel mViewModel;
 
 
-
-
-    public interface DateDialogInteraction{
+    public interface DateDialogInteraction {
         void onDialogDateSelect(String date);
     }
 
-    public static SolDatePickerDialogFragment newInstance(Context context, int roverIndex){
+    public static SolDatePickerDialogFragment newInstance(Context context, int roverIndex) {
         return new SolDatePickerDialogFragment();
     }
 
@@ -38,40 +36,35 @@ public class SolDatePickerDialogFragment extends DialogFragment implements DateP
     public void onAttach(Context context) {
         super.onAttach(context);
         mViewModel = ViewModelProviders.of(getActivity()).get(RoverManifestViewModel.class);
-        if(context instanceof DateDialogInteraction){
+        if (context instanceof DateDialogInteraction) {
             mListener = (DateDialogInteraction) context;
-        }else {
+        } else {
             throw new RuntimeException(context.toString() + " must implement DateDialogInteraction");
         }
 
     }
 
 
-
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-
-
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-
         //create new DatePickerDialog and return it
-        DatePickerDialog dialog = new DatePickerDialog(getActivity(),this, year, month, day);
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
         //Set min and max dates
         dialog.getDatePicker().setMinDate(mViewModel.getMinDateMilliseconds());
         dialog.getDatePicker().setMaxDate(mViewModel.getMaxDateMilliseconds());
-        return  dialog;
+        return dialog;
     }
-
 
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String monthString = String.valueOf(month+1);
+        String monthString = String.valueOf(month + 1);
         String yearString = String.valueOf(year);
         String dayString = String.valueOf(dayOfMonth);
         char dash = '-';

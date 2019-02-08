@@ -4,6 +4,8 @@
     <bool name="hide_manifest">false</bool>
 
 
+
+
     <!-- Main Activity-->
     <dimen name="main_title_text_size">28sp</dimen>
     <dimen name="main_cardview_text_size">30sp</dimen>
@@ -27,6 +29,8 @@
     <dimen name="rover_explore_sol_edit_text_margin">20dp</dimen>
     <dimen name="rover_explore_sol_edittext_width">80dp</dimen>
     <dimen name="sol_search_button_bar_padding">10dp</dimen>
+    <dimen name="rover_explore_recycler_start_end_margin">0dp</dimen>
+
 
 
     <!-- MArs Fact -->

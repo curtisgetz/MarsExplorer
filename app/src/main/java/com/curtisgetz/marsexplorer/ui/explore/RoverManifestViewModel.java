@@ -36,7 +36,7 @@ class RoverManifestViewModel extends ViewModel {
     private long mMinMillisecondsFallback = HelperUtils.SPIRIT_LANDING_MILLISECONDS;
 
 
-    RoverManifestViewModel(int roverIndex, Application application){
+    RoverManifestViewModel(int roverIndex, Application application) {
         this.mRepository = MarsRepository.getInstance(application);
         this.mManifest = mRepository.getRoverManifest(roverIndex);
     }
@@ -47,40 +47,41 @@ class RoverManifestViewModel extends ViewModel {
 
     /**
      * Have Repository download manifests
+     *
      * @param context pass context to Repository
      */
-    void downloadNewManifests(Context context){
+    void downloadNewManifests(Context context) {
         mRepository.downloadManifestsFromNetwork(context);
     }
 
 
-    public String validateSolInRange(String solInput){
-        if(mManifest.getValue() == null) return HelperUtils.DEFAULT_SOL_NUMBER;
+    public String validateSolInRange(String solInput) {
+        if (mManifest.getValue() == null) return HelperUtils.DEFAULT_SOL_NUMBER;
         int solInputNumber;
         try {
             solInputNumber = Integer.parseInt(solInput);
 
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             //if integer parse fails then use random sol
             return getRandomSol();
         }
         int maxSol = mManifest.getValue().getMaxSolInt();
         int minSol = mManifest.getValue().getMinSolInt();
-        if(solInputNumber < minSol){
+        if (solInputNumber < minSol) {
             //if entered sol is lower than min, set it to the min
             return String.valueOf(minSol);
-        }else if(solInputNumber > maxSol){
+        } else if (solInputNumber > maxSol) {
             //if entered sol is greater than max sol, set to max
             return String.valueOf(maxSol);
-        }else {
+        } else {
             //if sol is in range, return the same sol back
             return solInput;
         }
     }
 
     //select a random sol that is in range
-    public String getRandomSol(){
-        if(mManifest.getValue() == null) return HelperUtils.DEFAULT_SOL_NUMBER;
+    public String getRandomSol() {
+        if (mManifest.getValue() == null) return HelperUtils.DEFAULT_SOL_NUMBER;
         int minSol = mManifest.getValue().getMinSolInt();
         int maxSol = mManifest.getValue().getMaxSolInt();
         Random randomRand = new Random();
@@ -89,33 +90,32 @@ class RoverManifestViewModel extends ViewModel {
     }
 
 
-    public long getMinDateMilliseconds(){
+    public long getMinDateMilliseconds() {
         RoverManifest roverManifest = mManifest.getValue();
-        if(roverManifest == null) return mMinMillisecondsFallback;
+        if (roverManifest == null) return mMinMillisecondsFallback;
         return dateToMilliseconds(roverManifest.getLandingDate());
     }
 
-    public long getMaxDateMilliseconds(){
+    public long getMaxDateMilliseconds() {
         RoverManifest roverManifest = mManifest.getValue();
-        if(roverManifest == null) {
+        if (roverManifest == null) {
             Date date = new Date();
             return date.getTime();
         }
         return dateToMilliseconds(roverManifest.getMaxDate());
     }
 
-    private long dateToMilliseconds(String date){
+    private long dateToMilliseconds(String date) {
 
         Date landingDate;
-        try{
+        try {
             landingDate = mManifestDateFormat.parse(date);
-        }catch (ParseException e){
+        } catch (ParseException e) {
             return mMinMillisecondsFallback;
         }
 
         return landingDate.getTime();
     }
-
 
 
 }

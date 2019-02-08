@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/rover_explore_cardview_height"
     style="@style/CardView.Light"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="@dimen/default_cardview_elevation"
     android:layout_marginStart="@dimen/rover_explore_cardview_margin_start_end"

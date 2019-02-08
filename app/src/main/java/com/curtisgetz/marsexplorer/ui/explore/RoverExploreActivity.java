@@ -174,9 +174,9 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         }
 
 
-        if(isLandNotSw600){
+        if (isLandNotSw600) {
             hideManifestVisibilityOnSoftKeyboard();
-        }else {
+        } else {
             showManifestVisibilityOnSoftKeyboard();
         }
 

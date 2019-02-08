@@ -34,7 +34,7 @@ public class ExploreCategoryAdapter extends RecyclerView.Adapter {
     private LayoutInflater mInflater;
     private ExploreCategoryClick mClickListener;
 
-    public interface ExploreCategoryClick{
+    public interface ExploreCategoryClick {
         void onCategoryClick(int categoryIndex);
     }
 
@@ -46,9 +46,10 @@ public class ExploreCategoryAdapter extends RecyclerView.Adapter {
 
     /**
      * Clear and set adapter data
+     *
      * @param categories List of ExploreCategory objects to set
      */
-    public void setData(List<ExploreCategory> categories){
+    public void setData(List<ExploreCategory> categories) {
         mCategoryList = new ArrayList<>(categories);
         notifyDataSetChanged();
     }
@@ -57,9 +58,9 @@ public class ExploreCategoryAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View view = mInflater.inflate(R.layout.mars_explore_list_item, parent, false );
+        View view = mInflater.inflate(R.layout.mars_explore_list_item, parent, false);
 
-        return new ExploreCategoryViewHolder(view, mClickListener) ;
+        return new ExploreCategoryViewHolder(view, mClickListener);
     }
 
     @Override
@@ -70,12 +71,12 @@ public class ExploreCategoryAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        if(mCategoryList == null)  return 0;
+        if (mCategoryList == null) return 0;
         return mCategoryList.size();
     }
 
 
-    class ExploreCategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ExploreCategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
         @BindView(R.id.mars_explore_cardview_image)
@@ -93,7 +94,7 @@ public class ExploreCategoryAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(this);
         }
 
-        void setItem(ExploreCategory category){
+        void setItem(ExploreCategory category) {
             this.mCategory = category;
             mTextView.setText(mCategory.getmTitleText());
             Picasso.get().load(category.getmImageResId()).into(mImageView);

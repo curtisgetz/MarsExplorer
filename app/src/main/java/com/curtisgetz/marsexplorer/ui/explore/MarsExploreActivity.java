@@ -39,8 +39,8 @@ import butterknife.ButterKnife;
  * Activity to display the options for exploring Mars
  */
 public class MarsExploreActivity extends MarsBaseActivity implements
-        ExploreCategoryAdapter.ExploreCategoryClick , MarsFactsFragment.FactsInteraction
-        ,FullPhotoPagerFragment.FullPhotoPagerInteraction {
+        ExploreCategoryAdapter.ExploreCategoryClick, MarsFactsFragment.FactsInteraction
+        , FullPhotoPagerFragment.FullPhotoPagerInteraction {
 
 
     @BindView(R.id.mars_explore_categories_recycler)
@@ -71,22 +71,23 @@ public class MarsExploreActivity extends MarsBaseActivity implements
     /**
      * Set Adapter data with explore categories to update the UI
      */
-    private void populateUI(){
+    private void populateUI() {
         List<ExploreCategory> categories = HelperUtils.getExploreCategories(this, HelperUtils.MARS_EXPLORE_INDEX);
         mAdapter.setData(categories);
     }
 
     /**
      * Handle clicks of categories
+     *
      * @param categoryIndex index of clicked category.
      */
     @Override
     public void onCategoryClick(int categoryIndex) {
-        if(isNetworkAvailable()){
+        if (isNetworkAvailable()) {
             //if two pane then open fragment in detail view
-            if(isTwoPane){
+            if (isTwoPane) {
                 Fragment fragment;
-                switch (categoryIndex){
+                switch (categoryIndex) {
                     case HelperUtils.MARS_WEATHER_CAT_INDEX:
                         fragment = MarsWeatherFragment.newInstance();
                         break;
@@ -101,12 +102,12 @@ public class MarsExploreActivity extends MarsBaseActivity implements
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.explore_detail_container,
                         fragment).commit();
-            //if not two plane then open Explore Detail Activity
-            }else {
-            Intent intent = new Intent(getApplicationContext(), ExploreDetailActivity.class);
-            intent.putExtra(getString(R.string.explore_index_extra_key), categoryIndex);
-            intent.putExtra(getString(R.string.parent_activity_tag_extra), this.getClass().getSimpleName());
-            startActivity(intent);
+                //if not two plane then open Explore Detail Activity
+            } else {
+                Intent intent = new Intent(getApplicationContext(), ExploreDetailActivity.class);
+                intent.putExtra(getString(R.string.explore_index_extra_key), categoryIndex);
+                intent.putExtra(getString(R.string.parent_activity_tag_extra), this.getClass().getSimpleName());
+                startActivity(intent);
             }
         }
 
@@ -114,15 +115,16 @@ public class MarsExploreActivity extends MarsBaseActivity implements
 
     /**
      * Chcek if network is available
+     *
      * @return true if network is available. false if network is not available
      */
-    private boolean isNetworkAvailable()  {
+    private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
-                = (ConnectivityManager)  getSystemService(Context.CONNECTIVITY_SERVICE);
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if((networkInfo != null && networkInfo.isConnected())){
+        if ((networkInfo != null && networkInfo.isConnected())) {
             return true;
-        }else {
+        } else {
             Snackbar.make(mCoordinatorLayout, R.string.internet_required,
                     Snackbar.LENGTH_LONG).show();
             return false;
@@ -131,6 +133,7 @@ public class MarsExploreActivity extends MarsBaseActivity implements
 
     /**
      * Allow Fragments to have this Activity display LONG Snack messages
+     *
      * @param message String for Snack to display to user
      */
     @Override
@@ -142,6 +145,7 @@ public class MarsExploreActivity extends MarsBaseActivity implements
     /**
      * Call displaySnack method on {@link FullPhotoFragment}. This will allow the CoordinatorLayout
      * to handle the snack display and moving the FAB out of the way.
+     *
      * @param message String for Snack to display to user
      */
     @Override
@@ -156,6 +160,7 @@ public class MarsExploreActivity extends MarsBaseActivity implements
 
     /**
      * Get date string of current image in {@link FullPhotoFragment}
+     *
      * @return date from {@link FullPhotoFragment} as a String.
      */
     @Override
@@ -172,6 +177,7 @@ public class MarsExploreActivity extends MarsBaseActivity implements
 
     /**
      * Get rover index of current image in {@link FullPhotoFragment}
+     *
      * @return rover index as an int
      */
     @Override

@@ -1,54 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_item_card"
     android:layout_width="@dimen/main_cardview_width"
     android:layout_height="@dimen/main_cardview_height"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="@dimen/default_cardview_elevation"
     android:layout_marginStart="@dimen/main_card_start_end_margin"
-    android:layout_marginEnd="@dimen/main_card_start_end_margin"
     android:layout_marginTop="@dimen/main_card_top_bottom_margin"
+    android:layout_marginEnd="@dimen/main_card_start_end_margin"
     android:layout_marginBottom="@dimen/main_card_top_bottom_margin"
-    app:cardCornerRadius="@dimen/default_cardview_corner_radius"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:elevation="@dimen/default_cardview_elevation"
+    app:cardCornerRadius="@dimen/default_cardview_corner_radius">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-
         <ImageView
-            android:contentDescription="@string/explore_option_cd"
             android:id="@+id/main_cardview_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            app:layout_constraintTop_toBottomOf="@id/main_cardview_text"
             android:background="@android:color/black"
-           />
+            android:contentDescription="@string/explore_option_cd"
+            android:scaleType="centerInside"
+            app:layout_constraintTop_toBottomOf="@id/main_cardview_text" />
 
         <View
-            android:background="@drawable/scrim"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            android:background="@drawable/scrim"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/main_cardview_text"
             style="@style/MainCardViewText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="Explore Mars"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Explore Mars" />
 
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 
 
-
-    </android.support.v7.widget.CardView>
+</android.support.v7.widget.CardView>

@@ -13,7 +13,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +24,8 @@
         </activity>
         <activity
             android:name=".ui.explore.RoverExploreActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:parentActivityName=".ui.main.MainActivity"/>
+            android:parentActivityName=".ui.main.MainActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.explore_detail.ExploreDetailActivity" />
         <activity
             android:name=".ui.explore.MarsExploreActivity"
@@ -51,7 +52,6 @@
         <service android:name=".ui.widget.FactWidgetJobService" />
 
 
-
         <receiver android:name=".ui.widget.FactWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -62,8 +62,9 @@
                 android:resource="@xml/fact_widget_info" />
         </receiver>
 
-        <activity android:name=".ui.settings.SettingsActivity"
-            android:theme="@style/MarsSettingsTheme"/>
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:theme="@style/MarsSettingsTheme" />
     </application>
 
 </manifest>
