@@ -16,7 +16,7 @@ Learn about each of the three rovers and the data they collect on the surface of
 
 App uses MVVM design pattern. 
 Rover mission details and photos are obtained through NASA's REST API. 
-Users can search for photos by Martian Sol by entering a number within the valid range of Sols for that rover, have the app select a random Martial Sol, or select a date via a DatePicker Dialog. 
+Users can search for photos by Martian Sol by entering a number within the valid range of Sols for that rover, have the app select a random Martian Sol, or select a date via a DatePicker Dialog. 
 If there are no photos available on the sol or date selected the app will attempt to find the next sol or date with photos. 
 
 Users have the option on retrieving all photos, or limiting the number of photos retrieved. Photos are limited by default. Retrieving all photos can take more time and use more data.
