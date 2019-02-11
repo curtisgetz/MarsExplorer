@@ -115,19 +115,19 @@ public final class HelperUtils {
 
 
     private final static int[] CURIOSITY_ROVER_INFO_INDICES = {SCIENCE_MASTCAM_INDEX,
-            SCIENCE_HAZCAM_INDEX, SCIENCE_NAVCAM_INDEX,SCIENCE_DRT_INDEX, SCIENCE_MARDI_INDEX,
+            SCIENCE_HAZCAM_INDEX, SCIENCE_NAVCAM_INDEX, SCIENCE_DRT_INDEX, SCIENCE_MARDI_INDEX,
             SCIENCE_ROBOTIC_ARM_INDEX, SCIENCE_LEGS_WHEELS_INDEX, SCIENCE_POWER_INDEX,
-            SCIENCE_ANTENNA_INDEX, SCIENCE_BRAINS_INDEX };
+            SCIENCE_ANTENNA_INDEX, SCIENCE_BRAINS_INDEX};
 
     private final static int[] OPPORTUNITY_ROVER_INFO_INDICES = {SCIENCE_PANCAM_INDEX,
-            SCIENCE_NAVCAM_INDEX,SCIENCE_RAT_INDEX,SCIENCE_MAGNET_INDEX, SCIENCE_SOLAR_INDEX,
+            SCIENCE_NAVCAM_INDEX, SCIENCE_RAT_INDEX, SCIENCE_MAGNET_INDEX, SCIENCE_SOLAR_INDEX,
             SCIENCE_BODY_INDEX, SCIENCE_BRAINS_INDEX, SCIENCE_TEMP_INDEX,
-            SCIENCE_ROBOTIC_ARM_INDEX, SCIENCE_LEGS_WHEELS_INDEX, SCIENCE_ANTENNA_INDEX };
+            SCIENCE_ROBOTIC_ARM_INDEX, SCIENCE_LEGS_WHEELS_INDEX, SCIENCE_ANTENNA_INDEX};
 
     private final static int[] SPIRIT_ROVER_INFO_INDICES = {SCIENCE_PANCAM_INDEX,
-            SCIENCE_NAVCAM_INDEX,SCIENCE_RAT_INDEX,SCIENCE_MAGNET_INDEX, SCIENCE_SOLAR_INDEX,
+            SCIENCE_NAVCAM_INDEX, SCIENCE_RAT_INDEX, SCIENCE_MAGNET_INDEX, SCIENCE_SOLAR_INDEX,
             SCIENCE_BODY_INDEX, SCIENCE_BRAINS_INDEX, SCIENCE_TEMP_INDEX,
-            SCIENCE_ROBOTIC_ARM_INDEX, SCIENCE_LEGS_WHEELS_INDEX, SCIENCE_ANTENNA_INDEX };
+            SCIENCE_ROBOTIC_ARM_INDEX, SCIENCE_LEGS_WHEELS_INDEX, SCIENCE_ANTENNA_INDEX};
 
 
     //SCIENCE INSTRUMENT INDICES
@@ -144,45 +144,45 @@ public final class HelperUtils {
     private final static int SCIENCE_MI_INDEX = 221;
 
     private final static int[] CURIOSITY_SCIENCE_INDICES = {SCIENCE_CHEMCAM_INDEX,
-            SCIENCE_REMS_INDEX,  SCIENCE_MAHLI_INDEX, SCIENCE_APXS_INDEX,
-            SCIENCE_CHEMIN_INDEX, SCIENCE_SAM_INDEX, SCIENCE_RAD_INDEX, SCIENCE_DAN_INDEX };
+            SCIENCE_REMS_INDEX, SCIENCE_MAHLI_INDEX, SCIENCE_APXS_INDEX,
+            SCIENCE_CHEMIN_INDEX, SCIENCE_SAM_INDEX, SCIENCE_RAD_INDEX, SCIENCE_DAN_INDEX};
 
-    private static final int[] OPPORTUNITY_SCIENCE_INDICES = { SCIENCE_MINITES_INDEX,
+    private static final int[] OPPORTUNITY_SCIENCE_INDICES = {SCIENCE_MINITES_INDEX,
             SCIENCE_MB_INDEX, SCIENCE_APXS_INDEX, SCIENCE_MI_INDEX};
 
-    private static final int[] SPIRIT_SCIENCE_INDICES = { SCIENCE_MINITES_INDEX,
+    private static final int[] SPIRIT_SCIENCE_INDICES = {SCIENCE_MINITES_INDEX,
             SCIENCE_MB_INDEX, SCIENCE_APXS_INDEX, SCIENCE_MI_INDEX};
 
     /**
      * Returns a List of RoverScience objects based on the rover index and the rover category index.
      *
-     * @param context needed to fetch string resources in called methods
-     * @param roverIndex needed to fetch list of available science indices
+     * @param context       needed to fetch string resources in called methods
+     * @param roverIndex    needed to fetch list of available science indices
      * @param roverCatIndex needed to fetch either science or info details
      * @return the list of RoverScience objects
      */
 
-    public static List<RoverScience> getScienceList(Context context, int roverIndex, int roverCatIndex){
+    public static List<RoverScience> getScienceList(Context context, int roverIndex, int roverCatIndex) {
         int[] indices;
-        switch (roverIndex){
+        switch (roverIndex) {
             case CURIOSITY_ROVER_INDEX:
-                if(roverCatIndex == ROVER_SCIENCE_CAT_INDEX) {
+                if (roverCatIndex == ROVER_SCIENCE_CAT_INDEX) {
                     indices = CURIOSITY_SCIENCE_INDICES;
-                }else {
+                } else {
                     indices = CURIOSITY_ROVER_INFO_INDICES;
                 }
                 break;
             case OPPORTUNITY_ROVER_INDEX:
-                if(roverCatIndex == ROVER_SCIENCE_CAT_INDEX) {
+                if (roverCatIndex == ROVER_SCIENCE_CAT_INDEX) {
                     indices = OPPORTUNITY_SCIENCE_INDICES;
-                }else {
+                } else {
                     indices = OPPORTUNITY_ROVER_INFO_INDICES;
                 }
                 break;
             case SPIRIT_ROVER_INDEX:
-                if(roverCatIndex == ROVER_SCIENCE_CAT_INDEX) {
+                if (roverCatIndex == ROVER_SCIENCE_CAT_INDEX) {
                     indices = SPIRIT_SCIENCE_INDICES;
-                }else {
+                } else {
                     indices = SPIRIT_ROVER_INFO_INDICES;
                 }
                 break;
@@ -191,12 +191,12 @@ public final class HelperUtils {
         }
 
         List<RoverScience> roverScienceList = new ArrayList<>();
-        for(int index : indices){
+        for (int index : indices) {
             String text = getScienceText(context, index, roverIndex);
             int imageId;
-            if(roverIndex == CURIOSITY_ROVER_INDEX){
+            if (roverIndex == CURIOSITY_ROVER_INDEX) {
                 imageId = getCuriosityScienceImageId(index);
-            }else {
+            } else {
                 imageId = getOppSpiritScienceImageId(index);
             }
             String title = getScienceTabTitle(context, index);
@@ -205,8 +205,8 @@ public final class HelperUtils {
         return roverScienceList;
     }
 
-    private static String getScienceTabTitle(Context context, int scienceIndex){
-        switch (scienceIndex){
+    private static String getScienceTabTitle(Context context, int scienceIndex) {
+        switch (scienceIndex) {
             case SCIENCE_MASTCAM_INDEX:
                 return context.getString(R.string.science_mast);
             case SCIENCE_CHEMCAM_INDEX:
@@ -267,8 +267,8 @@ public final class HelperUtils {
     }
 
 
-    private static String getScienceText(Context context, int scienceIndex, int roverIndex){
-        switch (scienceIndex){
+    private static String getScienceText(Context context, int scienceIndex, int roverIndex) {
+        switch (scienceIndex) {
             case SCIENCE_MASTCAM_INDEX:
                 return context.getString(R.string.curiosity_mast_camera_details);
             case SCIENCE_CHEMCAM_INDEX:
@@ -310,45 +310,45 @@ public final class HelperUtils {
             case SCIENCE_BODY_INDEX:
                 return context.getString(R.string.opp_spirit_body_details);
             case SCIENCE_NAVCAM_INDEX:
-                if(roverIndex == CURIOSITY_ROVER_INDEX){
+                if (roverIndex == CURIOSITY_ROVER_INDEX) {
                     return context.getString(R.string.curiosity_navcam_details);
                 } else {
                     return context.getString(R.string.opp_spirit_navcam_details);
                 }
             case SCIENCE_APXS_INDEX:
-                if(roverIndex == CURIOSITY_ROVER_INDEX){
+                if (roverIndex == CURIOSITY_ROVER_INDEX) {
                     return context.getString(R.string.curiosity_apxs_details);
-                }else{
+                } else {
                     return context.getString(R.string.opp_spirit_apxs_details);
                 }
             case SCIENCE_ROBOTIC_ARM_INDEX:
-                if(roverIndex == CURIOSITY_ROVER_INDEX){
+                if (roverIndex == CURIOSITY_ROVER_INDEX) {
                     return context.getString(R.string.curiosity_robotic_arm_details);
-                }else{
+                } else {
                     return context.getString(R.string.opp_spirit_robotic_arm_details);
                 }
             case SCIENCE_LEGS_WHEELS_INDEX:
-                if(roverIndex == CURIOSITY_ROVER_INDEX){
+                if (roverIndex == CURIOSITY_ROVER_INDEX) {
                     return context.getString(R.string.curiosity_legswheels_details);
-                }else{
+                } else {
                     return context.getString(R.string.opp_spirit_legswheels_details);
                 }
             case SCIENCE_ANTENNA_INDEX:
-                if(roverIndex == CURIOSITY_ROVER_INDEX){
+                if (roverIndex == CURIOSITY_ROVER_INDEX) {
                     return context.getString(R.string.curiosity_antenna_details);
                 } else {
                     return context.getString(R.string.opp_spirit_antenna_details);
                 }
             case SCIENCE_BRAINS_INDEX:
-                if(roverIndex == CURIOSITY_ROVER_INDEX){
+                if (roverIndex == CURIOSITY_ROVER_INDEX) {
                     return context.getString(R.string.curiosity_brains_details);
                 } else {
                     return context.getString(R.string.opp_spirit_brains_details);
                 }
             case SCIENCE_TEMP_INDEX:
-                if(roverIndex == SPIRIT_ROVER_INDEX){
+                if (roverIndex == SPIRIT_ROVER_INDEX) {
                     return context.getString(R.string.spirit_temp_details);
-                }else {
+                } else {
                     return context.getString(R.string.opp_temp_details);
                 }
         }
@@ -356,8 +356,8 @@ public final class HelperUtils {
     }
 
     //get image resId for science instrument or rover part info
-    private static int getCuriosityScienceImageId(int scienceIndex){
-        switch (scienceIndex){
+    private static int getCuriosityScienceImageId(int scienceIndex) {
+        switch (scienceIndex) {
             case SCIENCE_MASTCAM_INDEX:
                 return R.drawable.curiosity_mastcam;
             case SCIENCE_CHEMCAM_INDEX:
@@ -400,8 +400,8 @@ public final class HelperUtils {
     }
 
     //get image resId for science instrument or rover part info
-    private static int getOppSpiritScienceImageId(int scienceIndex){
-        switch (scienceIndex){
+    private static int getOppSpiritScienceImageId(int scienceIndex) {
+        switch (scienceIndex) {
             case SCIENCE_PANCAM_INDEX:
                 return R.drawable.opp_spirit_pancam;
             case SCIENCE_NAVCAM_INDEX:
@@ -433,9 +433,9 @@ public final class HelperUtils {
     }
 
 
-    public static String getRoverNameByIndex(Context context, int roverIndex){
+    public static String getRoverNameByIndex(Context context, int roverIndex) {
 
-        switch (roverIndex){
+        switch (roverIndex) {
             case CURIOSITY_ROVER_INDEX:
                 return context.getResources().getString(R.string.curiosity_rover);
             case OPPORTUNITY_ROVER_INDEX:
@@ -448,14 +448,14 @@ public final class HelperUtils {
     }
 
 
-    public static List<ExploreCategory> getExploreCategories(Context context, int exploreIndex){
+    public static List<ExploreCategory> getExploreCategories(Context context, int exploreIndex) {
         return setupCategories(context, MARS_EXPLORE_CATEGORIES, MARS_EXPLORE_INDEX);
     }
 
-    public static List<ExploreCategory> getRoverCategories(Context context, int exploreIndex){
+    public static List<ExploreCategory> getRoverCategories(Context context, int exploreIndex) {
         //set up categories for selected rover
         int[] categories;
-        switch (exploreIndex){
+        switch (exploreIndex) {
             case MARS_EXPLORE_INDEX:
                 categories = MARS_EXPLORE_CATEGORIES;
                 break;
@@ -476,7 +476,7 @@ public final class HelperUtils {
     }
 
 
-    private static List<ExploreCategory> setupCategories(Context context, int[] categories, int exploreIndex){
+    private static List<ExploreCategory> setupCategories(Context context, int[] categories, int exploreIndex) {
         List<ExploreCategory> exploreCategoriesList = new ArrayList<>();
         for (int category : categories) {
             String title = getCategoryTitle(context, category);
@@ -487,8 +487,8 @@ public final class HelperUtils {
         return exploreCategoriesList;
     }
 
-    private static String getCategoryTitle(Context context, int categoryIndex){
-        switch (categoryIndex){
+    private static String getCategoryTitle(Context context, int categoryIndex) {
+        switch (categoryIndex) {
             case MARS_WEATHER_CAT_INDEX:
                 return context.getString(R.string.mars_weather_category_title);
             case MARS_FACTS_CAT_INDEX:
@@ -510,12 +510,12 @@ public final class HelperUtils {
     }
 
 
-    private static int getCategoryImgResId(Context context, int exploreIndex, int categoryIndex){
+    private static int getCategoryImgResId(Context context, int exploreIndex, int categoryIndex) {
         // Images will have the format = CATEGORY_INDEX
         //ex. Photo category for Curiosity will be 'photos_1'
         String exploreIndexString = String.valueOf(exploreIndex);
         String resourcePrefix;
-        switch (categoryIndex){
+        switch (categoryIndex) {
             case MARS_WEATHER_CAT_INDEX:
                 resourcePrefix = context.getString(R.string.mars_weather_res_prefix);
                 break;
@@ -546,10 +546,10 @@ public final class HelperUtils {
     }
 
 
-    private static String getMainExploreOptionTitle(Context context, int exploreIndex){
+    private static String getMainExploreOptionTitle(Context context, int exploreIndex) {
         String mainExploreTitle = "";
         String roverString = context.getString(R.string.rover_string);
-        switch (exploreIndex){
+        switch (exploreIndex) {
             case MARS_EXPLORE_INDEX:
                 mainExploreTitle = context.getString(R.string.explore_mars);
                 break;
@@ -572,8 +572,8 @@ public final class HelperUtils {
     }
 
 
-    public static String getWeatherLabel(Context context, int weatherIndex){
-        switch (weatherIndex){
+    public static String getWeatherLabel(Context context, int weatherIndex) {
+        switch (weatherIndex) {
             case WEATHER_MIN_TEMP_INDEX:
                 return context.getString(R.string.weather_min_air_temp);
             case WEATHER_MAX_TEMP_INDEX:
@@ -594,8 +594,8 @@ public final class HelperUtils {
         }
     }
 
-    public static int getWeatherInfoIndex(int weatherIndex){
-        switch (weatherIndex){
+    public static int getWeatherInfoIndex(int weatherIndex) {
+        switch (weatherIndex) {
             case WEATHER_MIN_TEMP_INDEX:
             case WEATHER_MAX_TEMP_INDEX:
                 return InformationUtils.AIR_TEMP_INFO;
@@ -612,14 +612,14 @@ public final class HelperUtils {
         }
     }
 
-    public static String capitalizeFirstLetter(String text){
-        return text.substring(0,1).toUpperCase() + text.substring(1).toLowerCase();
+    public static String capitalizeFirstLetter(String text) {
+        return text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
 
     }
 
 
     // Setup Main Explore Options Below
-    public static List<MainExploreType> getAllExploreTypes(Context context){
+    public static List<MainExploreType> getAllExploreTypes(Context context) {
         List<MainExploreType> mainExploreTypes = new ArrayList<>();
         mainExploreTypes.add(createMarsExploreType(context));
         mainExploreTypes.add(createCuriosityExploreType(context));
@@ -628,22 +628,22 @@ public final class HelperUtils {
         return mainExploreTypes;
     }
 
-    private static MainExploreType createMarsExploreType(Context context){
+    private static MainExploreType createMarsExploreType(Context context) {
         return new MainExploreType(MARS_EXPLORE_INDEX,
                 getMainExploreOptionTitle(context, MARS_EXPLORE_INDEX), R.drawable.explore_main);
     }
 
-    private static   MainExploreType createCuriosityExploreType(Context context){
+    private static MainExploreType createCuriosityExploreType(Context context) {
         return new MainExploreType(CURIOSITY_ROVER_INDEX,
                 getMainExploreOptionTitle(context, CURIOSITY_ROVER_INDEX), R.drawable.curiosity_selfie);
     }
 
-    private static MainExploreType createOpportunityExploreType(Context context){
+    private static MainExploreType createOpportunityExploreType(Context context) {
         return new MainExploreType(OPPORTUNITY_ROVER_INDEX,
                 getMainExploreOptionTitle(context, OPPORTUNITY_ROVER_INDEX), R.drawable.opp_spirit_main);
     }
 
-    private static MainExploreType createSpiritExploreType(Context context){
+    private static MainExploreType createSpiritExploreType(Context context) {
         return new MainExploreType(SPIRIT_ROVER_INDEX,
                 getMainExploreOptionTitle(context, SPIRIT_ROVER_INDEX), R.drawable.opp_spirit_main);
     }

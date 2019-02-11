@@ -28,7 +28,7 @@ public class FactWidgetProvider extends AppWidgetProvider {
 
     private FirebaseJobDispatcher mJobDispatcher;
 
-// todo update widget on click
+    // todo update widget on click
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId, String fact) {
 
@@ -54,10 +54,11 @@ public class FactWidgetProvider extends AppWidgetProvider {
 
     /**
      * Cycle through all widgets by id calling updateAppWidgets for each one
-     * @param context pass context through to all widgets
+     *
+     * @param context          pass context through to all widgets
      * @param appWidgetManager pass appWidgetManager through to all widgets
-     * @param appWidgetIds id of the widget to update
-     * @param fact String description from {@link com.curtisgetz.marsexplorer.data.MarsFact} object
+     * @param appWidgetIds     id of the widget to update
+     * @param fact             String description from {@link com.curtisgetz.marsexplorer.data.MarsFact} object
      */
     public static void updateAllWidgets(Context context, AppWidgetManager appWidgetManager,
                                         int[] appWidgetIds, String fact) {

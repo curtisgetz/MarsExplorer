@@ -4,8 +4,6 @@
  */
 
 
-
-
 package com.curtisgetz.marsexplorer.ui;
 
 
@@ -126,7 +124,7 @@ public class CirclePagerIndicatorDecoration extends RecyclerView.ItemDecoration 
         } else {
             float highlightStart = indicatorStartX + itemWidth * highlightPosition;
             // calculate partial highlight
-            float partialLength = mIndicatorItemLength * progress + mIndicatorItemPadding*progress;
+            float partialLength = mIndicatorItemLength * progress + mIndicatorItemPadding * progress;
 
             c.drawCircle(highlightStart + partialLength, indicatorPosY, mIndicatorItemLength / 2F, mPaint);
         }

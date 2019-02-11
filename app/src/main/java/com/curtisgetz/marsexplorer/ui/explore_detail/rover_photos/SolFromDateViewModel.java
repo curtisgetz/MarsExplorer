@@ -15,7 +15,6 @@ import com.curtisgetz.marsexplorer.data.MarsRepository;
 class SolFromDateViewModel extends AndroidViewModel {
 
 
-
     private LiveData<String> mSolLiveData;
     private MarsRepository mRepository;
 

@@ -51,7 +51,7 @@ public class Cameras {
                    @NonNull List<String> navcam, @NonNull List<String> mast,
                    @NonNull List<String> chemcam, @NonNull List<String> mahli,
                    @NonNull List<String> mardi, @NonNull List<String> pancam,
-                   @NonNull List<String> minites, @NonNull String earthDate){
+                   @NonNull List<String> minites, @NonNull String earthDate) {
         mRoverIndex = index;
         mFHAZ = fhaz;
         mRHAZ = rhaz;
@@ -72,7 +72,7 @@ public class Cameras {
                    @NonNull List<String> navcam, @NonNull List<String> mast,
                    @NonNull List<String> chemcam, @NonNull List<String> mahli,
                    @NonNull List<String> mardi, @NonNull List<String> pancam,
-                   @NonNull List<String> minites, @NonNull String earthDate, String sol){
+                   @NonNull List<String> minites, @NonNull String earthDate, String sol) {
         mRoverIndex = index;
         mFHAZ = fhaz;
         mRHAZ = rhaz;
@@ -90,17 +90,41 @@ public class Cameras {
         mSol = sol;
     }
 
-    public List<String> getFHAZ() { return mFHAZ;}
-    public List<String> getRHAZ() {return mRHAZ;}
-    public List<String> getNAVCAM() {return mNAVCAM;}
+    public List<String> getFHAZ() {
+        return mFHAZ;
+    }
 
-    public List<String> getMAST() {return mMAST;}
-    public List<String> getCHEMCAM() {return mCHEMCAM;}
-    public List<String> getMAHLI() {return mMAHLI;}
-    public List<String> getMARDI() {return mMARDI;}
+    public List<String> getRHAZ() {
+        return mRHAZ;
+    }
 
-    public List<String> getPANCAM() {return mPANCAM;}
-    public List<String> getMINITES() {return mMINITES;}
+    public List<String> getNAVCAM() {
+        return mNAVCAM;
+    }
+
+    public List<String> getMAST() {
+        return mMAST;
+    }
+
+    public List<String> getCHEMCAM() {
+        return mCHEMCAM;
+    }
+
+    public List<String> getMAHLI() {
+        return mMAHLI;
+    }
+
+    public List<String> getMARDI() {
+        return mMARDI;
+    }
+
+    public List<String> getPANCAM() {
+        return mPANCAM;
+    }
+
+    public List<String> getMINITES() {
+        return mMINITES;
+    }
 
     public String getEarthDate() {
         return mEarthDate;
@@ -156,12 +180,13 @@ public class Cameras {
 
     /**
      * Check if a camera has any photos
+     *
      * @param cameraIndex index of camera. Used to check each camera for photos
      * @return true if camera has any photo urls. false if camera
      */
-    public boolean isCameraActive(int cameraIndex){
+    public boolean isCameraActive(int cameraIndex) {
         //if list has a size greater than 0, the camera has images and is considered 'active'
-        switch (cameraIndex){
+        switch (cameraIndex) {
             case HelperUtils.CAM_FHAZ_INDEX:
                 return (mFHAZ.size() > 0);
             case HelperUtils.CAM_RHAZ_INDEX:

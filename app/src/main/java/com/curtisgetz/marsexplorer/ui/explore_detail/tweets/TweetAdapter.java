@@ -30,8 +30,8 @@ public class TweetAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.tweets_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.tweets_item, parent, false);
 
         return new TweetViewHolder(view);
     }
@@ -41,7 +41,7 @@ public class TweetAdapter extends RecyclerView.Adapter {
         Tweet tweet = mTweetsList.get(position);
         ((TweetViewHolder) holder).mTweetDate.setText(tweet.getDate());
         ((TweetViewHolder) holder).mTweetBody.setText(tweet.getTweetText());
-        if(tweet.getTweetPhotoUrl() != null && !tweet.getTweetPhotoUrl().isEmpty()){
+        if (tweet.getTweetPhotoUrl() != null && !tweet.getTweetPhotoUrl().isEmpty()) {
             Picasso.get().load(tweet.getTweetPhotoUrl()).into(
                     ((TweetViewHolder) holder).mTweetPhotoIV);
         } else {
@@ -52,12 +52,12 @@ public class TweetAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        if(mTweetsList == null) return 0;
+        if (mTweetsList == null) return 0;
         return mTweetsList.size();
     }
 
 
-    public void setData(List<Tweet> tweets){
+    public void setData(List<Tweet> tweets) {
         mTweetsList = new ArrayList<>(tweets);
         notifyDataSetChanged();
     }

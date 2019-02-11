@@ -51,22 +51,23 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
     private boolean isAlreadyFavorite;
     private FullPhotoPagerInteraction mListener;
     private Unbinder mUnBinder;
-    private SingleFlingListener mFlingListener = new SingleFlingListener(){
+    private SingleFlingListener mFlingListener = new SingleFlingListener() {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            if(velocityY < -2200f){
-               setupFlingToCloseAnim(velocityY);
+            if (velocityY < -2200f) {
+                setupFlingToCloseAnim(velocityY);
             }
             return super.onFling(e1, e2, velocityX, velocityY);
         }
     };
 
 
-
     //Interface for activity callback
-    public interface FullPhotoPagerInteraction{
+    public interface FullPhotoPagerInteraction {
         void callDisplaySnack(String message);
+
         String getDateString();
+
         int getRoverIndex();
     }
 
@@ -84,14 +85,14 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof FullPhotoPagerInteraction){
+        if (context instanceof FullPhotoPagerInteraction) {
             mListener = (FullPhotoPagerInteraction) context;
-        }else{
+        } else {
             throw new RuntimeException(context.toString()
                     + " must implement FullPhotoPagerInteraction");
         }
         FragmentActivity activity = getActivity();
-        if(activity != null){
+        if (activity != null) {
             mViewModel = ViewModelProviders.of(activity).get(FavoriteViewModel.class);
             mViewModel.getFavorites().observe(this, new Observer<List<FavoriteImage>>() {
                 @Override
@@ -112,16 +113,16 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null) {
+        if (getArguments() != null) {
             mUrl = getArguments().getString(HelperUtils.PHOTO_PAGER_URL_EXTRA);
         }
         //Allow user to swipe photo up to close
         // add animation later
-        mGestureDetector = new GestureDetectorCompat(getContext(), new OnSwipeListener(){
+        mGestureDetector = new GestureDetectorCompat(getContext(), new OnSwipeListener() {
             @Override
             public boolean onSwipe(Direction direction) {
-                if(direction == Direction.up){
-                    if(getActivity()!=null) getActivity().onBackPressed();
+                if (direction == Direction.up) {
+                    if (getActivity() != null) getActivity().onBackPressed();
                 }
                 return true;
             }
@@ -138,9 +139,9 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
         //enable options menu from this fragment (Star for adding to/removing from favorites)
         setHasOptionsMenu(true);
         //Picasso will throw exception with empty string. Should never be empty but do final check
-        if(mUrl == null || mUrl.isEmpty()) {
+        if (mUrl == null || mUrl.isEmpty()) {
             Picasso.get().load(R.drawable.marsimageerror).into(mImageView);
-        }else {
+        } else {
             Picasso.get().load(mUrl)
                     .error(R.drawable.marsimageerror)
                     .placeholder(R.drawable.marsplaceholderfull)
@@ -156,14 +157,15 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
     /**
      * Set up Fling animation for UP swipe of photo. AddEndListener to animation to go back when
      * animation ends.
+     *
      * @param velocityY velocity of user's up swipe.
      */
-    private void setupFlingToCloseAnim(float velocityY){
+    private void setupFlingToCloseAnim(float velocityY) {
         FlingAnimation fling = new FlingAnimation(mImageView, DynamicAnimation.SCROLL_Y);
         fling.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean b, float v, float v1) {
-                if(getActivity()!=null) getActivity().onBackPressed();
+                if (getActivity() != null) getActivity().onBackPressed();
             }
         });
 
@@ -196,12 +198,12 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_add_favorite:
                 clickFavoriteMenu();
                 return true;
             case android.R.id.home:
-                if(getActivity()!=null) getActivity().onBackPressed();
+                if (getActivity() != null) getActivity().onBackPressed();
                 return true;
         }
         return true;
@@ -212,21 +214,21 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
         //get add favorite menu item
         MenuItem menuItem = menu.findItem(R.id.action_add_favorite);
 
-        if(isAlreadyFavorite){
+        if (isAlreadyFavorite) {
             //if photo is already a favorite, then show filled in star.
             menuItem.setIcon(R.drawable.ic_saved_favorite);
-        }else {
+        } else {
             menuItem.setIcon(R.drawable.ic_save_favorite);
         }
         super.onPrepareOptionsMenu(menu);
     }
 
-    private void clickFavoriteMenu(){
+    private void clickFavoriteMenu() {
 
-        if(isAlreadyFavorite){
+        if (isAlreadyFavorite) {
             mViewModel.removeAlreadyFavorite(mUrl);
             isAlreadyFavorite = false;
-        }else {
+        } else {
             //set isAlreadyFavorite to true because saving to DB is asynchronous and ViewModel may not
             //be current when menu is prepared again!
             String dateString = mListener.getDateString();
@@ -235,23 +237,23 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
             isAlreadyFavorite = true;
         }
         displaySnack();
-        if(getActivity() != null) getActivity().invalidateOptionsMenu();
+        if (getActivity() != null) getActivity().invalidateOptionsMenu();
     }
 
     private void displaySnack() {
         String message;
-        if(isAlreadyFavorite){
+        if (isAlreadyFavorite) {
             message = getString(R.string.added_to_favorites);
-        }else {
+        } else {
             message = getString(R.string.removed_from_favorites);
         }
         mListener.callDisplaySnack(message);
     }
 
-    private void updateMenu(){
+    private void updateMenu() {
         //Find if current url is already a favorite and update menu
         isAlreadyFavorite = mViewModel.isAlreadyFavorite(mUrl);
-        if(getActivity() != null) getActivity().invalidateOptionsMenu();
+        if (getActivity() != null) getActivity().invalidateOptionsMenu();
     }
 
 /*

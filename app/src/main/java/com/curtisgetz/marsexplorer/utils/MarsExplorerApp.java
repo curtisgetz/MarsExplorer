@@ -14,27 +14,25 @@ import com.firebase.jobdispatcher.Lifetime;
 import com.firebase.jobdispatcher.RetryStrategy;
 import com.firebase.jobdispatcher.Trigger;
 
-public class MarsExplorerApp extends Application{
+public class MarsExplorerApp extends Application {
 
     private FirebaseJobDispatcher mJobDispatcher;
     //set trigger execution min and max for execution window of Job
     private final static int TIME_BETWEEN_JOBS = 21600000; //6 hours in milliseconds.
     private final static int JOB_WINDOW = 1800000; // 30 minutes in milliseconds
     private final static int MANIFEST_JOB_MIN = TIME_BETWEEN_JOBS - JOB_WINDOW;
-    private final static int MANIFEST_JOB_MAX= TIME_BETWEEN_JOBS + JOB_WINDOW;
+    private final static int MANIFEST_JOB_MAX = TIME_BETWEEN_JOBS + JOB_WINDOW;
     //listen for pref changes to schedule or cancel job
     private SharedPreferences.OnSharedPreferenceChangeListener mPrefListener =
             new SharedPreferences.OnSharedPreferenceChangeListener() {
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if(key.equals(getString(R.string.pref_rover_job_scheduler_key))){
-                scheduleManifestJob();
-            }
+                @Override
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                    if (key.equals(getString(R.string.pref_rover_job_scheduler_key))) {
+                        scheduleManifestJob();
+                    }
 
-        }
-    };
-
-
+                }
+            };
 
 
     public MarsExplorerApp() {
@@ -49,7 +47,7 @@ public class MarsExplorerApp extends Application{
     }
 
 
-    private void scheduleManifestJob(){
+    private void scheduleManifestJob() {
         //Check preferences to see if user wants to keep rover manifests up to date in background.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean scheduleRoverJob = sharedPreferences.getBoolean(
@@ -58,7 +56,7 @@ public class MarsExplorerApp extends Application{
 
         mJobDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
 
-        if(scheduleRoverJob){
+        if (scheduleRoverJob) {
             //if user wants to keep manifests up to date then schedule job
             //keep manifests up to date periodically but will also update on demand
             Job manifestJob = mJobDispatcher.newJobBuilder()
@@ -75,7 +73,7 @@ public class MarsExplorerApp extends Application{
             mJobDispatcher.mustSchedule(manifestJob);
 
 
-        }else {
+        } else {
             //if user doesn't want to run background jobs, then cancel jobs.
             mJobDispatcher.cancel(RoverManifestJobService.class.getSimpleName());
         }

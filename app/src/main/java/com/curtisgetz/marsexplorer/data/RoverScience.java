@@ -27,7 +27,7 @@ public class RoverScience implements Parcelable {
         this.mImageResId = imageId;
     }
 
-    private RoverScience(Parcel parcel){
+    private RoverScience(Parcel parcel) {
         mId = parcel.readInt();
         mDetails = parcel.readString();
         mImageResId = parcel.readInt();
@@ -81,7 +81,7 @@ public class RoverScience implements Parcelable {
         parcel.writeString(mName);
     }
 
-    public static final Parcelable.Creator<RoverScience> CREATOR = new Parcelable.Creator<RoverScience>(){
+    public static final Parcelable.Creator<RoverScience> CREATOR = new Parcelable.Creator<RoverScience>() {
         @Override
         public RoverScience createFromParcel(Parcel parcel) {
             return new RoverScience(parcel);

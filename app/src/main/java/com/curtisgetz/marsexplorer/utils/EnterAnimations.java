@@ -20,22 +20,22 @@ public class EnterAnimations {
     private final static String TAG = EnterAnimations.class.getSimpleName();
 
 
-    public static void setEnterAnimation(Context context, int layoutOrientation, ViewGroup viewGroup){
+    public static void setEnterAnimation(Context context, int layoutOrientation, ViewGroup viewGroup) {
         Log.d(TAG + " ********", String.valueOf(layoutOrientation));
         int count = viewGroup.getChildCount();
         float offset = context.getResources().getDimensionPixelSize(R.dimen.offset_y);
         Interpolator interpolator =
                 AnimationUtils.loadInterpolator(context, android.R.interpolator.linear_out_slow_in);
 
-        if(layoutOrientation == LinearLayoutManager.HORIZONTAL) {
+        if (layoutOrientation == LinearLayoutManager.HORIZONTAL) {
             animateFromSide(viewGroup, count, offset, interpolator);
-        }else {
+        } else {
             animateFromBottom(viewGroup, count, offset, interpolator);
         }
     }
 
-    private static void animateFromBottom(ViewGroup viewGroup,  int count, float offset, Interpolator interpolator){
-        for(int i = 0; i < count; i++ ) {
+    private static void animateFromBottom(ViewGroup viewGroup, int count, float offset, Interpolator interpolator) {
+        for (int i = 0; i < count; i++) {
             View view = viewGroup.getChildAt(i);
             view.setVisibility(View.VISIBLE);
             view.setTranslationY(offset);
@@ -51,8 +51,8 @@ public class EnterAnimations {
         }
     }
 
-    private static void animateFromSide(ViewGroup viewGroup,  int count, float offset, Interpolator interpolator){
-        for(int i = 0; i < count; i++ ) {
+    private static void animateFromSide(ViewGroup viewGroup, int count, float offset, Interpolator interpolator) {
+        for (int i = 0; i < count; i++) {
             View view = viewGroup.getChildAt(i);
             view.setVisibility(View.VISIBLE);
             view.setTranslationX(offset);
@@ -67,9 +67,6 @@ public class EnterAnimations {
             offset *= 1.5f;
         }
     }
-
-
-
 
 
 }

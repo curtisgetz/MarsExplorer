@@ -91,9 +91,9 @@ public class MarsFactsViewModel extends AndroidViewModel {
      */
     private SingleLiveEvent<Boolean> mHitMaxQuery = new SingleLiveEvent<>();
 
-   /**
-    * The Realtime Database child node to query
-    */
+    /**
+     * The Realtime Database child node to query
+     */
     private String mFactsChildNode;
 
     public MarsFactsViewModel(@NonNull Application application) {
@@ -113,8 +113,8 @@ public class MarsFactsViewModel extends AndroidViewModel {
      * Attempt to get MarsFact for the selected day. If no data is returned for that day then attempt
      * again with a random day. Repeat if necessary
      */
-    private void getFactChild(){
-        if(mEventListener != null) {
+    private void getFactChild() {
+        if (mEventListener != null) {
             mFactReference.removeEventListener(mEventListener);
         }
 
@@ -123,15 +123,15 @@ public class MarsFactsViewModel extends AndroidViewModel {
         mEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     //reset query count on successful query
                     mQueryCount = 0;
                     mFact.postValue(dataSnapshot.getValue(MarsFact.class));
-                }else {
+                } else {
                     //if no snapshot exists, get a random day and try loading again only while
-                    // mQueryCount is below MAX QUERY COUNT. If query count is that high than there must be
+                    // mQueryCount is below MAX QUERY COUNT. If query count is that high then there must be
                     // a problem. (can lower max query once there are more facts inDB)
-                    if(mQueryCount >= MAX_QUERY_COUNT){
+                    if (mQueryCount >= MAX_QUERY_COUNT) {
                         mHitMaxQuery.postValue(true);
                         return;
                     }
@@ -139,6 +139,7 @@ public class MarsFactsViewModel extends AndroidViewModel {
                     getFactChild();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
@@ -149,7 +150,6 @@ public class MarsFactsViewModel extends AndroidViewModel {
 
 
     /**
-     *
      * @return the current MarsFact
      */
     LiveData<MarsFact> getFact() {
@@ -159,23 +159,25 @@ public class MarsFactsViewModel extends AndroidViewModel {
 
     /**
      * Get the day of the year
+     *
      * @return a String of the current day of the year
      */
-    private String getCurrentDay(){
+    private String getCurrentDay() {
         return String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_YEAR));
     }
 
     /**
      * Generate a random number between 1 and 365 to select a random day of the year
+     *
      * @return random int between 1 and 365
      */
-    private String getRandomDay(){
+    private String getRandomDay() {
         //get random int between 1 and 365
         return String.valueOf(new Random().nextInt(365) + 1);
     }
 
 
-    void loadNewFact(){
+    void loadNewFact() {
         mFactsChildNode = getRandomDay();
         getFactChild();
     }
@@ -183,9 +185,10 @@ public class MarsFactsViewModel extends AndroidViewModel {
     /**
      * Returns mHitMaxQuery boolean value. Used to limit the number of attempts to load a Fact when
      * the first attempt does not return a Fact from the database
+     *
      * @return true if the number of attempts made reaches the max allowed. False otherwise
      */
-    LiveData<Boolean> hitMaxQuery(){
+    LiveData<Boolean> hitMaxQuery() {
         return mHitMaxQuery;
     }
 

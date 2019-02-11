@@ -18,7 +18,7 @@ public class RoverSciencePagerAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
-    public void setData( List<RoverScience> roverSciences){
+    public void setData(List<RoverScience> roverSciences) {
         this.mScienceList = new ArrayList<>(roverSciences);
         notifyDataSetChanged();
     }
@@ -30,7 +30,7 @@ public class RoverSciencePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        if(mScienceList == null) return 0;
+        if (mScienceList == null) return 0;
         return mScienceList.size();
     }
 

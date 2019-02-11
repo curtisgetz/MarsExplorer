@@ -45,16 +45,17 @@ public class RoverManifest {
 
     /**
      * Get the minimum Sol for the rover. Pulls from HelperUtils
+     *
      * @return the minimum sol as an int
      */
-    private int getMinSol(){
-        switch(mRoverIndex){
+    private int getMinSol() {
+        switch (mRoverIndex) {
             case HelperUtils.CURIOSITY_ROVER_INDEX:
                 return HelperUtils.CURIOSITY_SOL_START;
             case HelperUtils.OPPORTUNITY_ROVER_INDEX:
                 return HelperUtils.OPPORTUNITY_SOL_START;
             case HelperUtils.SPIRIT_ROVER_INDEX:
-                 return HelperUtils.SPIRIT_SOL_START;
+                return HelperUtils.SPIRIT_SOL_START;
             default:
                 //if no match then use 1 as sol start to be safe
                 return HelperUtils.OPPORTUNITY_SOL_START;
@@ -64,9 +65,10 @@ public class RoverManifest {
 
     /**
      * Get the sol range as a String for display to user
+     *
      * @return sol range as a String
      */
-    public String getSolRange(){
+    public String getSolRange() {
         String minSol = String.valueOf(getMinSol());
         return minSol + " - " + mMaxSol;
     }
@@ -137,19 +139,20 @@ public class RoverManifest {
         this.mTotalPhotos = mTotalPhotos;
     }
 
-    public int getMinSolInt(){
-        return  getMinSol();
+    public int getMinSolInt() {
+        return getMinSol();
     }
 
     /**
      * Get the maximum sol value as an int
+     *
      * @return maximum sol
      */
-    public int getMaxSolInt(){
+    public int getMaxSolInt() {
         int maxSol;
-        try{
+        try {
             maxSol = Integer.parseInt(mMaxSol);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             e.printStackTrace();
             return HelperUtils.DEFAULT_MAX_SOL;
         }

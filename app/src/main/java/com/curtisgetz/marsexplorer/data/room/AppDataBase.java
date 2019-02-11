@@ -27,19 +27,19 @@ import com.curtisgetz.marsexplorer.data.rover_manifest.RoverManifest;
 public abstract class AppDataBase extends RoomDatabase {
 
 
-
     private static final Object LOCK = new Object();
     private static final String DATABASE_NAME = "marsdb";
     private static AppDataBase sInstance;
 
     /**
      * Get an instance of the Room Database
+     *
      * @param context to build the database instance
      * @return instance of the Room database
      */
-    public static AppDataBase getInstance(Context context){
-        if (sInstance == null){
-            synchronized (LOCK){
+    public static AppDataBase getInstance(Context context) {
+        if (sInstance == null) {
+            synchronized (LOCK) {
                 sInstance = Room.databaseBuilder(context.getApplicationContext(), AppDataBase.class,
                         AppDataBase.DATABASE_NAME).build();
             }

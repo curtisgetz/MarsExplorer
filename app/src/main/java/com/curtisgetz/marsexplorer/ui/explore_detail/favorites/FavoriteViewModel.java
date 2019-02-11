@@ -43,9 +43,10 @@ public class FavoriteViewModel extends AndroidViewModel {
 
     /**
      * Calls deleteFavoriteImage method in {@link MarsRepository} to delete an image from user's favorites.
+     *
      * @param favoriteImage the {@link FavoriteImage} to delete.
      */
-    private void deleteFavoriteImage(FavoriteImage favoriteImage){
+    private void deleteFavoriteImage(FavoriteImage favoriteImage) {
         mRepository.deleteFavoriteImage(favoriteImage);
     }
 
@@ -53,12 +54,13 @@ public class FavoriteViewModel extends AndroidViewModel {
      * Saves an image to user's favorites if image is not already a favorite.
      * Checks if the image url is already a favorite. If it is not then create a new {@link FavoriteImage}
      * object with the url, date string, and rover index.
-     * @param url the URL of the image.
+     *
+     * @param url        the URL of the image.
      * @param dateString the date, as a String, the photo was taken.
      * @param roverIndex the index of the rover the photo was taken by.
      */
-    public void saveFavoriteImage(String url, String dateString, int roverIndex){
-        if(!isAlreadyFavorite(url)) {
+    public void saveFavoriteImage(String url, String dateString, int roverIndex) {
+        if (!isAlreadyFavorite(url)) {
             FavoriteImage favoriteImage = new FavoriteImage(url, dateString, roverIndex);
             mRepository.saveFavoritePhoto(favoriteImage);
         }
@@ -68,14 +70,15 @@ public class FavoriteViewModel extends AndroidViewModel {
      * Removes an image from the user's favorites. Searches through {@link FavoriteImage} objects
      * to find the FavoriteImage with a url that matches the current image in ViewPager.
      * When a match is found, call deleteFavoriteImage() method and pass the FavoriteImage to delete.
+     *
      * @param url the url of the image the user wants to remove from their favorites
      */
-    public void removeAlreadyFavorite(String url){
-        if(mFavorites.getValue() == null){
+    public void removeAlreadyFavorite(String url) {
+        if (mFavorites.getValue() == null) {
             return;
         }
-        for(FavoriteImage image : mFavorites.getValue()){
-            if(url.equalsIgnoreCase(image.getImageUrl())){
+        for (FavoriteImage image : mFavorites.getValue()) {
+            if (url.equalsIgnoreCase(image.getImageUrl())) {
                 deleteFavoriteImage(image);
                 return;
             }
@@ -84,15 +87,16 @@ public class FavoriteViewModel extends AndroidViewModel {
 
     /**
      * Checjs if an image url is already saved as a favorite.
+     *
      * @param url the URL of the image to check.
      * @return true if the url is already a favorite.
      */
-    public boolean isAlreadyFavorite(String url){
-        if(mFavorites.getValue() == null) {
+    public boolean isAlreadyFavorite(String url) {
+        if (mFavorites.getValue() == null) {
             return false;
         }
-        for(FavoriteImage image : mFavorites.getValue()){
-            if(url.equalsIgnoreCase(image.getImageUrl())){
+        for (FavoriteImage image : mFavorites.getValue()) {
+            if (url.equalsIgnoreCase(image.getImageUrl())) {
                 return true;
             }
         }
@@ -103,7 +107,7 @@ public class FavoriteViewModel extends AndroidViewModel {
      * Calls deleteAllFavorites() method in {@link MarsRepository} to delete all of the user's
      * favorite images.
      */
-    void deleteAllFavorites(){
+    void deleteAllFavorites() {
         mRepository.deleteAllFavorites();
     }
 

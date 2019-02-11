@@ -1,14 +1,12 @@
 package com.curtisgetz.marsexplorer.ui.explore_detail;
 
 
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
- import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar;
 
 import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.ui.MarsBaseActivity;
@@ -48,22 +46,22 @@ public class ExploreDetailActivity extends MarsBaseActivity implements
         ButterKnife.bind(this);
 
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         Intent intent = getIntent();
-        if(intent == null){
+        if (intent == null) {
             finish();
-        }else {
+        } else {
             mParentActivity = intent.getStringExtra(getString(R.string.parent_activity_tag_extra));
-            if(savedInstanceState == null) {
+            if (savedInstanceState == null) {
                 mExploreCatIndex = intent.getIntExtra(getString(R.string.explore_index_extra_key), HelperUtils.MARS_WEATHER_CAT_INDEX);
                 startDetailFragment(intent);
 
-            }else {
+            } else {
                 mExploreCatIndex = savedInstanceState.getInt(getString(R.string.rover_index_saved_key), HelperUtils.MARS_WEATHER_CAT_INDEX);
-                mCurrentSol = savedInstanceState.getString(getString(R.string.sol_number_saved_key), HelperUtils.DEFAULT_SOL_NUMBER );
+                mCurrentSol = savedInstanceState.getString(getString(R.string.sol_number_saved_key), HelperUtils.DEFAULT_SOL_NUMBER);
                 mRoverIndex = savedInstanceState.getInt(getString(R.string.rover_index_saved_key), HelperUtils.CURIOSITY_ROVER_INDEX);
             }
         }
@@ -190,14 +188,14 @@ public class ExploreDetailActivity extends MarsBaseActivity implements
         return getParentActivity();
     }
 
-    private Intent getParentActivity(){
+    private Intent getParentActivity() {
         Intent intent;
         //check extra to find parent. Parent will add their name as an extra
-        if(mParentActivity == null){
+        if (mParentActivity == null) {
             intent = new Intent(this, MainActivity.class);
-        }else if (mParentActivity.equalsIgnoreCase(RoverExploreActivity.class.getSimpleName())){
+        } else if (mParentActivity.equalsIgnoreCase(RoverExploreActivity.class.getSimpleName())) {
             intent = new Intent(this, RoverExploreActivity.class);
-        }else if(mParentActivity.equalsIgnoreCase(MarsExploreActivity.class.getSimpleName())){
+        } else if (mParentActivity.equalsIgnoreCase(MarsExploreActivity.class.getSimpleName())) {
             intent = new Intent(this, MarsExploreActivity.class);
         } else {
             intent = new Intent(this, MainActivity.class);
@@ -205,7 +203,6 @@ public class ExploreDetailActivity extends MarsBaseActivity implements
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         return intent;
     }
-
 
 
 }

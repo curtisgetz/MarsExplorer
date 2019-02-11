@@ -56,7 +56,7 @@ public class TweetsFragment extends Fragment {
     }
 
 
-    public static TweetsFragment newInstance( ) {
+    public static TweetsFragment newInstance() {
         return new TweetsFragment();
     }
 
@@ -67,7 +67,7 @@ public class TweetsFragment extends Fragment {
         FragmentActivity activity = getActivity();
         mAdapter = new TweetAdapter();
         //set up ViewModel
-        if(activity != null) {
+        if (activity != null) {
             mViewModel = ViewModelProviders.of(activity).get(TweetViewModel.class);
             mViewModel.getTweets().observe(activity, new Observer<List<Tweet>>() {
                 @Override
@@ -82,11 +82,11 @@ public class TweetsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View view = inflater.inflate(R.layout.fragment_tweets, container, false);
-         mUnBinder = ButterKnife.bind(this, view);
-        if(!tweetsEnabled() && !shownDialog){
+        View view = inflater.inflate(R.layout.fragment_tweets, container, false);
+        mUnBinder = ButterKnife.bind(this, view);
+        if (!tweetsEnabled() && !shownDialog) {
             FragmentActivity activity = getActivity();
-            if(activity != null){
+            if (activity != null) {
                 InfoDialogFragment infoDialogFragment = InfoDialogFragment.newInstance(activity, InformationUtils.TWEET_JOB_PREF);
                 infoDialogFragment.show(activity.getSupportFragmentManager(), InformationUtils.class.getSimpleName());
                 shownDialog = true;
@@ -95,10 +95,10 @@ public class TweetsFragment extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false);
-         mTweetRecycler.setLayoutManager(layoutManager);
-         mTweetRecycler.setAdapter(mAdapter);
+        mTweetRecycler.setLayoutManager(layoutManager);
+        mTweetRecycler.setAdapter(mAdapter);
 
-         return view;
+        return view;
     }
 
     private boolean tweetsEnabled() {

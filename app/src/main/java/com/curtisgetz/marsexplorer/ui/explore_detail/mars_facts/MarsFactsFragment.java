@@ -57,12 +57,12 @@ public class MarsFactsFragment extends Fragment {
     */
 
     //interface for activity callback
-    public interface FactsInteraction{
+    public interface FactsInteraction {
         void displaySnack(String message);
     }
 
 
-    public static MarsFactsFragment newInstance(){
+    public static MarsFactsFragment newInstance() {
         return new MarsFactsFragment();
     }
 
@@ -75,13 +75,13 @@ public class MarsFactsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         FragmentActivity activity = getActivity();
-        if(activity == null)return;
+        if (activity == null) return;
         //attach Listener for callbacks
-        if(context instanceof FactsInteraction){
+        if (context instanceof FactsInteraction) {
             mListener = (FactsInteraction) context;
-        }else {
-            throw new RuntimeException(context.toString()  +
-            " must implement FactsInteraction");
+        } else {
+            throw new RuntimeException(context.toString() +
+                    " must implement FactsInteraction");
         }
 
         //setup view model
@@ -97,7 +97,7 @@ public class MarsFactsFragment extends Fragment {
         mViewModel.hitMaxQuery().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean hitMaxQuery) {
-                if(hitMaxQuery != null && hitMaxQuery){
+                if (hitMaxQuery != null && hitMaxQuery) {
                     //if hitMaxQuery is true then query limit has been reached and there is a problem
                     // so we should stop trying to load more and disable & hide the refresh button/icon.
                     mReloadFactIv.setVisibility(View.INVISIBLE);
@@ -124,7 +124,7 @@ public class MarsFactsFragment extends Fragment {
     private void animateRefreshIcon() {
         //set refresh icon to rotate around it's center. Use as a loading indicator.
         RotateAnimation rotateAnimation = new RotateAnimation(0f, 360f,
-            Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f );
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setFillAfter(false);
         rotateAnimation.setInterpolator(new LinearInterpolator());
         rotateAnimation.setRepeatCount(Animation.INFINITE);
@@ -134,10 +134,10 @@ public class MarsFactsFragment extends Fragment {
         mReloadFactIv.setEnabled(false);
     }
 
-    private void displayResults(){
+    private void displayResults() {
         //get Fact from ViewModel and update UI
         MarsFact fact = getFactFromViewModel();
-        if(fact == null) return;
+        if (fact == null) return;
         //Stop refresh icon when fact is displayed
         mReloadFactIv.clearAnimation();
         mReloadFactIv.setEnabled(true);
@@ -146,23 +146,23 @@ public class MarsFactsFragment extends Fragment {
     }
 
     @OnClick(R.id.reload_fact)
-    public void onRefreshFactClick(){
+    public void onRefreshFactClick() {
         animateRefreshIcon();
         mViewModel.loadNewFact();
     }
 
-    private MarsFact getFactFromViewModel(){
-       return mViewModel.getFact().getValue();
+    private MarsFact getFactFromViewModel() {
+        return mViewModel.getFact().getValue();
     }
 
     //open link to source of fact
     @OnClick({R.id.fact_url_text, R.id.fact_link_icon})
-    public void onUrlClick(){
+    public void onUrlClick() {
         MarsFact fact = getFactFromViewModel();
-        if(fact == null)return;
+        if (fact == null) return;
         Uri factWebpage = Uri.parse(fact.getUrl());
         Intent webIntent = new Intent(Intent.ACTION_VIEW, factWebpage);
-        if(webIntent.resolveActivity(getActivity().getPackageManager()) != null){
+        if (webIntent.resolveActivity(getActivity().getPackageManager()) != null) {
             startActivity(webIntent);
         }
 

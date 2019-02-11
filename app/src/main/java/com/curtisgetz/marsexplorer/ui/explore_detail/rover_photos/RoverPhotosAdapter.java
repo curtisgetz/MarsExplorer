@@ -25,8 +25,7 @@ public class RoverPhotosAdapter extends RecyclerView.Adapter {
     private List<String> mPhotoUrls;
 
 
-
-    public interface PhotoClickListener{
+    public interface PhotoClickListener {
         void onPhotoClick(List<String> url, View view, int clickedPos);
     }
 
@@ -45,18 +44,16 @@ public class RoverPhotosAdapter extends RecyclerView.Adapter {
     }
 
 
-
-
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
         String photoUrl = mPhotoUrls.get(position);
         //Picasso will throw exception with blank string. Do check as fallback
-        if(!photoUrl.isEmpty()){
+        if (!photoUrl.isEmpty()) {
             Picasso.get().load(photoUrl)
                     .placeholder(R.drawable.marsplaceholderfull)
                     .error(R.drawable.marsimageerror)
                     .into(((RoverPhotosViewHolder) holder).mPhotoIv);
-        }else {
+        } else {
             Picasso.get().load(R.drawable.marsimageerror)
                     .placeholder(R.drawable.marsplaceholderfull)
                     .fit()
@@ -66,11 +63,11 @@ public class RoverPhotosAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        if(mPhotoUrls == null) return 0;
+        if (mPhotoUrls == null) return 0;
         return mPhotoUrls.size();
     }
 
-    public void setData(List<String> photoUrls){
+    public void setData(List<String> photoUrls) {
         mPhotoUrls = photoUrls;
         notifyDataSetChanged();
     }
@@ -93,7 +90,6 @@ public class RoverPhotosAdapter extends RecyclerView.Adapter {
             //Send full list and clicked position for ViewPager use
             mClickListener.onPhotoClick(mPhotoUrls, view, getAdapterPosition());
         }
-
 
 
     }

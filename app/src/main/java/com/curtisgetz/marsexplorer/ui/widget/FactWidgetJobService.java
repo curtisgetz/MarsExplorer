@@ -19,11 +19,9 @@ import com.firebase.jobdispatcher.JobService;
 import java.util.Calendar;
 
 
-
 public class FactWidgetJobService extends JobService {
 
     private final static String TAG = FactWidgetJobService.class.getSimpleName();
-
 
 
     @Override
@@ -40,7 +38,7 @@ public class FactWidgetJobService extends JobService {
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists() ) {
+                if (dataSnapshot.exists()) {
                     //extract Fact and send to widget.
                     setupFact(dataSnapshot.getValue(MarsFact.class));
                 }
@@ -61,15 +59,16 @@ public class FactWidgetJobService extends JobService {
 
     /**
      * Get the description from the {@link MarsFact} object and update all widgets with the text
+     *
      * @param fact Fact object to extract description from
      */
     private void setupFact(MarsFact fact) {
-        if(fact == null) return;
+        if (fact == null) return;
         //get fact and update widgets with the shortDescription
-        String factText =  fact.getShortDescription();
+        String factText = fact.getShortDescription();
         ComponentName widget = new ComponentName(this, FactWidgetProvider.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(this);
-        int[] appWidgetIds =manager.getAppWidgetIds(widget);
+        int[] appWidgetIds = manager.getAppWidgetIds(widget);
         FactWidgetProvider.updateAllWidgets(this, manager, appWidgetIds, factText);
     }
 

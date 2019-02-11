@@ -27,7 +27,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RoverScienceFragment extends Fragment{
+public class RoverScienceFragment extends Fragment {
 
     private List<RoverScience> mScienceList;
     private RoverSciencePagerAdapter mAdapter;
@@ -41,8 +41,7 @@ public class RoverScienceFragment extends Fragment{
     TabLayout mTabLayout;
 
 
-
-    public static RoverScienceFragment newInstance(Context context, int roverIndex, int exploreCat){
+    public static RoverScienceFragment newInstance(Context context, int roverIndex, int exploreCat) {
         RoverScienceFragment scienceFragment = new RoverScienceFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(context.getString(R.string.rover_index_extra), roverIndex);
@@ -64,19 +63,19 @@ public class RoverScienceFragment extends Fragment{
         mUnBinder = ButterKnife.bind(this, view);
 
         //Get Science list based on rover and explore indices
-        if(savedInstanceState == null && getArguments() != null){
+        if (savedInstanceState == null && getArguments() != null) {
             Bundle bundle = getArguments();
             //get rover and category index. Use these to get correct list of science or rover info.
             mRoverIndex = bundle.getInt(getString(R.string.rover_index_extra));
             mExploreIndex = bundle.getInt(getString(R.string.explore_index_extra_key));
             mScienceList = new ArrayList<>(HelperUtils.getScienceList(getContext(), mRoverIndex, mExploreIndex));
-        }else if(savedInstanceState != null ){
+        } else if (savedInstanceState != null) {
             mRoverIndex = savedInstanceState.getInt(getString(R.string.rover_index_saved_key));
             mExploreIndex = savedInstanceState.getInt(getString(R.string.explore_index_saved_key));
             mScienceList = new ArrayList<>(HelperUtils.getScienceList(getContext(), mRoverIndex, mExploreIndex));
         }
         //if list was set up then set up ViewPager and Adapter
-        if(!(mScienceList == null || mScienceList.size() == 0)){
+        if (!(mScienceList == null || mScienceList.size() == 0)) {
             mAdapter = new RoverSciencePagerAdapter(getChildFragmentManager());
             mViewPager.setAdapter(mAdapter);
             mAdapter.setData(mScienceList);

@@ -30,15 +30,13 @@ import java.util.Map;
 /**
  * Class for handling Firebase Cloud Messages. Will also create Tweet object from that message and
  * save that Tweet into database.
- *
  */
 
 public class MarsFirebaseMessagingService extends FirebaseMessagingService {
 
     /*todo Tweets are being sent manually through the Firebase Console. Need to develop a backend
-    * solution to automatically grab Tweets from Twitter and send the message
-    */
-
+     * solution to automatically grab Tweets from Twitter and send the message
+     */
 
 
     public final static String JSON_KEY_TWEET_ID = "tweet_id";
@@ -52,7 +50,6 @@ public class MarsFirebaseMessagingService extends FirebaseMessagingService {
     private final static String NOTIFICATION_CHANNEL_NAME = "Tweets From Rover";
 
 
-
     /**
      * Notification messages only received here when app is in foreground
      * Create notification and save tweet into database. Will need to be changed when backend
@@ -64,14 +61,14 @@ public class MarsFirebaseMessagingService extends FirebaseMessagingService {
 
         Map<String, String> messageData = remoteMessage.getData();
 
-        if (messageData.size() > 0){
+        if (messageData.size() > 0) {
             //attempt to parse ints from message
             int tweetId;
             int userId;
             try {
                 tweetId = Integer.parseInt(messageData.get(JSON_KEY_TWEET_ID));
                 userId = Integer.parseInt(messageData.get(JSON_KEY_USER_ID));
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 e.printStackTrace();
                 return;
             }
@@ -82,7 +79,7 @@ public class MarsFirebaseMessagingService extends FirebaseMessagingService {
 
             Tweet tweet = new Tweet(tweetId, userId, userName, tweetDate, tweetText);
             //add photo url if there is one
-            if(tweetPhoto != null && !tweetPhoto.isEmpty()){
+            if (tweetPhoto != null && !tweetPhoto.isEmpty()) {
                 tweet.setTweetPhotoUrl(tweetPhoto);
             }
 
@@ -93,6 +90,7 @@ public class MarsFirebaseMessagingService extends FirebaseMessagingService {
 
     /**
      * Inset Tweet into database
+     *
      * @param tweet the tweet object to save
      */
     private void insertTweet(Tweet tweet) {
@@ -114,8 +112,8 @@ public class MarsFirebaseMessagingService extends FirebaseMessagingService {
                 PendingIntent.FLAG_ONE_SHOT);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        if(notificationManager == null) return;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (notificationManager == null) return;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             NotificationChannel tweetChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,
                     NOTIFICATION_CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);

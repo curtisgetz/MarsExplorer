@@ -42,13 +42,13 @@ public final class NetworkUtils {
     private static final String MANIFEST_PATH = "manifests";
 
     // photos = base + 'rovers' + rover + 'photos' + ?
-    private static final String ROVERS  = "rovers";
-    private static final String  PHOTOS = "photos";
+    private static final String ROVERS = "rovers";
+    private static final String PHOTOS = "photos";
 
     private static final int DEFAULT_READ_TIMEOUT = 10000;
 
 
-    public static URL buildPhotosCheckUrl(Context context, int roverIndex, String sol){
+    public static URL buildPhotosCheckUrl(Context context, int roverIndex, String sol) {
         //Get BASE Url from Firebase Remote Config
         FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         String baseUrl = firebaseRemoteConfig.getString(PHOTOS_BASE_REMOTE_CONFIG_KEY);
@@ -68,13 +68,13 @@ public final class NetworkUtils {
         URL url = null;
         try {
             url = new URL(builtUri.toString());
-        }catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return url;
     }
 
-    public static URL buildDateToSolUrl(Context context,int roverIndex,  String date){
+    public static URL buildDateToSolUrl(Context context, int roverIndex, String date) {
         //Get BASE Url from Firebase Remote Config
         FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         String baseUrl = firebaseRemoteConfig.getString(PHOTOS_BASE_REMOTE_CONFIG_KEY);
@@ -93,7 +93,7 @@ public final class NetworkUtils {
         URL url = null;
         try {
             url = new URL(builtUri.toString());
-        }catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return url;
@@ -101,13 +101,14 @@ public final class NetworkUtils {
 
     /**
      * build URL for requesting rover photos by Sol number(as a String, validated before here)
-     * @param context for accessing Resources
+     *
+     * @param context    for accessing Resources
      * @param roverIndex index of rover
-     * @param sol sol to search
+     * @param sol        sol to search
      * @return Built URL for getting photos
      */
     //
-    public static URL buildPhotosUrl(Context context,int roverIndex, String sol){
+    public static URL buildPhotosUrl(Context context, int roverIndex, String sol) {
         //check preferences to see if user wants to limit number of photos
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean seeAllPhotos = sharedPreferences.getBoolean(context.getString(R.string.pref_get_all_photos_key),
@@ -120,7 +121,7 @@ public final class NetworkUtils {
         String rover = HelperUtils.getRoverNameByIndex(context, roverIndex);
 
         Uri builtUri;
-        if(seeAllPhotos){
+        if (seeAllPhotos) {
             //if user chooses to limit photos then only get 1st page of photos
             builtUri = Uri.parse(baseUrl).buildUpon()
                     .appendPath(ROVERS)
@@ -129,7 +130,7 @@ public final class NetworkUtils {
                     .appendQueryParameter(SOL, sol)
                     .appendQueryParameter(API_KEY, NASA_API)
                     .build();
-        }else {
+        } else {
             //if user doesn't want to limit, then get all photos available for that Sol/Day
             builtUri = Uri.parse(baseUrl).buildUpon()
                     .appendPath(ROVERS)
@@ -145,16 +146,16 @@ public final class NetworkUtils {
         URL url = null;
         try {
             url = new URL(builtUri.toString());
-        }catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return url;
     }
 
     //Build URL for requesting rover manifest info
-    public static URL buildManifestUrl(Context context, int roverIndex){
+    public static URL buildManifestUrl(Context context, int roverIndex) {
         //get rovername from HelperUtils
-        String roverName = HelperUtils.getRoverNameByIndex(context,roverIndex);
+        String roverName = HelperUtils.getRoverNameByIndex(context, roverIndex);
         //get base url from remote config
         FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
         String baseUrl = remoteConfig.getString(PHOTOS_BASE_REMOTE_CONFIG_KEY);
@@ -167,27 +168,26 @@ public final class NetworkUtils {
         try {
             url = new URL(builtUri.toString());
 
-        }catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return url;
     }
 
     //Build URL for requesting Weather data
-    public static URL buildWeatherUrl(){
+    public static URL buildWeatherUrl() {
         FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
         String baseUrl = remoteConfig.getString(WEATHER_BASE_REMOTE_CONFIG_KEY);
         //requesting latest weather just uses base url. Can add sol to url for specific requests
         Uri builtUrl = Uri.parse(baseUrl);
         URL url = null;
-        try{
+        try {
             url = new URL(builtUrl.toString());
-        }catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return url;
     }
-
 
 
     //read input from http response passing context for shared preferences
@@ -198,9 +198,9 @@ public final class NetworkUtils {
                 context.getResources().getBoolean(R.bool.pref_limit_photos_default));
         //set longer read timeout if user wants all photos.
         int readTimeout;
-        if(seeAllPhotos){
+        if (seeAllPhotos) {
             readTimeout = 20000;
-        }else {
+        } else {
             readTimeout = DEFAULT_READ_TIMEOUT;
         }
 
@@ -213,7 +213,7 @@ public final class NetworkUtils {
         return getStringResponse(DEFAULT_READ_TIMEOUT, url);
     }
 
-    private static String getStringResponse(int timeout, URL url) throws IOException{
+    private static String getStringResponse(int timeout, URL url) throws IOException {
         HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
         //set connection timeouts
         urlConnection.setConnectTimeout(5000);

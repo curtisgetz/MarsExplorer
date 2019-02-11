@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * View Model for list of camera urls
  */
-class CamerasViewModel extends  ViewModel {
+class CamerasViewModel extends ViewModel {
     /**
      * LiveData wrapped Cameras object
      */
@@ -29,26 +29,26 @@ class CamerasViewModel extends  ViewModel {
     CamerasViewModel(Application application, int roverIndex, String solNumber) {
         mRepository = MarsRepository.getInstance(application);
         mCameras = mRepository.getCameras(application.getApplicationContext(), roverIndex, solNumber);
-      //  mRepository.getSolFromDate(application.getApplicationContext(), roverIndex, "2019-1-22");
     }
 
-    LiveData<Cameras> getCameras(){
+    LiveData<Cameras> getCameras() {
         return mCameras;
     }
 
     /**
      * Get a List of urls for the specified camera
+     *
      * @param cameraIndex index of camera to get images from
      * @return List of urls (if any)
      */
-    List<String> getImageUrlsForCamera(int cameraIndex){
+    List<String> getImageUrlsForCamera(int cameraIndex) {
         // if there are no images for the camera, return null.
         // Otherwise return a List of Strings (the urls)
         Cameras cameras = mCameras.getValue();
         // Attempt to get closest sol with images if this sol has no images
 
-        if(cameras == null || !(cameras.isCameraActive(cameraIndex))) return null;
-        switch (cameraIndex){
+        if (cameras == null || !(cameras.isCameraActive(cameraIndex))) return null;
+        switch (cameraIndex) {
             case HelperUtils.CAM_FHAZ_INDEX:
                 return cameras.getFHAZ();
             case HelperUtils.CAM_RHAZ_INDEX:

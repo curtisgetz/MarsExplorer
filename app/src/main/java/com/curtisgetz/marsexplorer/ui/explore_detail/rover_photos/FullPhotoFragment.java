@@ -36,15 +36,18 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FullPhotoFragment extends Fragment   {
+public class FullPhotoFragment extends Fragment {
 
 
     private List<String> mUrls = new ArrayList<>();
 
     @Nullable
-    @BindView(R.id.photo_share_fab) FloatingActionButton mShareFab;
-    @BindView(R.id.full_photo_coordinator_layout) CoordinatorLayout mCoordinator;
-    @BindView(R.id.photo_viewpager) MarsPhotoViewPager mViewPager;
+    @BindView(R.id.photo_share_fab)
+    FloatingActionButton mShareFab;
+    @BindView(R.id.full_photo_coordinator_layout)
+    CoordinatorLayout mCoordinator;
+    @BindView(R.id.photo_viewpager)
+    MarsPhotoViewPager mViewPager;
     FullPhotoAdapter mAdapter;
     private int mStartingPos;
     private int mRoverIndex;
@@ -55,7 +58,7 @@ public class FullPhotoFragment extends Fragment   {
 
 
     public static FullPhotoFragment newInstance(Context context, ArrayList<String> urls, int startingPos,
-                                                int roverIndex, String dateString){
+                                                int roverIndex, String dateString) {
 
         FullPhotoFragment fragment = new FullPhotoFragment();
         Bundle bundle = new Bundle();
@@ -77,15 +80,15 @@ public class FullPhotoFragment extends Fragment   {
     public void onAttach(Context context) {
         super.onAttach(context);
         FragmentActivity activity = getActivity();
-        if(activity != null){
+        if (activity != null) {
             mViewModel = ViewModelProviders.of(activity).get(FavoriteViewModel.class);
             mViewModel.getFavorites().observe(this, new Observer<List<FavoriteImage>>() {
                 @Override
                 public void onChanged(@Nullable List<FavoriteImage> favoriteImages) {
-                    if(mIsFavorites){
-                        if(favoriteImages == null) return;
+                    if (mIsFavorites) {
+                        if (favoriteImages == null) return;
                         List<String> urls = new ArrayList<>();
-                        for(FavoriteImage image : favoriteImages){
+                        for (FavoriteImage image : favoriteImages) {
                             urls.add(image.getImageUrl());
                         }
                         mAdapter.setData(urls);
@@ -103,14 +106,14 @@ public class FullPhotoFragment extends Fragment   {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState == null && getArguments() != null) {
+        if (savedInstanceState == null && getArguments() != null) {
             Bundle bundle = getArguments();
             mIsFavorites = bundle.getBoolean(getString(R.string.is_favorites_key), false);
             mRoverIndex = bundle.getInt(getString(R.string.rover_index_extra));
             mUrls = bundle.getStringArrayList(getString(R.string.url_list_extra));
             mStartingPos = bundle.getInt(getString(R.string.clicked_photo_pos_extra));
             mDateString = bundle.getString(getString(R.string.date_string_extra), getString(R.string.unknown_date));
-        }else if(savedInstanceState != null) {
+        } else if (savedInstanceState != null) {
             mUrls = savedInstanceState.getStringArrayList(getString(R.string.url_list_saved));
             mStartingPos = savedInstanceState.getInt(getString(R.string.starting_pos_saved));
             mRoverIndex = savedInstanceState.getInt(getString(R.string.rover_index_saved_key));
@@ -144,25 +147,25 @@ public class FullPhotoFragment extends Fragment   {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putStringArrayList(getString(R.string.url_list_saved),  new ArrayList<>(mUrls));
+        outState.putStringArrayList(getString(R.string.url_list_saved), new ArrayList<>(mUrls));
         outState.putInt(getString(R.string.starting_pos_saved), mStartingPos);
         outState.putInt(getString(R.string.rover_index_saved_key), mRoverIndex);
         outState.putBoolean(getString(R.string.is_favorites_saved_key), mIsFavorites);
     }
 
     @OnClick(R.id.photo_share_fab)
-    public void onFabClick(){
+    public void onFabClick() {
         FragmentActivity activity = getActivity();
-        if(activity == null) return;
+        if (activity == null) return;
 
         String roverName = HelperUtils.getRoverNameByIndex(activity, mRoverIndex);
         //use custom share message if not in Favorites. Otherwise use simple share message.
         //look into custom share message for Favorites later.
         String shareMessage;
-        if(mRoverIndex == -1){
+        if (mRoverIndex == -1) {
             shareMessage = getString(R.string.simple_share_pic_text)
                     + "\n\n" + mUrls.get(mViewPager.getCurrentItem());
-        }else {
+        } else {
             shareMessage = getString(R.string.share_pic_text,
                     roverName, mDateString, mUrls.get(mViewPager.getCurrentItem()));
         }
@@ -170,24 +173,23 @@ public class FullPhotoFragment extends Fragment   {
                 .setType("text/plain")
                 .setText(shareMessage)
                 .getIntent();
-        if(intentToShare.resolveActivity(activity.getPackageManager())!= null){
+        if (intentToShare.resolveActivity(activity.getPackageManager()) != null) {
             startActivity(intentToShare);
         }
 
     }
 
-    public String getDate(){
+    public String getDate() {
         return mDateString;
     }
 
-    public int getRover(){
+    public int getRover() {
         return mRoverIndex;
     }
 
-    public void displaySnack(String message){
-         Snackbar.make(mCoordinator, message, Snackbar.LENGTH_SHORT).show();
+    public void displaySnack(String message) {
+        Snackbar.make(mCoordinator, message, Snackbar.LENGTH_SHORT).show();
     }
-
 
 
 }

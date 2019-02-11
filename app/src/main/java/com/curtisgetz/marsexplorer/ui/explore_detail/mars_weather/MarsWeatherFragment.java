@@ -29,7 +29,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
-public class MarsWeatherFragment extends Fragment implements WeatherDetailsAdapter.DetailInfoClick{
+public class MarsWeatherFragment extends Fragment implements WeatherDetailsAdapter.DetailInfoClick {
 
     @BindView(R.id.weather_detail_recycler)
     RecyclerView mWeatherRecycler;
@@ -47,7 +47,7 @@ public class MarsWeatherFragment extends Fragment implements WeatherDetailsAdapt
         // Required empty public constructor
     }
 
-    public static MarsWeatherFragment newInstance(){
+    public static MarsWeatherFragment newInstance() {
         return new MarsWeatherFragment();
     }
 
@@ -57,7 +57,7 @@ public class MarsWeatherFragment extends Fragment implements WeatherDetailsAdapt
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_mars_weather, container, false);
-        mUnBinder = ButterKnife.bind(this,  view);
+        mUnBinder = ButterKnife.bind(this, view);
 
         showProgress();
         mAdapter = new WeatherDetailsAdapter(this);
@@ -68,10 +68,10 @@ public class MarsWeatherFragment extends Fragment implements WeatherDetailsAdapt
         mViewModel.getWeather().observe(this, new Observer<List<WeatherDetail>>() {
             @Override
             public void onChanged(@Nullable List<WeatherDetail> weatherDetails) {
-                if(weatherDetails != null) {
+                if (weatherDetails != null) {
                     mAdapter.setData(weatherDetails);
                     updateTitle();
-                }else {
+                } else {
                     showLoadingError();
                 }
             }
@@ -82,10 +82,10 @@ public class MarsWeatherFragment extends Fragment implements WeatherDetailsAdapt
 
     private void updateTitle() {
         List<WeatherDetail> weatherDetails = mViewModel.getWeather().getValue();
-        if(weatherDetails != null){
+        if (weatherDetails != null) {
             String curiosity = getString(R.string.curiosity_rover) + " " + getString(R.string.rover_string);
             String solTag = getString(R.string.sol);
-            String title = ( curiosity + " - " + solTag + " - " +  mViewModel.getWeather().getValue().get(0).getmSol());
+            String title = (curiosity + " - " + solTag + " - " + mViewModel.getWeather().getValue().get(0).getmSol());
             mSolTitle.setText(title);
         }
         hideProgress();
@@ -97,29 +97,28 @@ public class MarsWeatherFragment extends Fragment implements WeatherDetailsAdapt
                 Snackbar.LENGTH_LONG).show();
     }
 
-    private void showProgress(){
+    private void showProgress() {
         mWeatherProgress.setVisibility(View.VISIBLE);
     }
 
-    private void hideProgress(){
+    private void hideProgress() {
         mWeatherProgress.setVisibility(View.GONE);
     }
 
 
     @OnClick(R.id.weather_title_cardview)
-    public void onTitleInfoClick(){
+    public void onTitleInfoClick() {
         FragmentActivity activity = getActivity();
-        if(activity == null) return;
+        if (activity == null) return;
         InfoDialogFragment infoDialogFragment = InfoDialogFragment.newInstance(activity, InformationUtils.WEATHER_INFO);
         infoDialogFragment.show(activity.getSupportFragmentManager(), InformationUtils.class.getSimpleName());
     }
 
 
-
     @Override
     public void onDetailInfoClick(int infoIndex) {
         FragmentActivity activity = getActivity();
-        if(activity == null) return;
+        if (activity == null) return;
         InfoDialogFragment infoDialogFragment = InfoDialogFragment.newInstance(activity, infoIndex);
         infoDialogFragment.show(activity.getSupportFragmentManager(), InfoDialogFragment.class.getSimpleName());
     }

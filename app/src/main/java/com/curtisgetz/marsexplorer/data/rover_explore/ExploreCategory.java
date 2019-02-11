@@ -18,7 +18,7 @@ public class ExploreCategory {
     private int mImageResId;
     private String mContentDescription = "";
 
-    public ExploreCategory(){
+    public ExploreCategory() {
 
     }
 
@@ -60,12 +60,12 @@ public class ExploreCategory {
         this.mCatIndex = mCatIndex;
     }
 
-    public void setContentDescription(String contentDescription){
+    public void setContentDescription(String contentDescription) {
         this.mContentDescription = contentDescription;
 
     }
 
-    public String getContentDescription(){
+    public String getContentDescription() {
         return mContentDescription;
     }
 

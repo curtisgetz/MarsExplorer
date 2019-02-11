@@ -13,7 +13,7 @@ import com.curtisgetz.marsexplorer.utils.HelperUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExploreTypeViewModel  extends AndroidViewModel {
+public class ExploreTypeViewModel extends AndroidViewModel {
 
     private MarsRepository mRepository;
     private LiveData<List<MainExploreType>> mExploreTypes;
@@ -29,7 +29,7 @@ public class ExploreTypeViewModel  extends AndroidViewModel {
     }
 
 
-    public void addExploreTypesToDB(Context context){
+    public void addExploreTypesToDB(Context context) {
         //get explore types in HelperUtils.
         List<MainExploreType> mainExploreTypeList = new ArrayList<>(HelperUtils.getAllExploreTypes(context));
         mRepository.addExploreTypesToDB(mainExploreTypeList);

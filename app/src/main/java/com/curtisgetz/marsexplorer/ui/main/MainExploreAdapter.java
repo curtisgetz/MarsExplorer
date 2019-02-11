@@ -25,22 +25,22 @@ public class MainExploreAdapter extends RecyclerView.Adapter {
     private ExploreClickListener mClickListener;
     private boolean isLand;
 
-    public interface ExploreClickListener{
+    public interface ExploreClickListener {
         void onExploreClick(int clickedPos);
     }
 
-    MainExploreAdapter(ExploreClickListener clickListener, boolean isLand){
+    MainExploreAdapter(ExploreClickListener clickListener, boolean isLand) {
         this.mClickListener = clickListener;
         this.isLand = isLand;
     }
 
-    public void setData(List<MainExploreType> exploreList){
+    public void setData(List<MainExploreType> exploreList) {
         this.mExploreList = new ArrayList<>(exploreList);
         notifyDataSetChanged();
     }
 
-    public MainExploreType getExploreType(int pos){
-        if( mExploreList == null) return null;
+    public MainExploreType getExploreType(int pos) {
+        if (mExploreList == null) return null;
         return mExploreList.get(pos);
     }
 
@@ -59,9 +59,9 @@ public class MainExploreAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MainExploreType mainExploreTypeItem = mExploreList.get(position);
         ((ExploreViewHolder) holder).mTextView.setText(mainExploreTypeItem.getText());
-        if(isLand){
+        if (isLand) {
             ((ExploreViewHolder) holder).mImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        }else {
+        } else {
             ((ExploreViewHolder) holder).mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         }
         Picasso.get().load(mainExploreTypeItem.getImageID()).into(((ExploreViewHolder) holder).mImageView);
@@ -71,15 +71,17 @@ public class MainExploreAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        if(mExploreList == null)return 0;
+        if (mExploreList == null) return 0;
         return mExploreList.size();
     }
 
 
     class ExploreViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.main_cardview_image) ImageView mImageView;
-        @BindView(R.id.main_cardview_text) TextView mTextView;
+        @BindView(R.id.main_cardview_image)
+        ImageView mImageView;
+        @BindView(R.id.main_cardview_text)
+        TextView mTextView;
 
         ExploreViewHolder(View itemView) {
             super(itemView);

@@ -3,10 +3,8 @@ package com.curtisgetz.marsexplorer.utils;
 public final class DatePickerHelperUtil {
 
 
-
-
-    public static long getRoverStartEpoch(int roverIndex){
-        switch (roverIndex){
+    public static long getRoverStartEpoch(int roverIndex) {
+        switch (roverIndex) {
             case HelperUtils.CURIOSITY_ROVER_INDEX:
 
             case HelperUtils.SPIRIT_ROVER_INDEX:
@@ -18,8 +16,6 @@ public final class DatePickerHelperUtil {
 
         return 0L;
     }
-
-
 
 
 }

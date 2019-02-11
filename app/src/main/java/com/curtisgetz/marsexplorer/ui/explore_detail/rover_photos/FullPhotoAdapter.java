@@ -13,7 +13,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class FullPhotoAdapter extends FragmentPagerAdapter{
+public class FullPhotoAdapter extends FragmentPagerAdapter {
 
     private List<String> mUrls;
     @BindView(R.id.rover_photo_full_imageview)
@@ -25,7 +25,7 @@ public class FullPhotoAdapter extends FragmentPagerAdapter{
     }
 
 
-    public void setData(List<String> urls){
+    public void setData(List<String> urls) {
         this.mUrls = urls;
         notifyDataSetChanged();
     }
@@ -33,7 +33,7 @@ public class FullPhotoAdapter extends FragmentPagerAdapter{
 
     @Override
     public int getCount() {
-        if(mUrls == null) return 0;
+        if (mUrls == null) return 0;
         return mUrls.size();
     }
 
@@ -42,7 +42,6 @@ public class FullPhotoAdapter extends FragmentPagerAdapter{
         String url = mUrls.get(position);
         return FullPhotoPagerFragment.newInstance(url);
     }
-
 
 
 }

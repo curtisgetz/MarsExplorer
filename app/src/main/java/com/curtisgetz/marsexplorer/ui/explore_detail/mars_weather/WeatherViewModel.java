@@ -23,7 +23,7 @@ public class WeatherViewModel extends AndroidViewModel {
         mWeather = mRepository.getLatestWeather(application.getApplicationContext());
     }
 
-    public LiveData<List<WeatherDetail>> getWeather(){
+    public LiveData<List<WeatherDetail>> getWeather() {
         return mWeather;
     }
 

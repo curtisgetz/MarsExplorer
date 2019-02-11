@@ -19,7 +19,7 @@ import java.net.URL;
 /**
  * Job Service for retrieving rover manifest details from NASA.gov API and inserting into repository
  */
-public class RoverManifestJobService extends JobService   {
+public class RoverManifestJobService extends JobService {
 
     private final static int[] mRoverIndices = HelperUtils.ROVER_INDICES;
 

@@ -42,9 +42,8 @@ import butterknife.Unbinder;
  * A simple {@link Fragment} subclass for displaying the user's saved favorite photos.
  * Use the {@link FavoritePhotosFragment#newInstance()} factory method to
  * create an instance of this fragment.
- *
  */
-public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter.FavoriteClickListner{
+public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter.FavoriteClickListner {
 
     @BindView(R.id.favorite_photos_recycler)
     RecyclerView mRecyclerView;
@@ -73,9 +72,8 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
      * @return A new instance of fragment FavoritePhotosFragment.
      */
     public static FavoritePhotosFragment newInstance() {
-        return  new FavoritePhotosFragment();
+        return new FavoritePhotosFragment();
     }
-
 
 
     @Override
@@ -84,13 +82,13 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
         setHasOptionsMenu(true);
 
         FragmentActivity activity = getActivity();
-        if(activity != null) {
+        if (activity != null) {
             mAdapter = new FavoritesAdapter(this);
             mViewModel = ViewModelProviders.of(activity).get(FavoriteViewModel.class);
             mViewModel.getFavorites().observe(this, new Observer<List<FavoriteImage>>() {
                 @Override
                 public void onChanged(@Nullable List<FavoriteImage> favoriteImages) {
-                    if(favoriteImages == null) return;
+                    if (favoriteImages == null) return;
                     updateUI(favoriteImages);
 //
                 }
@@ -104,7 +102,7 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorite_photos, container, false);
-        mUnBinder =  ButterKnife.bind(this, view);
+        mUnBinder = ButterKnife.bind(this, view);
         isTwoPane = getResources().getBoolean(R.bool.is_sw600_land);
         isSw600 = getResources().getBoolean(R.bool.is_sw600);
 
@@ -119,25 +117,27 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
     /**
      * Return number of columns to use in the GridLayout. If smallest width is >=600 or if using t
      * two pane layout then use 4 columns. Otherwise use 3 columns.
+     *
      * @return number of columns to use
      */
-    private int getSpanCount(){
+    private int getSpanCount() {
         int width = getResources().getConfiguration().smallestScreenWidthDp;
-        if(width < 800) return 3;
-        if(isTwoPane) return 4;
+        if (width < 800) return 3;
+        if (isTwoPane) return 4;
         return 3;
     }
 
     /**
      * Updates Adapter with favorite images if available, if none then displays message informing user
      * there are no favorites saved yet
+     *
      * @param images List of FavoriteImage objects from View Model
      */
     private void updateUI(List<FavoriteImage> images) {
         mAdapter.setData(images);
-        if(images.size() < 1){
+        if (images.size() < 1) {
             showNoFavoritesMessage();
-        }else {
+        } else {
             hideNoFavoritesMessage();
         }
     }
@@ -159,7 +159,7 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
     public boolean onOptionsItemSelected(MenuItem item) {
         //get id of menu item selected
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case R.id.action_delete_all_favorites:
                 confirmDeleteAll();
                 return true;
@@ -172,7 +172,7 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
     @Override
     public void onPhotoClick(List<String> urls, int pos) {
         FragmentActivity activity = getActivity();
-        if(activity == null) return;
+        if (activity == null) return;
 
         ArrayList<String> urlList = new ArrayList<>(urls);
         FullPhotoFragment photoFragment = FullPhotoFragment.newInstance(activity, urlList,
@@ -188,7 +188,7 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
     /**
      * Displays a SnackBar with Action for user to confirm the deletion of all of their favorite images.
      */
-    private void confirmDeleteAll(){
+    private void confirmDeleteAll() {
         Snackbar snackbar = Snackbar.make(mCoordinator, R.string.delete_all_snack, Snackbar.LENGTH_LONG);
         snackbar.setAction(R.string.confirm_action, new View.OnClickListener() {
             @Override
@@ -202,7 +202,7 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
     /**
      * Shows message informing user there are no favorites saved yet
      */
-    private void showNoFavoritesMessage(){
+    private void showNoFavoritesMessage() {
         mNoFavIcon.setVisibility(View.VISIBLE);
         mNoFavTextView.setVisibility(View.VISIBLE);
 
@@ -211,7 +211,7 @@ public class FavoritePhotosFragment extends Fragment implements FavoritesAdapter
     /**
      * Hides message informing user there are no favorites saved yet
      */
-    private void hideNoFavoritesMessage(){
+    private void hideNoFavoritesMessage() {
         mNoFavIcon.setVisibility(View.GONE);
         mNoFavTextView.setVisibility(View.GONE);
     }

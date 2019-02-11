@@ -31,16 +31,18 @@ import butterknife.OnClick;
  */
 public class InfoDialogFragment extends DialogFragment {
 
-    @BindView(R.id.information_text) TextView mInfoText;
+    @BindView(R.id.information_text)
+    TextView mInfoText;
 
 
     /**
      * Get new instance of this fragment
-     * @param context needed to get access to resources
+     *
+     * @param context   needed to get access to resources
      * @param infoIndex index of the info requested
      * @return the new instance of the fragment
      */
-    public static InfoDialogFragment newInstance(Context context,int infoIndex){
+    public static InfoDialogFragment newInstance(Context context, int infoIndex) {
         InfoDialogFragment infoDialogFragment = new InfoDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(context.getString(R.string.info_index_key), infoIndex);
@@ -80,7 +82,7 @@ public class InfoDialogFragment extends DialogFragment {
      * Dismiss info fragment when clicked.
      */
     @OnClick({R.id.information_text, R.id.dialog_info_imageview})
-    public void closeInfo(){
+    public void closeInfo() {
         getDialog().dismiss();
     }
 

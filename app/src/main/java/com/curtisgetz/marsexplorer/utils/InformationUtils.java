@@ -21,10 +21,9 @@ public final class InformationUtils {
     public final static int CREDIT_INFO = 9;
 
 
+    public static String getInformationText(Context context, int infoIndex) {
 
-    public static String getInformationText(Context context,  int infoIndex){
-
-        switch (infoIndex){
+        switch (infoIndex) {
             case SOL_RANGE_INFO:
                 return context.getResources().getString(R.string.info_sol_text_details);
             case WEATHER_INFO:
@@ -49,7 +48,6 @@ public final class InformationUtils {
                 return context.getResources().getString(R.string.info_error_text);
         }
     }
-
 
 
 }

@@ -26,13 +26,13 @@ import butterknife.ButterKnife;
 /**
  * RecyclerView Adapter to display all of the user's {@link FavoriteImage}'s.
  */
-public class FavoritesAdapter extends RecyclerView.Adapter{
+public class FavoritesAdapter extends RecyclerView.Adapter {
 
 
     private List<FavoriteImage> mFavorites;
     private FavoriteClickListner mClickListner;
 
-    public interface FavoriteClickListner{
+    public interface FavoriteClickListner {
         void onPhotoClick(List<String> urls, int pos);
     }
 
@@ -43,8 +43,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter{
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view = LayoutInflater.from(parent.getContext())
-               .inflate(R.layout.favorite_photo_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.favorite_photo_item, parent, false);
 
         return new FavoriteViewHolder(view);
     }
@@ -54,12 +54,12 @@ public class FavoritesAdapter extends RecyclerView.Adapter{
         String photoUrl = mFavorites.get(position).getImageUrl();
 
         //Picasso will throw exception with blank string. Do check as fallback
-        if(!photoUrl.isEmpty()){
+        if (!photoUrl.isEmpty()) {
             Picasso.get().load(photoUrl)
                     .placeholder(R.drawable.marsplaceholderfull)
                     .error(R.drawable.marsimageerror)
                     .into(((FavoriteViewHolder) holder).mImageView);
-        }else {
+        } else {
             Picasso.get().load(R.drawable.marsimageerror)
                     .placeholder(R.drawable.marsplaceholderfull)
                     .fit()
@@ -70,27 +70,29 @@ public class FavoritesAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        if(mFavorites == null)return 0;
+        if (mFavorites == null) return 0;
         return mFavorites.size();
     }
 
     /**
      * Public method to clear and set the data in Adapter.
+     *
      * @param favoriteImages the List of {@link FavoriteImage} objects to set in the Adapter
      */
-    public void setData(List<FavoriteImage> favoriteImages){
+    public void setData(List<FavoriteImage> favoriteImages) {
         mFavorites = new ArrayList<>(favoriteImages);
         notifyDataSetChanged();
     }
 
     /**
      * Extracts the url from each {@link FavoriteImage} into a List.
+     *
      * @return the List of urls from the {@link FavoriteImage}s.
      */
-    private List<String> getUrlsOfFavorites(){
-        if(mFavorites == null) return null;
+    private List<String> getUrlsOfFavorites() {
+        if (mFavorites == null) return null;
         List<String> urls = new ArrayList<>();
-        for(FavoriteImage image:mFavorites){
+        for (FavoriteImage image : mFavorites) {
             urls.add(image.getImageUrl());
         }
         return urls;
@@ -113,6 +115,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter{
 
         /**
          * Sends a list of the favorites urls and clicked position for the ViewPager to use
+         *
          * @param view clicked View
          */
         @Override

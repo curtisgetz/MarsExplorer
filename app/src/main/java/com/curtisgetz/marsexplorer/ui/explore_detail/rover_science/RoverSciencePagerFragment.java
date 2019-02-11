@@ -35,7 +35,7 @@ public class RoverSciencePagerFragment extends Fragment {
     }
 
 
-    public static RoverSciencePagerFragment newInstance(RoverScience roverScience){
+    public static RoverSciencePagerFragment newInstance(RoverScience roverScience) {
         RoverSciencePagerFragment fragment = new RoverSciencePagerFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(HelperUtils.SCIENCE_PARCELABLE_EXTRA, roverScience);
@@ -51,7 +51,7 @@ public class RoverSciencePagerFragment extends Fragment {
         mUnBinder = ButterKnife.bind(this, view);
 
         Bundle bundle = getArguments();
-        if(bundle != null) {
+        if (bundle != null) {
             RoverScience roverScience = bundle.getParcelable(HelperUtils.SCIENCE_PARCELABLE_EXTRA);
             if (roverScience != null) {
                 mScienceText.setText(roverScience.getmDetails());

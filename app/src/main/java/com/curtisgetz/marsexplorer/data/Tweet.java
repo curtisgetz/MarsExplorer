@@ -18,7 +18,7 @@ import android.os.Parcelable;
  * Room Entity
  */
 @Entity(tableName = "tweet")
-public class Tweet implements Parcelable{
+public class Tweet implements Parcelable {
 
     @PrimaryKey
     private int mTweetId;
@@ -37,7 +37,7 @@ public class Tweet implements Parcelable{
     }
 
     @Ignore
-    public Tweet(Parcel parcel){
+    public Tweet(Parcel parcel) {
         mTweetId = parcel.readInt();
         mUserId = parcel.readInt();
         mUserName = parcel.readString();
@@ -46,7 +46,7 @@ public class Tweet implements Parcelable{
     }
 
     @Ignore
-    public Tweet(){
+    public Tweet() {
 
     }
 
@@ -114,7 +114,7 @@ public class Tweet implements Parcelable{
     }
 
 
-    public final static Parcelable.Creator<Tweet> CREATOR = new Parcelable.Creator<Tweet>(){
+    public final static Parcelable.Creator<Tweet> CREATOR = new Parcelable.Creator<Tweet>() {
         @Override
         public Tweet createFromParcel(Parcel parcel) {
             return new Tweet(parcel);

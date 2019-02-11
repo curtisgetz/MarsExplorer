@@ -24,7 +24,7 @@ public class WeatherDetailsAdapter extends RecyclerView.Adapter {
     private List<WeatherDetail> mWeatherDetails;
     private DetailInfoClick mClickListener;
 
-    public interface DetailInfoClick{
+    public interface DetailInfoClick {
         void onDetailInfoClick(int index);
     }
 
@@ -33,7 +33,7 @@ public class WeatherDetailsAdapter extends RecyclerView.Adapter {
     }
 
 
-    public void setData(List<WeatherDetail> weatherDetails){
+    public void setData(List<WeatherDetail> weatherDetails) {
         this.mWeatherDetails = new ArrayList<>(weatherDetails);
         notifyDataSetChanged();
     }
@@ -56,13 +56,12 @@ public class WeatherDetailsAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        if(mWeatherDetails == null)return 0;
+        if (mWeatherDetails == null) return 0;
         return mWeatherDetails.size();
     }
 
 
-
-    class WeatherViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class WeatherViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.weather_detail_label)
         TextView mWeatherLabel;
@@ -83,12 +82,11 @@ public class WeatherDetailsAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(this);
         }
 
-        void setItem(WeatherDetail weatherDetail){
+        void setItem(WeatherDetail weatherDetail) {
             this.mWeatherDetail = weatherDetail;
             mWeatherLabel.setText(mWeatherDetail.getmLabel());
             mWeatherValue.setText(mWeatherDetail.getmValue());
         }
-
 
 
         @Override

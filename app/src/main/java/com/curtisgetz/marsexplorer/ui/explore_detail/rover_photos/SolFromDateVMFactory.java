@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.curtisgetz.marsexplorer.utils.AppExecutors;
 
-public class SolFromDateVMFactory extends ViewModelProvider.NewInstanceFactory{
+public class SolFromDateVMFactory extends ViewModelProvider.NewInstanceFactory {
 
 
     private Application mApplication;

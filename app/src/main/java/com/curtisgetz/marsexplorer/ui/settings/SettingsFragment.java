@@ -13,8 +13,8 @@ import com.curtisgetz.marsexplorer.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class  SettingsFragment extends PreferenceFragmentCompat implements
-        SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceChangeListener{
+public class SettingsFragment extends PreferenceFragmentCompat implements
+        SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceChangeListener {
 
 
     /*Tweets preference change is not functioning at this time. This preference requires FCM topics

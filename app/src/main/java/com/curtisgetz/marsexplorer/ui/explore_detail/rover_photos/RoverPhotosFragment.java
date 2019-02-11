@@ -54,29 +54,50 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     private static boolean hasShownPrefSnack = false;
 
     //RecyclerViews for each camera
-    @BindView(R.id.photos_fhaz_recyclerview) RecyclerView mFhazRecyclerView;
-    @BindView(R.id.photos_rhaz_recyclerview) RecyclerView mRhazRecyclerView;
-    @BindView(R.id.photos_mast_recyclerview) RecyclerView mMastRecyclerView;
-    @BindView(R.id.photos_chemcam_recyclerview) RecyclerView mChemcamRecyclerView;
-    @BindView(R.id.photos_mahli_recyclerview) RecyclerView mMahliRecyclerView;
-    @BindView(R.id.photos_mardi_recyclerview) RecyclerView mMardiRecyclerView;
-    @BindView(R.id.photos_navcam_recyclerview) RecyclerView mNavcamRecyclerView;
-    @BindView(R.id.photos_pancam_recyclerview) RecyclerView mPancamRecyclerView;
-    @BindView(R.id.photos_minites_recyclerview) RecyclerView mMinitesRecyclerView;
+    @BindView(R.id.photos_fhaz_recyclerview)
+    RecyclerView mFhazRecyclerView;
+    @BindView(R.id.photos_rhaz_recyclerview)
+    RecyclerView mRhazRecyclerView;
+    @BindView(R.id.photos_mast_recyclerview)
+    RecyclerView mMastRecyclerView;
+    @BindView(R.id.photos_chemcam_recyclerview)
+    RecyclerView mChemcamRecyclerView;
+    @BindView(R.id.photos_mahli_recyclerview)
+    RecyclerView mMahliRecyclerView;
+    @BindView(R.id.photos_mardi_recyclerview)
+    RecyclerView mMardiRecyclerView;
+    @BindView(R.id.photos_navcam_recyclerview)
+    RecyclerView mNavcamRecyclerView;
+    @BindView(R.id.photos_pancam_recyclerview)
+    RecyclerView mPancamRecyclerView;
+    @BindView(R.id.photos_minites_recyclerview)
+    RecyclerView mMinitesRecyclerView;
     //TextViews for camera name labels
-    @BindView(R.id.photos_fhaz_label) TextView mFhazLabel;
-    @BindView(R.id.photos_rhaz_label) TextView mRhazLabel;
-    @BindView(R.id.photos_mast_label) TextView mMastLabel;
-    @BindView(R.id.photos_chemcam_label) TextView mChemcamLabel;
-    @BindView(R.id.photos_mahli_label) TextView mMahliLabel;
-    @BindView(R.id.photos_mardi_label) TextView mMardiLabel;
-    @BindView(R.id.photos_navcam_label) TextView mNavcamLabel;
-    @BindView(R.id.photos_pancam_label) TextView mPancamLabel;
-    @BindView(R.id.photos_minites_label) TextView mMinitesLabel;
+    @BindView(R.id.photos_fhaz_label)
+    TextView mFhazLabel;
+    @BindView(R.id.photos_rhaz_label)
+    TextView mRhazLabel;
+    @BindView(R.id.photos_mast_label)
+    TextView mMastLabel;
+    @BindView(R.id.photos_chemcam_label)
+    TextView mChemcamLabel;
+    @BindView(R.id.photos_mahli_label)
+    TextView mMahliLabel;
+    @BindView(R.id.photos_mardi_label)
+    TextView mMardiLabel;
+    @BindView(R.id.photos_navcam_label)
+    TextView mNavcamLabel;
+    @BindView(R.id.photos_pancam_label)
+    TextView mPancamLabel;
+    @BindView(R.id.photos_minites_label)
+    TextView mMinitesLabel;
 
-    @BindView(R.id.rover_photos_main_progress) ProgressBar mMainProgress;
-    @BindView(R.id.rover_photos_title) TextView mTitleText;
-    @BindView(R.id.rover_photos_coordinator_layout) CoordinatorLayout mCoordinatorLayout;
+    @BindView(R.id.rover_photos_main_progress)
+    ProgressBar mMainProgress;
+    @BindView(R.id.rover_photos_title)
+    TextView mTitleText;
+    @BindView(R.id.rover_photos_coordinator_layout)
+    CoordinatorLayout mCoordinatorLayout;
 
     private RoverPhotosAdapter mFhazAdapter;
     private RoverPhotosAdapter mRhazAdapter;
@@ -89,11 +110,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     private RoverPhotosAdapter mMinitesAdapter;
 
 
-
-
-
-
-    public static RoverPhotosFragment newInstance(Context context, int roverIndex, String sol, int searchType, String date){
+    public static RoverPhotosFragment newInstance(Context context, int roverIndex, String sol, int searchType, String date) {
         RoverPhotosFragment fragment = new RoverPhotosFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(context.getResources().getString(R.string.rover_index_extra), roverIndex);
@@ -109,7 +126,6 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -122,28 +138,28 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
         hideAllCameraViews();
         showMainProgress();
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             Bundle bundle = getArguments();
 
             mRoverIndex = bundle.getInt(getString(R.string.rover_index_extra));
             int searchType = bundle.getInt(getString(R.string.photo_search_type));
-            if(searchType == SEARCH_BY_DATE){
+            if (searchType == SEARCH_BY_DATE) {
                 String date = bundle.getString(getString(R.string.date_extra));
-                SolFromDateVMFactory solDateFactory = new SolFromDateVMFactory(getActivity().getApplication(), mRoverIndex,date);
+                SolFromDateVMFactory solDateFactory = new SolFromDateVMFactory(getActivity().getApplication(), mRoverIndex, date);
                 mSolDateViewModel = ViewModelProviders.of(this, solDateFactory).get(SolFromDateViewModel.class);
                 mSolDateViewModel.getSolLiveData().observe(this, new Observer<String>() {
                     @Override
                     public void onChanged(@Nullable String sol) {
-                        if(sol == null) return;
+                        if (sol == null) return;
                         setupCameraViewModel(sol);
                     }
                 });
-            }else {
+            } else {
                 mSol = bundle.getString(getString(R.string.sol_number_extra_key));
                 setupCameraViewModel(mSol);
             }
 
-        }else {
+        } else {
             mSol = savedInstanceState.getString(getString(R.string.sol_number_saved_key),
                     HelperUtils.DEFAULT_SOL_NUMBER);
             mRoverIndex = savedInstanceState.getInt(getString(R.string.rover_index_saved_key),
@@ -153,16 +169,17 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
         }
 
         setRoverTitle();
-        
+
 
         return view;
     }
 
     /**
      * Setup View Model for Cameras
+     *
      * @param sol the sol to search for pictures
      */
-    private void setupCameraViewModel(String sol){
+    private void setupCameraViewModel(String sol) {
         mSol = sol;
         CamerasVMFactory factory = new CamerasVMFactory(getActivity().getApplication(), mRoverIndex, sol);
         mViewModel = ViewModelProviders.of(this, factory).get(CamerasViewModel.class);
@@ -189,19 +206,20 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
 
     /**
      * Create a Linear Layout Manager for each RecyclerView
+     *
      * @return A new Horizontal Linear Layout Manager
      */
-    private LinearLayoutManager createLayoutManager(){
+    private LinearLayoutManager createLayoutManager() {
         return new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
     }
 
     /**
      * Set up Recycler Views for cameras with pictures
      */
-    private void setupUI(){
+    private void setupUI() {
         //if camera has any images then setup adapter and show views.
         boolean anyCameras = false;
-        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_FHAZ_INDEX) != null){
+        if (mViewModel.getImageUrlsForCamera(HelperUtils.CAM_FHAZ_INDEX) != null) {
             mFhazAdapter = new RoverPhotosAdapter(this);
             mFhazRecyclerView.setLayoutManager(createLayoutManager());
             mFhazRecyclerView.setAdapter(mFhazAdapter);
@@ -210,7 +228,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mFhazLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
-        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_RHAZ_INDEX) != null){
+        if (mViewModel.getImageUrlsForCamera(HelperUtils.CAM_RHAZ_INDEX) != null) {
             mRhazAdapter = new RoverPhotosAdapter(this);
             mRhazRecyclerView.setLayoutManager(createLayoutManager());
             mRhazRecyclerView.setAdapter(mRhazAdapter);
@@ -219,7 +237,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mRhazLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
-        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MAST_INDEX) != null){
+        if (mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MAST_INDEX) != null) {
             mMastAdapter = new RoverPhotosAdapter(this);
             mMastRecyclerView.setLayoutManager(createLayoutManager());
             mMastRecyclerView.setAdapter(mMastAdapter);
@@ -228,7 +246,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mMastLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
-        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_CHEMCAM_INDEX) != null){
+        if (mViewModel.getImageUrlsForCamera(HelperUtils.CAM_CHEMCAM_INDEX) != null) {
             mChemcamAdapter = new RoverPhotosAdapter(this);
             mChemcamRecyclerView.setLayoutManager(createLayoutManager());
             mChemcamRecyclerView.setAdapter(mChemcamAdapter);
@@ -237,7 +255,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mChemcamLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
-        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MAHLI_INDEX) != null){
+        if (mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MAHLI_INDEX) != null) {
             mMahliAdapter = new RoverPhotosAdapter(this);
             mMahliRecyclerView.setLayoutManager(createLayoutManager());
             mMahliRecyclerView.setAdapter(mMahliAdapter);
@@ -246,7 +264,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mMahliLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
-        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MARDI_INDEX) != null){
+        if (mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MARDI_INDEX) != null) {
             mMardiAdapter = new RoverPhotosAdapter(this);
             mMardiRecyclerView.setLayoutManager(createLayoutManager());
             mMardiRecyclerView.setAdapter(mMardiAdapter);
@@ -255,7 +273,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mMardiLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
-        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_NAVCAM_INDEX) != null){
+        if (mViewModel.getImageUrlsForCamera(HelperUtils.CAM_NAVCAM_INDEX) != null) {
             mNavcamAdapter = new RoverPhotosAdapter(this);
             mNavcamRecyclerView.setLayoutManager(createLayoutManager());
             mNavcamRecyclerView.setAdapter(mNavcamAdapter);
@@ -264,7 +282,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mNavcamLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
-        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_PANCAM_INDEX) != null){
+        if (mViewModel.getImageUrlsForCamera(HelperUtils.CAM_PANCAM_INDEX) != null) {
             mPancamAdapter = new RoverPhotosAdapter(this);
             mPancamRecyclerView.setLayoutManager(createLayoutManager());
             mPancamRecyclerView.setAdapter(mPancamAdapter);
@@ -273,7 +291,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mPancamLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
-        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MINITES_INDEX) != null){
+        if (mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MINITES_INDEX) != null) {
             mMinitesAdapter = new RoverPhotosAdapter(this);
             mMinitesRecyclerView.setLayoutManager(createLayoutManager());
             mMinitesRecyclerView.setAdapter(mMinitesAdapter);
@@ -283,9 +301,9 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             anyCameras = true;
         }
 
-        if(!anyCameras){
+        if (!anyCameras) {
             displayNoCameraSnack();
-        }else {
+        } else {
             updateTitleText();
         }
         hideMainProgress();
@@ -295,16 +313,16 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     /**
      * Display a SnackBar message informing the user if images are being limited or if all are being displayed
      */
-    private void displayPrefSnack(){
-        if(hasShownPrefSnack) return;
+    private void displayPrefSnack() {
+        if (hasShownPrefSnack) return;
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean gettingAllPhotos = sharedPreferences.getBoolean(getString(R.string.pref_get_all_photos_key),
                 getResources().getBoolean(R.bool.pref_limit_photos_default));
         String snackMessage;
-        if(!gettingAllPhotos){
+        if (!gettingAllPhotos) {
             snackMessage = getString(R.string.limiting_photos_snack);
-        }else {
+        } else {
             snackMessage = getString(R.string.getting_all_photos_snack);
         }
 
@@ -324,33 +342,33 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     private void displayNoCameraSnack() {
         mTitleText.setText(getString(R.string.no_photos));
         final Snackbar snackbar = Snackbar.make(mCoordinatorLayout, R.string.no_photos, Snackbar.LENGTH_LONG);
-        snackbar.setAction(R.string.snackbar_back, new View.OnClickListener(){
+        snackbar.setAction(R.string.snackbar_back, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(getActivity() == null) return;
+                if (getActivity() == null) return;
                 getActivity().onBackPressed();
                 snackbar.dismiss();
             }
-        } );
+        });
         snackbar.show();
     }
 
-    private void setRoverTitle(){
+    private void setRoverTitle() {
         String roverName = HelperUtils.getRoverNameByIndex(getContext(), mRoverIndex);
         mTitleText.setText(roverName);
     }
 
-    private void updateTitleText(){
+    private void updateTitleText() {
         String roverName = HelperUtils.getRoverNameByIndex(getContext(), mRoverIndex);
         Cameras cameras = mViewModel.getCameras().getValue();
-        if(cameras == null) return;
+        if (cameras == null) return;
         mSol = cameras.getSol();
         mDateString = cameras.getEarthDate();
-        String title = TextUtils.join(" - ", new String[] {roverName, mSol, mDateString});
+        String title = TextUtils.join(" - ", new String[]{roverName, mSol, mDateString});
         mTitleText.setText(title);
     }
 
-    private void hideAllCameraViews(){
+    private void hideAllCameraViews() {
         mFhazLabel.setVisibility(View.GONE);
         mFhazRecyclerView.setVisibility(View.GONE);
         mRhazLabel.setVisibility(View.GONE);
@@ -371,7 +389,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
         mMinitesRecyclerView.setVisibility(View.GONE);
     }
 
-    private void showAllViews(){
+    private void showAllViews() {
         mFhazLabel.setVisibility(View.VISIBLE);
         mFhazRecyclerView.setVisibility(View.VISIBLE);
         mRhazLabel.setVisibility(View.VISIBLE);
@@ -392,18 +410,18 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
         mMinitesRecyclerView.setVisibility(View.VISIBLE);
     }
 
-    private void hideMainProgress(){
+    private void hideMainProgress() {
         mMainProgress.setVisibility(View.GONE);
     }
 
-    private void showMainProgress(){
+    private void showMainProgress() {
         mMainProgress.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onPhotoClick(List<String> url, View view, int clickedPos) {
         FragmentActivity activity = getActivity();
-        if(activity == null) return;
+        if (activity == null) return;
 
         ArrayList<String> urls = new ArrayList<>(url);
         FullPhotoFragment photoFragment = FullPhotoFragment.newInstance(activity, urls,
@@ -420,13 +438,13 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
      * Show info Dialog Fragment informing user the app is not downloading all images by default.
      * Set SharedPreferences so this is only displayed on first run
      */
-    private void shownPhotoLimitDialog(){
+    private void shownPhotoLimitDialog() {
         //see if dialog has been shown to user before.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        if(!sharedPreferences.getBoolean(getString(R.string.pref_shown_photos_info),
-                getResources().getBoolean(R.bool.pref_shown_photos_dialog_default))){
+        if (!sharedPreferences.getBoolean(getString(R.string.pref_shown_photos_info),
+                getResources().getBoolean(R.bool.pref_shown_photos_dialog_default))) {
             FragmentActivity activity = getActivity();
-            if(activity!=null){
+            if (activity != null) {
                 InfoDialogFragment infoDialogFragment = InfoDialogFragment.newInstance(activity, InformationUtils.PHOTO_LIMIT_PREF);
                 infoDialogFragment.show(activity.getSupportFragmentManager(), InformationUtils.class.getSimpleName());
                 //change shared pref to true so dialog only shows one time. Snackbar will continue to show sometimes.

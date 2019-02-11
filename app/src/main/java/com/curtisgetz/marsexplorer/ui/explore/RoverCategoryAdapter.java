@@ -96,14 +96,10 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
         TextView mTextView;
         @BindView(R.id.sol_search_button_bar)
         LinearLayout mSolSearchBtnBar;
-        //@BindView(R.id.sol_edit_text)
-        // EditText mSolEdit;
         @BindView(R.id.search_sol_button)
         Button mSolSearchBtn;
         @BindView(R.id.random_sol_button)
         Button mSolRandBtn;
-        //@BindView(R.id.sol_search_label)
-        // mSolSearchLabel;
         @BindView(R.id.calendar_sol_button)
         Button mSolCalendarBtn;
 
@@ -149,10 +145,9 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
             mImageView.setContentDescription(mCategory.getContentDescription());
             //set visibility of Views for searching rover pictures
             mSolSearchBtnBar.setVisibility(visibility);
-            // mSolEdit.setVisibility(visibility);
             mSolRandBtn.setVisibility(visibility);
             mSolSearchBtn.setVisibility(visibility);
-            // mSolSearchLabel.setVisibility(visibility);
+
             //if views are visible then set click listeners
             if (mSolSearchBtn.getVisibility() == View.VISIBLE) {
                 final int catIndex = mCategory.getmCatIndex();
@@ -176,32 +171,6 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
                 });
             }
 
-         /*   if(mSolEdit.getVisibility() == View.VISIBLE){
-
-                //click submit button when 'Done' is pressed on soft keyboard
-                //confirm input is a number, if not set it to 200
-                mSolEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                    @Override
-                    public boolean onEditorAction(TextView textView, int action, KeyEvent keyEvent) {
-                        if(action == EditorInfo.IME_ACTION_DONE){
-                            mCatClickListener.onSolSearchClick(mSolEdit.getText().toString(), mCategory.getmCatIndex());
-                        }
-                        return false;
-                    }
-                });
-                mSolSearchBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mCatClickListener.onSolSearchClick(mSolEdit.getText().toString(), mCategory.getmCatIndex());
-                    }
-                });
-                mSolRandBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mCatClickListener.onRandomSolClick(mCategory.getmCatIndex());
-                    }
-                });
-            }*/
         }
 
 

@@ -18,7 +18,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(indices = {@Index(
         value = {"mImageUrl"},
         unique = true)
-        })
+})
 public class FavoriteImage {
 
     @PrimaryKey(autoGenerate = true)
