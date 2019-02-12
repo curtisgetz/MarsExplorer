@@ -184,7 +184,7 @@ public class Cameras {
      * @param cameraIndex index of camera. Used to check each camera for photos
      * @return true if camera has any photo urls. false if camera
      */
-    public boolean isCameraActive(int cameraIndex) {
+    public boolean isCameraActive(@HelperUtils.CAMERA_INDEX int cameraIndex) {
         //if list has a size greater than 0, the camera has images and is considered 'active'
         switch (cameraIndex) {
             case HelperUtils.CAM_FHAZ_INDEX:

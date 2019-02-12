@@ -41,7 +41,7 @@ class CamerasViewModel extends ViewModel {
      * @param cameraIndex index of camera to get images from
      * @return List of urls (if any)
      */
-    List<String> getImageUrlsForCamera(int cameraIndex) {
+    List<String> getImageUrlsForCamera(@HelperUtils.CAMERA_INDEX int cameraIndex) {
         // if there are no images for the camera, return null.
         // Otherwise return a List of Strings (the urls)
         Cameras cameras = mCameras.getValue();

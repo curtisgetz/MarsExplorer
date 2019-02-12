@@ -72,7 +72,7 @@ public class MarsExploreActivity extends MarsBaseActivity implements
      * Set Adapter data with explore categories to update the UI
      */
     private void populateUI() {
-        List<ExploreCategory> categories = HelperUtils.getExploreCategories(this, HelperUtils.MARS_EXPLORE_INDEX);
+        List<ExploreCategory> categories = HelperUtils.getExploreCategories(this);
         mAdapter.setData(categories);
     }
 

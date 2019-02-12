@@ -8,12 +8,16 @@
 package com.curtisgetz.marsexplorer.utils;
 
 import android.content.Context;
+import android.support.annotation.IntDef;
+import android.support.annotation.NavigationRes;
 
 import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.data.MainExploreType;
 import com.curtisgetz.marsexplorer.data.RoverScience;
 import com.curtisgetz.marsexplorer.data.rover_explore.ExploreCategory;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +28,7 @@ import java.util.List;
 public final class HelperUtils {
 
 
+    //TODO SEPARATE INTO MORE UTILITY CLASSES BASED ON INDEX TYPE.
     public final static String PHOTO_PAGER_URL_EXTRA = "photo_url_extra";
     public final static String SCIENCE_PARCELABLE_EXTRA = "science_parcelable_extra";
 
@@ -37,6 +42,25 @@ public final class HelperUtils {
     public final static long OPPORTUNITY_LANDING_MILLISECONDS = 1074988800000L; // Jan 25, 2004
     public final static long CURIOSITY_LANDING_MILLISECONDS = 1344211200000L; // Aug 6, 2012
 
+    //Sol start for each rover
+    public final static int CURIOSITY_SOL_START = 0;
+    public final static int OPPORTUNITY_SOL_START = 1;
+    public final static int SPIRIT_SOL_START = 1;
+    //all rovers have at least 2000 sols. use if any errors getting true max sol
+    public final static int DEFAULT_MAX_SOL = 2000;
+
+
+    @IntDef({MARS_EXPLORE_INDEX, CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface EXPLORE_INDEX {
+    }
+
+    @IntDef({CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface ROVER_INDEX {
+    }
+
+
     //EXPLORE INDICES
     public final static int MARS_EXPLORE_INDEX = 0;
     public final static int CURIOSITY_ROVER_INDEX = 1;
@@ -44,6 +68,24 @@ public final class HelperUtils {
     public final static int SPIRIT_ROVER_INDEX = 3;
 
     public final static int[] ROVER_INDICES = {CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX};
+
+
+    @IntDef({MARS_WEATHER_CAT_INDEX, MARS_FACTS_CAT_INDEX, MARS_FAVORITES_CAT_INDEX})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface MARS_EXPLORE_CATEGORY_INDEX {
+    }
+
+    @IntDef({ROVER_PICTURES_CAT_INDEX, ROVER_INFO_CAT_INDEX, ROVER_SCIENCE_CAT_INDEX, ROVER_TWEETS_CAT_INDEX})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface ROVER_CATEGORY_INDEX {
+    }
+
+    @IntDef({ROVER_PICTURES_CAT_INDEX, ROVER_INFO_CAT_INDEX, ROVER_SCIENCE_CAT_INDEX, ROVER_TWEETS_CAT_INDEX,
+            MARS_WEATHER_CAT_INDEX, MARS_FACTS_CAT_INDEX, MARS_FAVORITES_CAT_INDEX})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface EXPLORE_CATEGORY_INDEX {
+    }
+
 
     //MARS EXPLORE CATEGORY INDICES
     public final static int MARS_WEATHER_CAT_INDEX = 100;
@@ -59,20 +101,21 @@ public final class HelperUtils {
     public final static int ROVER_SCIENCE_CAT_INDEX = 2;
     public final static int ROVER_TWEETS_CAT_INDEX = 3;
 
+
     //Set available categories for each rover
-    public final static int[] CURIOSITY_CATEGORIES = {ROVER_PICTURES_CAT_INDEX,
+    private final static int[] CURIOSITY_CATEGORIES = {ROVER_PICTURES_CAT_INDEX,
             ROVER_INFO_CAT_INDEX, ROVER_SCIENCE_CAT_INDEX, MARS_FAVORITES_CAT_INDEX};
     private final static int[] OPPORTUNITY_CATEGORIES = {ROVER_PICTURES_CAT_INDEX,
             ROVER_INFO_CAT_INDEX, ROVER_SCIENCE_CAT_INDEX, MARS_FAVORITES_CAT_INDEX};
     private final static int[] SPIRIT_CATEGORIES = {ROVER_PICTURES_CAT_INDEX,
             ROVER_INFO_CAT_INDEX, ROVER_SCIENCE_CAT_INDEX, MARS_FAVORITES_CAT_INDEX};
 
-    //Sol start for each rover
-    public final static int CURIOSITY_SOL_START = 0;
-    public final static int OPPORTUNITY_SOL_START = 1;
-    public final static int SPIRIT_SOL_START = 1;
-    //all rovers have at least 2000 sols. use if any errors getting true max sol
-    public final static int DEFAULT_MAX_SOL = 2000;
+
+    @IntDef({CAM_FHAZ_INDEX, CAM_RHAZ_INDEX, CAM_MAST_INDEX, CAM_CHEMCAM_INDEX, CAM_MAHLI_INDEX,
+            CAM_MARDI_INDEX, CAM_NAVCAM_INDEX, CAM_PANCAM_INDEX, CAM_MINITES_INDEX})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface CAMERA_INDEX {
+    }
 
     //CAMERA INDICES
     public final static int CAM_FHAZ_INDEX = 0;
@@ -85,15 +128,51 @@ public final class HelperUtils {
     public final static int CAM_PANCAM_INDEX = 7;
     public final static int CAM_MINITES_INDEX = 8;
 
-    //WEATHER DETAILS INDICES
-    public final static int WEATHER_MIN_TEMP_INDEX = 3;
-    public final static int WEATHER_MAX_TEMP_INDEX = 4;
-    public final static int WEATHER_ATMO_INDEX = 5;
-    public final static int WEATHER_SUNSET_INDEX = 6;
-    public final static int WEATHER_SUNRISE_INDEX = 7;
-    public final static int WEATHER_MIN_GRND_TMP_INDEX = 9;
-    public final static int WEATHER_MAX_GRND_TMP_INDEX = 10;
 
+    @IntDef({WEATHER_MIN_TEMP_INDEX, WEATHER_MAX_TEMP_INDEX, WEATHER_ATMO_INDEX, WEATHER_SUNSET_INDEX,
+            WEATHER_SUNRISE_INDEX, WEATHER_MIN_GRND_TMP_INDEX, WEATHER_MAX_GRND_TMP_INDEX})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface WEATHER_INDEX {
+    }
+
+    //WEATHER DETAILS INDICES
+    final static int WEATHER_MIN_TEMP_INDEX = 3;
+    final static int WEATHER_MAX_TEMP_INDEX = 4;
+    final static int WEATHER_ATMO_INDEX = 5;
+    final static int WEATHER_SUNSET_INDEX = 6;
+    final static int WEATHER_SUNRISE_INDEX = 7;
+    final static int WEATHER_MIN_GRND_TMP_INDEX = 9;
+    final static int WEATHER_MAX_GRND_TMP_INDEX = 10;
+
+
+    @IntDef({SCIENCE_CHEMCAM_INDEX, SCIENCE_MAHLI_INDEX, SCIENCE_MINITES_INDEX, SCIENCE_REMS_INDEX,
+            SCIENCE_APXS_INDEX, SCIENCE_CHEMIN_INDEX, SCIENCE_SAM_INDEX, SCIENCE_RAD_INDEX, SCIENCE_DAN_INDEX,
+            SCIENCE_MB_INDEX, SCIENCE_MI_INDEX, SCIENCE_MASTCAM_INDEX, SCIENCE_PANCAM_INDEX, SCIENCE_HAZCAM_INDEX,
+            SCIENCE_NAVCAM_INDEX, SCIENCE_DRT_INDEX, SCIENCE_ROBOTIC_ARM_INDEX, SCIENCE_LEGS_WHEELS_INDEX,
+            SCIENCE_POWER_INDEX, SCIENCE_ANTENNA_INDEX, SCIENCE_BRAINS_INDEX, SCIENCE_MAGNET_INDEX,
+            SCIENCE_SOLAR_INDEX, SCIENCE_BODY_INDEX, SCIENCE_TEMP_INDEX, SCIENCE_MARDI_INDEX,
+            SCIENCE_RAT_INDEX
+    })
+    @Retention(RetentionPolicy.SOURCE)
+    @interface ALL_SCIENCE_INDEX {
+    }
+
+    @IntDef({SCIENCE_MASTCAM_INDEX, SCIENCE_CHEMCAM_INDEX, SCIENCE_REMS_INDEX, SCIENCE_HAZCAM_INDEX,
+            SCIENCE_NAVCAM_INDEX, SCIENCE_MAHLI_INDEX, SCIENCE_APXS_INDEX, SCIENCE_CHEMIN_INDEX,
+            SCIENCE_SAM_INDEX, SCIENCE_DRT_INDEX, SCIENCE_RAD_INDEX, SCIENCE_DAN_INDEX, SCIENCE_MARDI_INDEX,
+            SCIENCE_ROBOTIC_ARM_INDEX, SCIENCE_LEGS_WHEELS_INDEX, SCIENCE_POWER_INDEX, SCIENCE_ANTENNA_INDEX,
+            SCIENCE_BRAINS_INDEX})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface CURIOSITY_SCIENCE_INDEX {
+    }
+
+    @IntDef({SCIENCE_PANCAM_INDEX, SCIENCE_NAVCAM_INDEX, SCIENCE_MINITES_INDEX, SCIENCE_MB_INDEX,
+            SCIENCE_MI_INDEX, SCIENCE_APXS_INDEX, SCIENCE_RAT_INDEX, SCIENCE_MAGNET_INDEX, SCIENCE_SOLAR_INDEX,
+            SCIENCE_BODY_INDEX, SCIENCE_TEMP_INDEX, SCIENCE_BRAINS_INDEX, SCIENCE_ROBOTIC_ARM_INDEX,
+            SCIENCE_LEGS_WHEELS_INDEX, SCIENCE_ANTENNA_INDEX})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface OPP_SPIRIT_SCIENCE_INDEX {
+    }
 
     //ROVER INFO INDICES
     private final static int SCIENCE_MASTCAM_INDEX = 200;
@@ -153,6 +232,7 @@ public final class HelperUtils {
     private static final int[] SPIRIT_SCIENCE_INDICES = {SCIENCE_MINITES_INDEX,
             SCIENCE_MB_INDEX, SCIENCE_APXS_INDEX, SCIENCE_MI_INDEX};
 
+
     /**
      * Returns a List of RoverScience objects based on the rover index and the rover category index.
      *
@@ -162,7 +242,9 @@ public final class HelperUtils {
      * @return the list of RoverScience objects
      */
 
-    public static List<RoverScience> getScienceList(Context context, int roverIndex, int roverCatIndex) {
+    public static List<RoverScience> getScienceList(Context context,
+                                                    @ROVER_INDEX int roverIndex,
+                                                    @ROVER_CATEGORY_INDEX int roverCatIndex) {
         int[] indices;
         switch (roverIndex) {
             case CURIOSITY_ROVER_INDEX:
@@ -205,7 +287,7 @@ public final class HelperUtils {
         return roverScienceList;
     }
 
-    private static String getScienceTabTitle(Context context, int scienceIndex) {
+    private static String getScienceTabTitle(Context context, @ALL_SCIENCE_INDEX int scienceIndex) {
         switch (scienceIndex) {
             case SCIENCE_MASTCAM_INDEX:
                 return context.getString(R.string.science_mast);
@@ -267,7 +349,8 @@ public final class HelperUtils {
     }
 
 
-    private static String getScienceText(Context context, int scienceIndex, int roverIndex) {
+    private static String getScienceText(Context context, @ALL_SCIENCE_INDEX int scienceIndex,
+                                         @ROVER_INDEX int roverIndex) {
         switch (scienceIndex) {
             case SCIENCE_MASTCAM_INDEX:
                 return context.getString(R.string.curiosity_mast_camera_details);
@@ -356,7 +439,7 @@ public final class HelperUtils {
     }
 
     //get image resId for science instrument or rover part info
-    private static int getCuriosityScienceImageId(int scienceIndex) {
+    private static int getCuriosityScienceImageId(@CURIOSITY_SCIENCE_INDEX int scienceIndex) {
         switch (scienceIndex) {
             case SCIENCE_MASTCAM_INDEX:
                 return R.drawable.curiosity_mastcam;
@@ -400,7 +483,7 @@ public final class HelperUtils {
     }
 
     //get image resId for science instrument or rover part info
-    private static int getOppSpiritScienceImageId(int scienceIndex) {
+    private static int getOppSpiritScienceImageId(@OPP_SPIRIT_SCIENCE_INDEX int scienceIndex) {
         switch (scienceIndex) {
             case SCIENCE_PANCAM_INDEX:
                 return R.drawable.opp_spirit_pancam;
@@ -433,7 +516,7 @@ public final class HelperUtils {
     }
 
 
-    public static String getRoverNameByIndex(Context context, int roverIndex) {
+    public static String getRoverNameByIndex(Context context, @ROVER_INDEX int roverIndex) {
 
         switch (roverIndex) {
             case CURIOSITY_ROVER_INDEX:
@@ -448,11 +531,11 @@ public final class HelperUtils {
     }
 
 
-    public static List<ExploreCategory> getExploreCategories(Context context, int exploreIndex) {
+    public static List<ExploreCategory> getExploreCategories(Context context) {
         return setupCategories(context, MARS_EXPLORE_CATEGORIES, MARS_EXPLORE_INDEX);
     }
 
-    public static List<ExploreCategory> getRoverCategories(Context context, int exploreIndex) {
+    public static List<ExploreCategory> getRoverCategories(Context context, @EXPLORE_INDEX int exploreIndex) {
         //set up categories for selected rover
         int[] categories;
         switch (exploreIndex) {
@@ -476,7 +559,7 @@ public final class HelperUtils {
     }
 
 
-    private static List<ExploreCategory> setupCategories(Context context, int[] categories, int exploreIndex) {
+    private static List<ExploreCategory> setupCategories(Context context, int[] categories, @EXPLORE_INDEX int exploreIndex) {
         List<ExploreCategory> exploreCategoriesList = new ArrayList<>();
         for (int category : categories) {
             String title = getCategoryTitle(context, category);
@@ -510,7 +593,8 @@ public final class HelperUtils {
     }
 
 
-    private static int getCategoryImgResId(Context context, int exploreIndex, int categoryIndex) {
+    private static int getCategoryImgResId(Context context, @EXPLORE_INDEX int exploreIndex,
+                                           @EXPLORE_CATEGORY_INDEX int categoryIndex) {
         // Images will have the format = CATEGORY_INDEX
         //ex. Photo category for Curiosity will be 'photos_1'
         String exploreIndexString = String.valueOf(exploreIndex);
@@ -546,7 +630,7 @@ public final class HelperUtils {
     }
 
 
-    private static String getMainExploreOptionTitle(Context context, int exploreIndex) {
+    private static String getMainExploreOptionTitle(Context context, @EXPLORE_INDEX int exploreIndex) {
         String mainExploreTitle = "";
         String roverString = context.getString(R.string.rover_string);
         switch (exploreIndex) {
@@ -572,7 +656,7 @@ public final class HelperUtils {
     }
 
 
-    public static String getWeatherLabel(Context context, int weatherIndex) {
+    public static String getWeatherLabel(Context context, @WEATHER_INDEX int weatherIndex) {
         switch (weatherIndex) {
             case WEATHER_MIN_TEMP_INDEX:
                 return context.getString(R.string.weather_min_air_temp);
@@ -594,7 +678,7 @@ public final class HelperUtils {
         }
     }
 
-    public static int getWeatherInfoIndex(int weatherIndex) {
+    public static int getWeatherInfoIndex(@WEATHER_INDEX int weatherIndex) {
         switch (weatherIndex) {
             case WEATHER_MIN_TEMP_INDEX:
             case WEATHER_MAX_TEMP_INDEX:
