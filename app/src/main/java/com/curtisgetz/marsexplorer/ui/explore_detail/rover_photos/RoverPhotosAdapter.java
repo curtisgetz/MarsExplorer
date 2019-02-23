@@ -52,11 +52,13 @@ public class RoverPhotosAdapter extends RecyclerView.Adapter {
             Picasso.get().load(photoUrl)
                     .placeholder(R.drawable.marsplaceholderfull)
                     .error(R.drawable.marsimageerror)
+                    .fit()
                     .into(((RoverPhotosViewHolder) holder).mPhotoIv);
         } else {
             Picasso.get().load(R.drawable.marsimageerror)
                     .placeholder(R.drawable.marsplaceholderfull)
                     .fit()
+                    .centerCrop()
                     .into(((RoverPhotosViewHolder) holder).mPhotoIv);
         }
     }

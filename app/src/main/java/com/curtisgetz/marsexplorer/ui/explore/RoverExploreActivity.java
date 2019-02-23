@@ -65,6 +65,7 @@ import com.curtisgetz.marsexplorer.utils.HelperUtils;
 import com.curtisgetz.marsexplorer.utils.InformationUtils;
 import com.curtisgetz.marsexplorer.utils.JsonUtils;
 import com.curtisgetz.marsexplorer.utils.NetworkUtils;
+import com.squareup.picasso.Picasso;
 
 
 import java.io.IOException;

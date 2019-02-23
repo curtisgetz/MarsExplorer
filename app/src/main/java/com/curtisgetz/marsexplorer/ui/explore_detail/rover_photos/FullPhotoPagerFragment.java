@@ -145,6 +145,7 @@ public class FullPhotoPagerFragment extends Fragment implements View.OnTouchList
             Picasso.get().load(mUrl)
                     .error(R.drawable.marsimageerror)
                     .placeholder(R.drawable.marsplaceholderfull)
+                    .fit()
                     .noFade()
                     .into(mImageView);
         }

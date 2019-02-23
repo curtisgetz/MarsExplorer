@@ -16,8 +16,8 @@
         android:id="@+id/rover_photo_imageview"
         android:contentDescription="@string/rover_photo_cd"
         tools:src="@drawable/photos_1"
-        android:scaleType="centerCrop"
-      />
+       /><!-- android:scaleType="centerCrop"
+      -->
 
 
 
