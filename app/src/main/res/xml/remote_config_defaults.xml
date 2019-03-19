@@ -18,4 +18,9 @@
         <value>https://api.maas2.jiinxt.com/</value>
     </entry>
 
+    <entry>
+        <key>privacy_policy_url</key>
+        <value>https://sites.google.com/view/mars-explorer/policy</value>
+    </entry>
+
 </defaultsMap>

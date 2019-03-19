@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.PrivacyPolicyActivity"></activity>
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,19 +39,18 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
-
-        <!-- ignore export error. FirebaseMessagingService performs security checks at runtime,
-             no need for explicit permissions despite exported="true" -->
+        <!--
+ ignore export error. FirebaseMessagingService performs security checks at runtime,
+             no need for explicit permissions despite exported="true"
+        -->
         <service
             android:name=".data.fcm.MarsFirebaseMessagingService"
-
             tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service android:name=".ui.widget.FactWidgetJobService" />
-
 
         <receiver android:name=".ui.widget.FactWidgetProvider">
             <intent-filter>

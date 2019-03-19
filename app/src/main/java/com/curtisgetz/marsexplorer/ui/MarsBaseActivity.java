@@ -45,6 +45,10 @@ public class MarsBaseActivity extends AppCompatActivity {
                 InfoDialogFragment infoDialogFragment = InfoDialogFragment.newInstance(this, InformationUtils.CREDIT_INFO);
                 infoDialogFragment.show(getSupportFragmentManager(), InformationUtils.class.getSimpleName());
                 return true;
+            case R.id.action_privacy:
+                Intent privacyIntent = new Intent(this, PrivacyPolicyActivity.class);
+                startActivity(privacyIntent);
+                return true;
             case android.R.id.home:
                 onBackPressed();
                 return true;

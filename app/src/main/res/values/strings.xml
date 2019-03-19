@@ -19,7 +19,6 @@
     <string name="sol_range_info_CD">Click Here for information about Sol range</string>
 
 
-
     <!-- Rover Categories Title Texts-->
     <string name="rover_picture_category_title">Pictures</string>
     <string name="rover_information_category_title">Rover Information</string>
@@ -212,15 +211,12 @@
     <string name="pref_shown_photos_info" translatable="false">shown_photos_dialog</string>
 
 
-
     <string name="rover_category_cd">Rover Category</string>
     <string name="mars_category_cd">Mars Category</string>
     <string name="is_favorite_screen_extra">is_favorite_screen</string>
     <string name="info_icon_cd">Information Icon</string>
     <string name="confirm_action">Confirm</string>
     <string name="delete_all_snack">Delete All?</string>
-
-
 
 
     <!-- Credits Dialog -->
@@ -251,5 +247,6 @@
     <string name="photo_search_type">photo_search_type</string>
     <string name="date_extra">date_extra</string>
     <string name="select_date">Select Date</string>
+    <string name="privacy_policy">Privacy Policy</string>
 
 </resources>
