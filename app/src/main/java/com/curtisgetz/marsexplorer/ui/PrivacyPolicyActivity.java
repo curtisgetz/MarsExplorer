@@ -1,6 +1,7 @@
 package com.curtisgetz.marsexplorer.ui;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 
 import com.curtisgetz.marsexplorer.R;
@@ -9,7 +10,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PrivacyPolicyActivity extends MarsBaseActivity {
+public class PrivacyPolicyActivity extends AppCompatActivity {
 
     private final static String POLICY_URL_REMOTE_CONFIG_KEY = "privacy_policy_url";
 
@@ -32,5 +33,11 @@ public class PrivacyPolicyActivity extends MarsBaseActivity {
 
 
         mWebView.loadUrl(policyUrl);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }
