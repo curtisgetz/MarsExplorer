@@ -46,16 +46,17 @@ public final class HelperUtils {
     public final static int CURIOSITY_SOL_START = 0;
     public final static int OPPORTUNITY_SOL_START = 1;
     public final static int SPIRIT_SOL_START = 1;
-    //all rovers have at least 2000 sols. use if any errors getting true max sol
-    public final static int DEFAULT_MAX_SOL = 2000;
+    public final static int INSIGHT_SOL_START = 0;
+    //all rovers have at least 200 sols. use if any errors getting true max sol
+    public final static int DEFAULT_MAX_SOL = 200;
 
 
-    @IntDef({MARS_EXPLORE_INDEX, CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX})
+    @IntDef({MARS_EXPLORE_INDEX, CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX, INSIGHT_LANDER_INDEX})
     @Retention(RetentionPolicy.SOURCE)
     @interface EXPLORE_INDEX {
     }
 
-    @IntDef({CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX})
+    @IntDef({CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX, INSIGHT_LANDER_INDEX})
     @Retention(RetentionPolicy.SOURCE)
     @interface ROVER_INDEX {
     }
@@ -66,6 +67,7 @@ public final class HelperUtils {
     public final static int CURIOSITY_ROVER_INDEX = 1;
     public final static int OPPORTUNITY_ROVER_INDEX = 2;
     public final static int SPIRIT_ROVER_INDEX = 3;
+    public final static int INSIGHT_LANDER_INDEX = 4;
 
     public final static int[] ROVER_INDICES = {CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX};
 
@@ -110,9 +112,11 @@ public final class HelperUtils {
     private final static int[] SPIRIT_CATEGORIES = {ROVER_PICTURES_CAT_INDEX,
             ROVER_INFO_CAT_INDEX, ROVER_SCIENCE_CAT_INDEX, MARS_FAVORITES_CAT_INDEX};
 
+    private final static int[] INSIGHT_CATEGORIES = {ROVER_PICTURES_CAT_INDEX, MARS_FAVORITES_CAT_INDEX};
+
 
     @IntDef({CAM_FHAZ_INDEX, CAM_RHAZ_INDEX, CAM_MAST_INDEX, CAM_CHEMCAM_INDEX, CAM_MAHLI_INDEX,
-            CAM_MARDI_INDEX, CAM_NAVCAM_INDEX, CAM_PANCAM_INDEX, CAM_MINITES_INDEX})
+            CAM_MARDI_INDEX, CAM_NAVCAM_INDEX, CAM_PANCAM_INDEX, CAM_MINITES_INDEX, CAM_IDC_INDEX, CAM_ICC_INDEX})
     @Retention(RetentionPolicy.SOURCE)
     public @interface CAMERA_INDEX {
     }
@@ -127,6 +131,10 @@ public final class HelperUtils {
     public final static int CAM_NAVCAM_INDEX = 6;
     public final static int CAM_PANCAM_INDEX = 7;
     public final static int CAM_MINITES_INDEX = 8;
+    //Insight Camera Indices
+    public final static int CAM_IDC_INDEX = 9;
+    public final static int CAM_ICC_INDEX = 10;
+
 
 
     @IntDef({WEATHER_MIN_TEMP_INDEX, WEATHER_MAX_TEMP_INDEX, WEATHER_ATMO_INDEX, WEATHER_SUNSET_INDEX,
@@ -525,6 +533,8 @@ public final class HelperUtils {
                 return context.getResources().getString(R.string.opportunity_rover);
             case SPIRIT_ROVER_INDEX:
                 return context.getResources().getString(R.string.spirit_rover);
+            case INSIGHT_LANDER_INDEX:
+                return context.getString(R.string.insight_lander_title);
             default:
                 return "";
         }
@@ -550,6 +560,9 @@ public final class HelperUtils {
                 break;
             case SPIRIT_ROVER_INDEX:
                 categories = SPIRIT_CATEGORIES;
+                break;
+            case INSIGHT_LANDER_INDEX:
+                categories = INSIGHT_CATEGORIES;
                 break;
             default:
                 return null;
@@ -630,7 +643,7 @@ public final class HelperUtils {
     }
 
 
-    private static String getMainExploreOptionTitle(Context context, @EXPLORE_INDEX int exploreIndex) {
+    public static String getMainExploreOptionTitle(Context context, @EXPLORE_INDEX int exploreIndex) {
         String mainExploreTitle = "";
         String roverString = context.getString(R.string.rover_string);
         switch (exploreIndex) {
@@ -648,6 +661,9 @@ public final class HelperUtils {
             case SPIRIT_ROVER_INDEX:
                 mainExploreTitle = context.getString(R.string.spirit_rover);
                 mainExploreTitle = mainExploreTitle + " " + roverString;
+                break;
+            case INSIGHT_LANDER_INDEX:
+                mainExploreTitle = context.getString(R.string.insight_lander_title);
                 break;
             default:
                 break;
@@ -697,6 +713,7 @@ public final class HelperUtils {
     }
 
     public static String capitalizeFirstLetter(String text) {
+        if(text.isEmpty()) return text;
         return text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
 
     }
@@ -706,6 +723,7 @@ public final class HelperUtils {
     public static List<MainExploreType> getAllExploreTypes(Context context) {
         List<MainExploreType> mainExploreTypes = new ArrayList<>();
         mainExploreTypes.add(createMarsExploreType(context));
+        mainExploreTypes.add(createInsightExploreType(context));
         mainExploreTypes.add(createCuriosityExploreType(context));
         mainExploreTypes.add(createOpportunityExploreType(context));
         mainExploreTypes.add(createSpiritExploreType(context));
@@ -730,6 +748,11 @@ public final class HelperUtils {
     private static MainExploreType createSpiritExploreType(Context context) {
         return new MainExploreType(SPIRIT_ROVER_INDEX,
                 getMainExploreOptionTitle(context, SPIRIT_ROVER_INDEX), R.drawable.opp_spirit_main);
+    }
+
+    private static MainExploreType createInsightExploreType(Context context) {
+        return new MainExploreType(INSIGHT_LANDER_INDEX,
+                getMainExploreOptionTitle(context, INSIGHT_LANDER_INDEX), R.drawable.curiosity_selfie);
     }
 
 }

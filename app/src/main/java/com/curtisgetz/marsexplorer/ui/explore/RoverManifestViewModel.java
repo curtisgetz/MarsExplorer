@@ -98,7 +98,7 @@ class RoverManifestViewModel extends ViewModel {
 
     public long getMaxDateMilliseconds() {
         RoverManifest roverManifest = mManifest.getValue();
-        if (roverManifest == null) {
+        if (roverManifest == null || roverManifest.getMaxDate().isEmpty()) {
             Date date = new Date();
             return date.getTime();
         }

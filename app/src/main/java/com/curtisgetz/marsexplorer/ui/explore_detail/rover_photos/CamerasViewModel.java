@@ -67,6 +67,10 @@ class CamerasViewModel extends ViewModel {
                 return cameras.getPANCAM();
             case HelperUtils.CAM_MINITES_INDEX:
                 return cameras.getMINITES();
+            case HelperUtils.CAM_IDC_INDEX:
+                return cameras.getIDC();
+            case HelperUtils.CAM_ICC_INDEX:
+                return cameras.getICC();
             default:
                 return null;
         }

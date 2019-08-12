@@ -227,7 +227,8 @@ public class RoverExploreActivity extends MarsBaseActivity implements
      */
     private void populateUI(int roverIndex) {
         String roverName = HelperUtils.getRoverNameByIndex(this, roverIndex);
-        String titleString = roverName + " " + getString(R.string.rover_string);
+        //String titleString = roverName + " " + getString(R.string.rover_string);
+        String titleString = HelperUtils.getMainExploreOptionTitle(this, roverIndex);
         mTitleText.setText(titleString);
         List<ExploreCategory> roverExploreCategories = HelperUtils.getRoverCategories(this, roverIndex);
         mAdapter.setData(roverExploreCategories);

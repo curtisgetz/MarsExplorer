@@ -72,6 +72,11 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     RecyclerView mPancamRecyclerView;
     @BindView(R.id.photos_minites_recyclerview)
     RecyclerView mMinitesRecyclerView;
+    @BindView(R.id.photos_idc_recyclerview)
+    RecyclerView mIdcRecyclerView;
+    @BindView(R.id.photos_icc_recyclerview)
+    RecyclerView mIccRecyclerView;
+
     //TextViews for camera name labels
     @BindView(R.id.photos_fhaz_label)
     TextView mFhazLabel;
@@ -91,6 +96,10 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     TextView mPancamLabel;
     @BindView(R.id.photos_minites_label)
     TextView mMinitesLabel;
+    @BindView(R.id.photos_idc_label)
+    TextView mIdcLabel;
+    @BindView(R.id.photos_icc_label)
+    TextView mIccLabel;
 
     @BindView(R.id.rover_photos_main_progress)
     ProgressBar mMainProgress;
@@ -108,6 +117,8 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     private RoverPhotosAdapter mNavcamAdapter;
     private RoverPhotosAdapter mPancamAdapter;
     private RoverPhotosAdapter mMinitesAdapter;
+    private RoverPhotosAdapter mIdcAdapter;
+    private RoverPhotosAdapter mIccAdapter;
 
 
     public static RoverPhotosFragment newInstance(Context context, int roverIndex, String sol, int searchType, String date) {
@@ -300,6 +311,24 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mMinitesLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
+        if (mViewModel.getImageUrlsForCamera(HelperUtils.CAM_IDC_INDEX) != null){
+            mIdcAdapter = new RoverPhotosAdapter(this);
+            mIdcRecyclerView.setLayoutManager(createLayoutManager());
+            mIdcRecyclerView.setAdapter(mIdcAdapter);
+            mIdcAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_IDC_INDEX));
+            mIdcRecyclerView.setVisibility(View.VISIBLE);
+            mIdcLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_ICC_INDEX) != null){
+            mIccAdapter = new RoverPhotosAdapter(this);
+            mIccRecyclerView.setLayoutManager(createLayoutManager());
+            mIccRecyclerView.setAdapter(mIccAdapter);
+            mIccAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_ICC_INDEX));
+            mIccRecyclerView.setVisibility(View.VISIBLE);
+            mIccLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
 
         if (!anyCameras) {
             displayNoCameraSnack();
@@ -387,6 +416,10 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
         mPancamRecyclerView.setVisibility(View.GONE);
         mMinitesLabel.setVisibility(View.GONE);
         mMinitesRecyclerView.setVisibility(View.GONE);
+        mIdcLabel.setVisibility(View.GONE);
+        mIdcRecyclerView.setVisibility(View.GONE);
+        mIccLabel.setVisibility(View.GONE);
+        mIccRecyclerView.setVisibility(View.GONE);
     }
 
     private void showAllViews() {

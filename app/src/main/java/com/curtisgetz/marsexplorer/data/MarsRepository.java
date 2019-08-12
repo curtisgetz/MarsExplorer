@@ -6,38 +6,37 @@
 
 package com.curtisgetz.marsexplorer.data;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
-import android.net.NetworkRequest;
 import android.util.Log;
-import android.util.TimeUtils;
 
+import com.curtisgetz.marsexplorer.data.insight_lander.InsightPhoto;
+import com.curtisgetz.marsexplorer.data.insight_lander.InsightResponse;
 import com.curtisgetz.marsexplorer.data.room.AppDataBase;
 import com.curtisgetz.marsexplorer.data.room.MarsDao;
 import com.curtisgetz.marsexplorer.data.rover_manifest.RoverManifest;
 import com.curtisgetz.marsexplorer.utils.AppExecutors;
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
+import com.curtisgetz.marsexplorer.utils.InsightHelperUtils;
+import com.curtisgetz.marsexplorer.utils.InsightPhotoEndpoint;
 import com.curtisgetz.marsexplorer.utils.JsonUtils;
 import com.curtisgetz.marsexplorer.utils.NetworkUtils;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.Days;
-import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
@@ -48,6 +47,10 @@ public class MarsRepository {
 
     private MarsDao mMarsDao;
     private static MarsRepository sInstance;
+    private InsightPhotoEndpoint mInsightAPI;
+    private final static String INSIGHT_API_BASE_URL = "https://mars.nasa.gov/api/";
+    private final static String MISSION_QUERY_APPEND = "insight:mission";
+    private final static String SOL_QUERY_APPEND = ":sol";
 
 
     /**
@@ -66,6 +69,12 @@ public class MarsRepository {
     private MarsRepository(Application application) {
         AppDataBase dataBase = AppDataBase.getInstance(application);
         mMarsDao = dataBase.marsDao();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(INSIGHT_API_BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        mInsightAPI = retrofit.create(InsightPhotoEndpoint.class);
+
     }
 
     /**
@@ -114,6 +123,16 @@ public class MarsRepository {
                 }
             }
         });
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                RoverManifest insightManifest = InsightHelperUtils.createInsightManifest(context);
+                mMarsDao.insertRoverManifest(insightManifest);
+            }
+        });
+
+
     }
 
     /**
@@ -208,6 +227,7 @@ public class MarsRepository {
     }
 
 
+
     /**
      * Get Cameras object from NASA.gov API query for specified rover and sol
      *
@@ -218,34 +238,59 @@ public class MarsRepository {
      */
     public MutableLiveData<Cameras> getCameras(final Context context, final int roverIndex, final String sol) {
         final MutableLiveData<Cameras> cameras = new MutableLiveData<>();
-        AppExecutors.getInstance().networkIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL findRequestUrl = NetworkUtils.buildPhotosCheckUrl(context, roverIndex, sol);
-                    String jsonResponse = NetworkUtils.getResponseFromHttpUrl(context, findRequestUrl);
-                    if (JsonUtils.isSolActive(jsonResponse)) {
-                        //If there are images then return the post the values to cameras.
-                        URL solRequestUrl = NetworkUtils.buildPhotosUrl(context, roverIndex, sol);
-                        String cameraJson = NetworkUtils.getResponseFromHttpUrl(context, solRequestUrl);
-                        cameras.postValue(JsonUtils.getCameraUrls(roverIndex, cameraJson));
-                        //if no cameras then attempt to round up to nearest sol with images and postValue.
-                        // if unable to find an active sol after running through MAX number of times
-                        // then return the orginal sol and UI will display a message informing the user
-                        //there are no images on this sol
-                    } else {
-                        String newSol = findNextActiveSol(context, sol, roverIndex);
-                        URL solRequestUrl = NetworkUtils.buildPhotosUrl(context, roverIndex, newSol);
-                        String cameraJson = NetworkUtils.getResponseFromHttpUrl(context, solRequestUrl);
-                        cameras.postValue(JsonUtils.getCameraUrls(roverIndex, cameraJson));
-                    }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+        if(roverIndex == HelperUtils.INSIGHT_LANDER_INDEX){
+            final String solSearch = sol + SOL_QUERY_APPEND;
+            Call<InsightResponse> insightCall = mInsightAPI.getPhotosBySol(MISSION_QUERY_APPEND, solSearch);
+            insightCall.enqueue(new Callback<InsightResponse>() {
+                @Override
+                public void onResponse(Call<InsightResponse> call, Response<InsightResponse> response) {
+                    if(response.body() == null) return;
+                    Log.d("LOG", "INSIGHT RESPONSE");
+                    Cameras insightCameras = InsightHelperUtils.insightResponseToCameras(response.body(), sol);
+                    cameras.postValue(insightCameras);
                 }
-            }
-        });
-        return cameras;
+
+                @Override
+                public void onFailure(Call<InsightResponse> call, Throwable t) {
+                    Log.d("LOG", "INSIGHT FAIL " + t.getLocalizedMessage());
+                }
+            });
+
+            return cameras;
+        }else {
+            AppExecutors.getInstance().networkIO().execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        URL findRequestUrl = NetworkUtils.buildPhotosCheckUrl(context, roverIndex, sol);
+                        String jsonResponse = NetworkUtils.getResponseFromHttpUrl(context, findRequestUrl);
+                        if (JsonUtils.isSolActive(jsonResponse)) {
+                            //If there are images then return the post the values to cameras.
+                            URL solRequestUrl = NetworkUtils.buildPhotosUrl(context, roverIndex, sol);
+                            String cameraJson = NetworkUtils.getResponseFromHttpUrl(context, solRequestUrl);
+                            cameras.postValue(JsonUtils.getCameraUrls(roverIndex, cameraJson));
+                            //if no cameras then attempt to round up to nearest sol with images and postValue.
+                            // if unable to find an active sol after running through MAX number of times
+                            // then return the original sol and UI will display a message informing the user
+                            //there are no images on this sol
+                        } else {
+                            String newSol = findNextActiveSol(context, sol, roverIndex);
+                            URL solRequestUrl = NetworkUtils.buildPhotosUrl(context, roverIndex, newSol);
+                            String cameraJson = NetworkUtils.getResponseFromHttpUrl(context, solRequestUrl);
+                            cameras.postValue(JsonUtils.getCameraUrls(roverIndex, cameraJson));
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return cameras;
+        }
+
+
+
     }
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.design.widget.CoordinatorLayout
+<android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rover_photos_coordinator_layout"
@@ -111,9 +111,10 @@
                 android:id="@+id/photos_mast_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                app:layout_constraintTop_toBottomOf="@id/photos_mast_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/photos_mast_label" />
 
             <android.support.constraint.Barrier
                 android:id="@+id/barrier_top_3"
@@ -295,10 +296,63 @@
                 app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
                  photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
                  photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
-                 photos_pancam_recyclerview"
+                 photos_pancam_recyclerview, photos_minites_recyclerview"
                 />
 
+            <TextView
+                android:id="@+id/photos_idc_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/IDC"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_9"/>
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_idc_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_idc_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview"/>
+
+            <TextView
+                android:id="@+id/photos_icc_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/ICC"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_10"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photos_icc_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_icc_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier_top_11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview"/>
 
 
         </android.support.constraint.ConstraintLayout>

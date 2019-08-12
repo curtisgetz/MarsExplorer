@@ -56,6 +56,8 @@ public class RoverManifest {
                 return HelperUtils.OPPORTUNITY_SOL_START;
             case HelperUtils.SPIRIT_ROVER_INDEX:
                 return HelperUtils.SPIRIT_SOL_START;
+            case HelperUtils.INSIGHT_LANDER_INDEX:
+                    return HelperUtils.INSIGHT_SOL_START;
             default:
                 //if no match then use 1 as sol start to be safe
                 return HelperUtils.OPPORTUNITY_SOL_START;

@@ -6,10 +6,10 @@ package com.curtisgetz.marsexplorer.data;
 
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -41,6 +41,10 @@ public class Cameras {
     @NonNull
     private List<String> mMINITES;
     @NonNull
+    private List<String> mIDC;
+    @NonNull
+    private List<String> mICC;
+    @NonNull
     private String mEarthDate;
 
     private String mSol;
@@ -68,11 +72,39 @@ public class Cameras {
         mEarthDate = earthDate;
     }
 
+    /**
+     * Constructor for Insight Lander
+     * @param index rover index
+     * @param idc List of IDC Urls
+     * @param icc List of ICC Urls
+     * @param earthDate Earth date as a String
+     * @param sol Sol as a String
+     */
+
+    public Cameras(int index, @NonNull List<String> idc, @NonNull List<String> icc, @NonNull String earthDate, String sol){
+        List<String> emptyCams = new ArrayList<>();
+        mRoverIndex = index;
+        mFHAZ = emptyCams;
+        mRHAZ = emptyCams;
+        mNAVCAM = emptyCams;
+        mMAST = emptyCams;
+        mCHEMCAM = emptyCams;
+        mMAHLI = emptyCams;
+        mMARDI = emptyCams;
+        mPANCAM = emptyCams;
+        mMINITES = emptyCams;
+
+        mIDC = idc;
+        mICC = icc;
+        mEarthDate = earthDate;
+        mSol = sol;
+    }
+
     public Cameras(int index, @NonNull List<String> fhaz, @NonNull List<String> rhaz,
                    @NonNull List<String> navcam, @NonNull List<String> mast,
                    @NonNull List<String> chemcam, @NonNull List<String> mahli,
                    @NonNull List<String> mardi, @NonNull List<String> pancam,
-                   @NonNull List<String> minites, @NonNull String earthDate, String sol) {
+                   @NonNull List<String> minites, @NonNull List<String> idc, @NonNull List<String> icc, @NonNull String earthDate, String sol) {
         mRoverIndex = index;
         mFHAZ = fhaz;
         mRHAZ = rhaz;
@@ -86,8 +118,29 @@ public class Cameras {
         mPANCAM = pancam;
         mMINITES = minites;
 
+        mIDC = idc;
+        mICC = icc;
+
         mEarthDate = earthDate;
         mSol = sol;
+    }
+
+    @NonNull
+    public List<String> getIDC() {
+        return mIDC;
+    }
+
+    public void setIDC(@NonNull List<String> mIDC) {
+        this.mIDC = mIDC;
+    }
+
+    @NonNull
+    public List<String> getICC() {
+        return mICC;
+    }
+
+    public void setICC(@NonNull List<String> mICC) {
+        this.mICC = mICC;
     }
 
     public List<String> getFHAZ() {
@@ -205,6 +258,10 @@ public class Cameras {
                 return (mPANCAM.size() > 0);
             case HelperUtils.CAM_MINITES_INDEX:
                 return (mMINITES.size() > 0);
+            case HelperUtils.CAM_IDC_INDEX:
+                return (mIDC.size() > 0);
+            case HelperUtils.CAM_ICC_INDEX:
+                return (mICC.size() > 0);
             default:
                 return false;
         }

@@ -268,7 +268,8 @@ public final class JsonUtils {
                 rhaz = new ArrayList<>(), mast = new ArrayList<>(),
                 chemcam = new ArrayList<>(), mahli = new ArrayList<>(),
                 mardi = new ArrayList<>(), navcam = new ArrayList<>(),
-                pancam = new ArrayList<>(), minites = new ArrayList<>();
+                pancam = new ArrayList<>(), minites = new ArrayList<>(),
+                idc = new ArrayList<>(), icc = new ArrayList<>();
 
         String earthDate = "";
         String sol;
@@ -332,7 +333,7 @@ public final class JsonUtils {
             return null;
         }
         return new Cameras(roverIndex, fhaz, rhaz, navcam, mast, chemcam, mahli, mardi, pancam,
-                minites, earthDate, sol);
+                minites,idc, icc, earthDate, sol);
     }
 
     /**
