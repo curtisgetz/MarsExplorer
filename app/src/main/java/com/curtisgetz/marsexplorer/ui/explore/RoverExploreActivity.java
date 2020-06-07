@@ -281,8 +281,12 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
     @Override
     public void onCalendarSolClick(int catIndex) {
-        SolDatePickerDialogFragment dialogFragment = SolDatePickerDialogFragment.newInstance(this, mRoverIndex);
-        dialogFragment.show(getSupportFragmentManager(), SolDatePickerDialogFragment.class.getSimpleName());
+        if (mRoverIndex == HelperUtils.INSIGHT_LANDER_INDEX){
+            Toast.makeText(this, "Coming Soon", Toast.LENGTH_LONG).show();
+        }else {
+            SolDatePickerDialogFragment dialogFragment = SolDatePickerDialogFragment.newInstance(this, mRoverIndex);
+            dialogFragment.show(getSupportFragmentManager(), SolDatePickerDialogFragment.class.getSimpleName());
+        }
 
     }
 

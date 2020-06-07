@@ -132,7 +132,7 @@ public class RoverCategoryAdapter extends RecyclerView.Adapter {
             mTextView.setText(category.getmTitleText());
             Picasso.get().load(category.getmImageResId()).into(mImageView);
             //if the category is PHOTO_CATEGORY, then show buttons and edit text for user input.
-            setupViews(category.getmCatIndex() == PHOTO_CATEGORY ? View.VISIBLE : View.GONE);
+            setupViews(mCategory.getmCatIndex() == PHOTO_CATEGORY ? View.VISIBLE : View.GONE);
         }
 
 

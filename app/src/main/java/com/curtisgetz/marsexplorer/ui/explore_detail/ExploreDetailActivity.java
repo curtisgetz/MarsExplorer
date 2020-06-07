@@ -119,9 +119,10 @@ public class ExploreDetailActivity extends MarsBaseActivity implements
           /*      bundle.putInt(getString(R.string.rover_index_extra), mRoverIndex);
                 bundle.putString(getString(R.string.sol_number_extra_key), mCurrentSol);
                 bundle.putInt(getString());*/
-                RoverPhotosFragment roverPhotosFragment = RoverPhotosFragment.newInstance(this, mRoverIndex, mCurrentSol, searchType, date);
-                getSupportFragmentManager().beginTransaction().replace(
-                        R.id.explore_detail_container, roverPhotosFragment).commit();
+                    RoverPhotosFragment roverPhotosFragment = RoverPhotosFragment.newInstance(this, mRoverIndex, mCurrentSol, searchType, date);
+                    getSupportFragmentManager().beginTransaction().replace(
+                            R.id.explore_detail_container, roverPhotosFragment).commit();
+
                 break;
             case HelperUtils.ROVER_TWEETS_CAT_INDEX:
                 TweetsFragment tweetsFragment = TweetsFragment.newInstance();

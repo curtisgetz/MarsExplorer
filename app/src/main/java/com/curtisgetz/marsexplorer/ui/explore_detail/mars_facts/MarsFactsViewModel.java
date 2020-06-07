@@ -124,10 +124,14 @@ public class MarsFactsViewModel extends AndroidViewModel {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+                    Log.d(TAG, "Fact Exists");
                     //reset query count on successful query
                     mQueryCount = 0;
+                    MarsFact fact =  dataSnapshot.getValue(MarsFact.class);
+                    //Log.d(TAG, fact.getShortDescription());
                     mFact.postValue(dataSnapshot.getValue(MarsFact.class));
                 } else {
+                    Log.d(TAG, "No Fact");
                     //if no snapshot exists, get a random day and try loading again only while
                     // mQueryCount is below MAX QUERY COUNT. If query count is that high then there must be
                     // a problem. (can lower max query once there are more facts inDB)
@@ -172,12 +176,16 @@ public class MarsFactsViewModel extends AndroidViewModel {
      * @return random int between 1 and 365
      */
     private String getRandomDay() {
+        Log.d(TAG, "Get Random Day");
         //get random int between 1 and 365
-        return String.valueOf(new Random().nextInt(365) + 1);
+        String day =  String.valueOf(new Random().nextInt(365) + 1);
+        Log.d(TAG, day);
+        return  day;
     }
 
 
     void loadNewFact() {
+        Log.d(TAG, "Load New Fact");
         mFactsChildNode = getRandomDay();
         getFactChild();
     }

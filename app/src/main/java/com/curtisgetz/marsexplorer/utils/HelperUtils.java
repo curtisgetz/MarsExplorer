@@ -752,7 +752,7 @@ public final class HelperUtils {
 
     private static MainExploreType createInsightExploreType(Context context) {
         return new MainExploreType(INSIGHT_LANDER_INDEX,
-                getMainExploreOptionTitle(context, INSIGHT_LANDER_INDEX), R.drawable.curiosity_selfie);
+                getMainExploreOptionTitle(context, INSIGHT_LANDER_INDEX), R.drawable.insight_selfie);
     }
 
 }
