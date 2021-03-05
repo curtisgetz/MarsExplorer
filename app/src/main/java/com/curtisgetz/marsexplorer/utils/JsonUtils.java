@@ -363,18 +363,12 @@ public final class JsonUtils {
                     case ROVER_FHAZ_RIGHT:
                         fhaz_right.add(imgSrcString);
                         break;
-
-                    //TODO Change these back after testing.
                     case ROVER_RHAZ_LEFT:
                         rhaz_left.add(imgSrcString);
-                        skycam.add(imgSrcString);
                         break;
                     case ROVER_RHAZ_RIGHT:
                         rhaz_right.add(imgSrcString);
-                        sherloc.add(imgSrcString);
                         break;
-
-
                     case ROVER_SKYCAM:
                         skycam.add(imgSrcString);
                     case ROVER_SHERLOC_WATSON:
