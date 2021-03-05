@@ -7,9 +7,9 @@
 package com.curtisgetz.marsexplorer.ui.explore;
 
 import android.app.Application;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 /**
  * Factory for RoverManifest View Model. Allows passing rover index into View Model constructor

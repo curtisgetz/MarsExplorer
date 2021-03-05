@@ -6,15 +6,15 @@
 
 package com.curtisgetz.marsexplorer.ui.main;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 
 
@@ -48,6 +48,7 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private final static String TAG = "MainActivity";
+    private final static int REMOTE_CONFIG_INTERVAL = 1440;
 
     @BindView(R.id.main_recyclerview)
     RecyclerView mExploreRecyclerView;
@@ -210,7 +211,8 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
      */
     private void setupRemoteConfig() {
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+        mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
+//        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
         fetchRemoteConfig();
 
     }
@@ -220,18 +222,12 @@ public class MainActivity extends MarsBaseActivity implements MainExploreAdapter
      */
     private void fetchRemoteConfig() {
         //Fetch any new Remote Config values
-        long cacheExpiration = 14400; // 4 hours in seconds.
-        // If using developer mode, cacheExpiration is set to 0, so each fetch will
-        // retrieve values from the service.
-        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
-            cacheExpiration = 0;
-        }
-        mFirebaseRemoteConfig.fetch(cacheExpiration)
+        mFirebaseRemoteConfig.fetch(REMOTE_CONFIG_INTERVAL)
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            mFirebaseRemoteConfig.activateFetched();
+                            mFirebaseRemoteConfig.activate();
                         }
                     }
                 });

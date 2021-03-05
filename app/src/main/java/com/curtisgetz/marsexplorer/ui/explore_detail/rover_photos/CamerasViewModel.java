@@ -2,13 +2,14 @@ package com.curtisgetz.marsexplorer.ui.explore_detail.rover_photos;
 
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.curtisgetz.marsexplorer.data.Cameras;
 import com.curtisgetz.marsexplorer.data.MarsRepository;
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
 
+import java.text.BreakIterator;
 import java.util.List;
 
 /**
@@ -71,6 +72,36 @@ class CamerasViewModel extends ViewModel {
                 return cameras.getIDC();
             case HelperUtils.CAM_ICC_INDEX:
                 return cameras.getICC();
+            case HelperUtils.CAM_EDL_RUCAM_INDEX:
+                return cameras.getmRUCAM();
+            case HelperUtils.CAM_EDL_DDCAM_INDEX:
+                return cameras.getmDDCAM();
+            case HelperUtils.CAM_EDL_PUCAM1_INDEX:
+                return cameras.getmPUCAM1();
+            case HelperUtils.CAM_EDL_PUCAM2_INDEX:
+                return cameras.getmPUCAM2();
+            case HelperUtils.CAM_EDL_RDCAM_INDEX:
+                return cameras.getmRDCAM();
+            case HelperUtils.CAM_FRONT_HAZCAM_LEFT_A_INDEX:
+                return cameras.getmFHAZLEFT();
+            case HelperUtils.CAM_FRONT_HAZCAM_RIGHT_A_INDEX:
+                return cameras.getmFHAZRIGHT();
+            case HelperUtils.CAM_MCZ_LEFT_INDEX:
+                return cameras.getmMCZLEFT();
+            case HelperUtils.CAM_MCZ_RIGHT_INDEX:
+                return cameras.getmMCZRIGHT();
+            case HelperUtils.CAM_NAVCAM_LEFT_INDEX:
+                return cameras.getmNAVLEFT();
+            case HelperUtils.CAM_NAVCAM_RIGHT_INDEX:
+                return cameras.getmNAVRIGHT();
+            case HelperUtils.CAM_REAR_HAZCAM_LEFT_INDEX:
+                return cameras.getmRHAZLEFT();
+            case HelperUtils.CAM_REAR_HAZCAM_RIGHT_INDEX:
+                return cameras.getmRHAZRIGHT();
+            case HelperUtils.CAM_SKYCAM_INDEX:
+                return cameras.getmSKYCAM();
+            case HelperUtils.CAM_SHERLOC_INDEX:
+                return cameras.getmSHERLOC();
             default:
                 return null;
         }

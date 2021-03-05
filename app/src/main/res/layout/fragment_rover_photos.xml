@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rover_photos_coordinator_layout"
@@ -9,13 +10,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:layout_height="wrap_content">
 
 
-        <android.support.constraint.ConstraintLayout
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
            >
@@ -53,7 +51,7 @@
                 android:text="@string/FHAZ"
                 app:layout_constraintTop_toBottomOf="@id/rover_photos_title"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_fhaz_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
@@ -61,7 +59,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +77,7 @@
                 app:layout_constraintTop_toBottomOf="@id/barrier_top_1"/>
 
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_rhaz_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
@@ -88,7 +86,7 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +105,7 @@
                 app:layout_constraintTop_toBottomOf="@id/barrier_top_2"/>
 
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_mast_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
@@ -116,7 +114,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/photos_mast_label" />
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,15 +134,16 @@
                 app:layout_constraintTop_toBottomOf="@id/barrier_top_3"/>
 
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_chemcam_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                app:layout_constraintTop_toBottomOf="@id/photos_chemcam_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/photos_chemcam_label" />
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,7 +163,7 @@
                 app:layout_constraintTop_toBottomOf="@id/barrier_top_4"/>
 
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_mahli_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
@@ -172,7 +171,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -192,7 +191,7 @@
                 app:layout_constraintTop_toBottomOf="@id/barrier_top_5"/>
 
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_mardi_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
@@ -200,7 +199,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -221,7 +220,7 @@
                 app:layout_constraintTop_toBottomOf="@id/barrier_top_6"/>
 
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_navcam_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
@@ -229,7 +228,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -250,7 +249,7 @@
                 app:layout_constraintTop_toBottomOf="@id/barrier_top_7"/>
 
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_pancam_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
@@ -258,7 +257,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -280,7 +279,7 @@
                 app:layout_constraintTop_toBottomOf="@id/barrier_top_8"/>
 
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_minites_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
@@ -288,7 +287,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -308,7 +307,7 @@
                 android:text="@string/IDC"
                 app:layout_constraintTop_toBottomOf="@id/barrier_top_9"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_idc_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
@@ -316,7 +315,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -335,7 +334,7 @@
                 android:text="@string/ICC"
                 app:layout_constraintTop_toBottomOf="@id/barrier_top_10"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_icc_recyclerview"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
@@ -343,7 +342,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <android.support.constraint.Barrier
+            <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier_top_11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -354,7 +353,475 @@
                  photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
                  photos_icc_recyclerview"/>
 
+            <TextView
+                android:id="@+id/photos_rucam_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/RUCAM"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_12"/>
 
-        </android.support.constraint.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_rucam_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_rucam_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview"/>
+
+            <TextView
+                android:id="@+id/photos_rdcam_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/RDCAM"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_13"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_rdcam_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_rdcam_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview"/>
+
+            <TextView
+                android:id="@+id/photos_ddcam_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/DDCAM"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_14"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_ddcam_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_ddcam_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview"/>
+
+            <TextView
+                android:id="@+id/photos_pucam1_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/PUCAM1"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_15"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_pucam1_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_pucam1_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview"/>
+
+
+            <TextView
+                android:id="@+id/photos_pucam2_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/PUCAM2"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_16"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_pucam2_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_pucam2_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview"/>
+
+
+            <TextView
+                android:id="@+id/photos_navcam_left_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/NAVCAM_LEFT"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_17"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_navcam_left_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_navcam_left_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview,
+                 photos_navcam_left_recyclerview"/>
+
+
+            <TextView
+                android:id="@+id/photos_navcam_right_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/NAVCAM_RIGHT"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_18"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_navcam_right_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_navcam_right_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview,
+                 photos_navcam_left_recyclerview, photos_navcam_right_recyclerview"/>
+
+
+            <TextView
+                android:id="@+id/photos_mcz_right_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/MCZ_RIGHT"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_19"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_mcz_right_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_mcz_right_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview,
+                 photos_navcam_left_recyclerview, photos_navcam_right_recyclerview, photos_mcz_right_recyclerview"/>
+
+
+
+            <TextView
+                android:id="@+id/photos_mcz_left_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/MCZ_LEFT"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_20"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_mcz_left_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_mcz_left_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview,
+                 photos_navcam_left_recyclerview, photos_navcam_right_recyclerview, photos_mcz_right_recyclerview,
+                 photos_mcz_left_recyclerview"/>
+
+
+            <TextView
+                android:id="@+id/photos_fhaz_left_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/FHAZ_LEFT"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_21"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_fhaz_left_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_fhaz_left_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview,
+                 photos_navcam_left_recyclerview, photos_navcam_right_recyclerview, photos_mcz_right_recyclerview,
+                 photos_mcz_left_recyclerview, photos_fhaz_left_recyclerview"/>
+
+
+
+            <TextView
+                android:id="@+id/photos_fhaz_right_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/FHAZ_RIGHT"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_22"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_fhaz_right_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_fhaz_right_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview,
+                 photos_navcam_left_recyclerview, photos_navcam_right_recyclerview, photos_mcz_right_recyclerview,
+                 photos_mcz_left_recyclerview, photos_fhaz_left_recyclerview, photos_fhaz_right_recyclerview"/>
+
+
+            <TextView
+                android:id="@+id/photos_rhaz_left_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/RHAZ_LEFT"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_23"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_rhaz_left_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_rhaz_left_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview,
+                 photos_navcam_left_recyclerview, photos_navcam_right_recyclerview, photos_mcz_right_recyclerview,
+                 photos_mcz_left_recyclerview, photos_fhaz_left_recyclerview, photos_fhaz_right_recyclerview,
+                 photos_rhaz_left_recyclerview"/>
+
+
+            <TextView
+                android:id="@+id/photos_rhaz_right_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/RHAZ_RIGHT"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_24"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_rhaz_right_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_rhaz_right_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview,
+                 photos_navcam_left_recyclerview, photos_navcam_right_recyclerview, photos_mcz_right_recyclerview,
+                 photos_mcz_left_recyclerview, photos_fhaz_left_recyclerview, photos_fhaz_right_recyclerview,
+                 photos_rhaz_left_recyclerview, photos_rhaz_right_recyclerview"/>
+
+
+            <TextView
+                android:id="@+id/photos_skycam_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/SKYCAM"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_25"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_skycam_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_skycam_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview,
+                 photos_navcam_left_recyclerview, photos_navcam_right_recyclerview, photos_mcz_right_recyclerview,
+                 photos_mcz_left_recyclerview, photos_fhaz_left_recyclerview, photos_fhaz_right_recyclerview,
+                 photos_rhaz_left_recyclerview, photos_rhaz_right_recyclerview, photos_skycam_recyclerview"/>
+
+
+            <TextView
+                android:id="@+id/photos_sherloc_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/CameraTextLabel"
+                android:text="@string/SHERLOC_WATSON"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top_26"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_sherloc_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@id/photos_sherloc_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top_26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="rover_photos_title, photos_fhaz_recyclerview,
+                 photos_rhaz_recyclerview, photos_mast_recyclerview, photos_chemcam_recyclerview,
+                 photos_mahli_recyclerview, photos_mardi_recyclerview, photos_navcam_recyclerview,
+                 photos_pancam_recyclerview, photos_minites_recyclerview, photos_idc_recyclerview,
+                 photos_icc_recyclerview, photos_rucam_recyclerview, photos_rdcam_recyclerview,
+                 photos_ddcam_recyclerview, photos_pucam1_recyclerview, photos_pucam2_recyclerview,
+                 photos_navcam_left_recyclerview, photos_navcam_right_recyclerview, photos_mcz_right_recyclerview,
+                 photos_mcz_left_recyclerview, photos_fhaz_left_recyclerview, photos_fhaz_right_recyclerview,
+                 photos_rhaz_left_recyclerview, photos_rhaz_right_recyclerview, photos_skycam_recyclerview,
+                 photos_sherloc_recyclerview"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

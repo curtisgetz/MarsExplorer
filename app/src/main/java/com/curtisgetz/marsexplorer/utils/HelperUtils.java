@@ -8,8 +8,10 @@
 package com.curtisgetz.marsexplorer.utils;
 
 import android.content.Context;
-import android.support.annotation.IntDef;
-import android.support.annotation.NavigationRes;
+import android.content.PeriodicSync;
+
+import androidx.annotation.IntDef;
+import androidx.annotation.NavigationRes;
 
 import com.curtisgetz.marsexplorer.R;
 import com.curtisgetz.marsexplorer.data.MainExploreType;
@@ -20,6 +22,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * Helper class to handle indices and fetching resources
@@ -38,6 +41,7 @@ public final class HelperUtils {
     public final static String OPPORTUNITY_LANDING_DATE = "2004-01-25";
     public final static String SPIRIT_LANDING_DATE = "2004-01-04";
 
+
     public final static long SPIRIT_LANDING_MILLISECONDS = 1055203200000L; // June 10, 2003, Spirit's landing date
     public final static long OPPORTUNITY_LANDING_MILLISECONDS = 1074988800000L; // Jan 25, 2004
     public final static long CURIOSITY_LANDING_MILLISECONDS = 1344211200000L; // Aug 6, 2012
@@ -47,16 +51,17 @@ public final class HelperUtils {
     public final static int OPPORTUNITY_SOL_START = 1;
     public final static int SPIRIT_SOL_START = 1;
     public final static int INSIGHT_SOL_START = 0;
-    //all rovers have at least 200 sols. use if any errors getting true max sol
-    public final static int DEFAULT_MAX_SOL = 200;
+    public final  static int PERSEVERANCE_SOL_START = 0;
+    //all rovers have at least 6 sols. use if any errors getting true max sol
+    public final static int DEFAULT_MAX_SOL = 6;
 
 
-    @IntDef({MARS_EXPLORE_INDEX, CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX, INSIGHT_LANDER_INDEX})
+    @IntDef({MARS_EXPLORE_INDEX, PERSEVERANCE_ROVER_INDEX ,CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX, INSIGHT_LANDER_INDEX})
     @Retention(RetentionPolicy.SOURCE)
     @interface EXPLORE_INDEX {
     }
 
-    @IntDef({CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX, INSIGHT_LANDER_INDEX})
+    @IntDef({CURIOSITY_ROVER_INDEX, PERSEVERANCE_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX, INSIGHT_LANDER_INDEX})
     @Retention(RetentionPolicy.SOURCE)
     @interface ROVER_INDEX {
     }
@@ -68,8 +73,17 @@ public final class HelperUtils {
     public final static int OPPORTUNITY_ROVER_INDEX = 2;
     public final static int SPIRIT_ROVER_INDEX = 3;
     public final static int INSIGHT_LANDER_INDEX = 4;
+    public final static int PERSEVERANCE_ROVER_INDEX = 5;
 
-    public final static int[] ROVER_INDICES = {CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX};
+    //EXPLORE SORT
+    public final static int MARS_EXPLORE_SORT_INDEX = 1;
+    public final static int PERSEVERANCE_SORT_INDEX = 2;
+    public final static int INSIGHT_SORT_INDEX = 3;
+    public final static int CURIOSITY_SORT_INDEX = 4;
+    public final static int OPPORTUNITY_SORT_INDEX = 5;
+    public final static int SPIRIT_SORT_INDEX = 6;
+
+    public final static int[] ROVER_INDICES = {PERSEVERANCE_ROVER_INDEX, CURIOSITY_ROVER_INDEX, OPPORTUNITY_ROVER_INDEX, SPIRIT_ROVER_INDEX};
 
 
     @IntDef({MARS_WEATHER_CAT_INDEX, MARS_FACTS_CAT_INDEX, MARS_FAVORITES_CAT_INDEX})
@@ -114,9 +128,15 @@ public final class HelperUtils {
 
     private final static int[] INSIGHT_CATEGORIES = {ROVER_PICTURES_CAT_INDEX, MARS_FAVORITES_CAT_INDEX};
 
+    private final static int[] PERSEVERANCE_CATEGORIES = {ROVER_PICTURES_CAT_INDEX, MARS_FAVORITES_CAT_INDEX};
+
 
     @IntDef({CAM_FHAZ_INDEX, CAM_RHAZ_INDEX, CAM_MAST_INDEX, CAM_CHEMCAM_INDEX, CAM_MAHLI_INDEX,
-            CAM_MARDI_INDEX, CAM_NAVCAM_INDEX, CAM_PANCAM_INDEX, CAM_MINITES_INDEX, CAM_IDC_INDEX, CAM_ICC_INDEX})
+            CAM_MARDI_INDEX, CAM_NAVCAM_INDEX, CAM_PANCAM_INDEX, CAM_MINITES_INDEX, CAM_IDC_INDEX, CAM_ICC_INDEX,
+            CAM_EDL_RUCAM_INDEX, CAM_EDL_RDCAM_INDEX, CAM_EDL_DDCAM_INDEX, CAM_EDL_PUCAM1_INDEX, CAM_EDL_PUCAM2_INDEX,
+            CAM_NAVCAM_LEFT_INDEX, CAM_NAVCAM_RIGHT_INDEX, CAM_MCZ_LEFT_INDEX, CAM_MCZ_RIGHT_INDEX, CAM_FRONT_HAZCAM_LEFT_A_INDEX,
+            CAM_FRONT_HAZCAM_RIGHT_A_INDEX, CAM_REAR_HAZCAM_LEFT_INDEX, CAM_REAR_HAZCAM_RIGHT_INDEX,
+            CAM_SKYCAM_INDEX, CAM_SHERLOC_INDEX})
     @Retention(RetentionPolicy.SOURCE)
     public @interface CAMERA_INDEX {
     }
@@ -134,6 +154,22 @@ public final class HelperUtils {
     //Insight Camera Indices
     public final static int CAM_IDC_INDEX = 9;
     public final static int CAM_ICC_INDEX = 10;
+    //Perseverance Camera Indices
+    public final static int CAM_EDL_RUCAM_INDEX = 11;
+    public final static int CAM_EDL_RDCAM_INDEX = 12;
+    public final static int CAM_EDL_DDCAM_INDEX = 13;
+    public final static int CAM_EDL_PUCAM1_INDEX = 14;
+    public final static int CAM_EDL_PUCAM2_INDEX = 15;
+    public final static int CAM_NAVCAM_LEFT_INDEX = 16;
+    public final static int CAM_NAVCAM_RIGHT_INDEX = 17;
+    public final static int CAM_MCZ_RIGHT_INDEX = 18;
+    public final static int CAM_MCZ_LEFT_INDEX = 19;
+    public final static int CAM_FRONT_HAZCAM_LEFT_A_INDEX = 20 ;
+    public final static int CAM_FRONT_HAZCAM_RIGHT_A_INDEX = 21;
+    public final static int CAM_REAR_HAZCAM_LEFT_INDEX = 22;
+    public final static int CAM_REAR_HAZCAM_RIGHT_INDEX = 23;
+    public final static int CAM_SKYCAM_INDEX = 24;
+    public final static int CAM_SHERLOC_INDEX = 25;
 
 
 
@@ -535,6 +571,8 @@ public final class HelperUtils {
                 return context.getResources().getString(R.string.spirit_rover);
             case INSIGHT_LANDER_INDEX:
                 return context.getString(R.string.insight_lander_title);
+            case PERSEVERANCE_ROVER_INDEX:
+                return context.getString(R.string.perseverance_rover_title);
             default:
                 return "";
         }
@@ -563,6 +601,9 @@ public final class HelperUtils {
                 break;
             case INSIGHT_LANDER_INDEX:
                 categories = INSIGHT_CATEGORIES;
+                break;
+            case PERSEVERANCE_ROVER_INDEX:
+                categories = PERSEVERANCE_CATEGORIES;
                 break;
             default:
                 return null;
@@ -651,20 +692,19 @@ public final class HelperUtils {
                 mainExploreTitle = context.getString(R.string.explore_mars);
                 break;
             case CURIOSITY_ROVER_INDEX:
-                mainExploreTitle = context.getString(R.string.curiosity_rover);
-                mainExploreTitle = mainExploreTitle + " " + roverString;
+                mainExploreTitle = context.getString(R.string.curiosity_rover)  + " " + roverString;;
                 break;
             case OPPORTUNITY_ROVER_INDEX:
-                mainExploreTitle = context.getString(R.string.opportunity_rover);
-                mainExploreTitle = mainExploreTitle + " " + roverString;
+                mainExploreTitle = context.getString(R.string.opportunity_rover)  + " " + roverString;;
                 break;
             case SPIRIT_ROVER_INDEX:
-                mainExploreTitle = context.getString(R.string.spirit_rover);
-                mainExploreTitle = mainExploreTitle + " " + roverString;
+                mainExploreTitle = context.getString(R.string.spirit_rover)  + " " + roverString;;
                 break;
             case INSIGHT_LANDER_INDEX:
                 mainExploreTitle = context.getString(R.string.insight_lander_title);
                 break;
+            case PERSEVERANCE_ROVER_INDEX:
+                mainExploreTitle = context.getString(R.string.perseverance_rover_title) + " " + roverString;
             default:
                 break;
         }
@@ -722,6 +762,7 @@ public final class HelperUtils {
     // Setup Main Explore Options Below
     public static List<MainExploreType> getAllExploreTypes(Context context) {
         List<MainExploreType> mainExploreTypes = new ArrayList<>();
+        mainExploreTypes.add(createPerseveranceExploreType(context));
         mainExploreTypes.add(createMarsExploreType(context));
         mainExploreTypes.add(createInsightExploreType(context));
         mainExploreTypes.add(createCuriosityExploreType(context));
@@ -732,27 +773,32 @@ public final class HelperUtils {
 
     private static MainExploreType createMarsExploreType(Context context) {
         return new MainExploreType(MARS_EXPLORE_INDEX,
-                getMainExploreOptionTitle(context, MARS_EXPLORE_INDEX), R.drawable.explore_main);
+                getMainExploreOptionTitle(context, MARS_EXPLORE_INDEX), R.drawable.explore_main, MARS_EXPLORE_SORT_INDEX);
     }
 
     private static MainExploreType createCuriosityExploreType(Context context) {
         return new MainExploreType(CURIOSITY_ROVER_INDEX,
-                getMainExploreOptionTitle(context, CURIOSITY_ROVER_INDEX), R.drawable.curiosity_selfie);
+                getMainExploreOptionTitle(context, CURIOSITY_ROVER_INDEX), R.drawable.curiosity_selfie, CURIOSITY_SORT_INDEX);
     }
 
     private static MainExploreType createOpportunityExploreType(Context context) {
         return new MainExploreType(OPPORTUNITY_ROVER_INDEX,
-                getMainExploreOptionTitle(context, OPPORTUNITY_ROVER_INDEX), R.drawable.opp_spirit_main);
+                getMainExploreOptionTitle(context, OPPORTUNITY_ROVER_INDEX), R.drawable.opp_spirit_main, OPPORTUNITY_SORT_INDEX);
     }
 
     private static MainExploreType createSpiritExploreType(Context context) {
         return new MainExploreType(SPIRIT_ROVER_INDEX,
-                getMainExploreOptionTitle(context, SPIRIT_ROVER_INDEX), R.drawable.opp_spirit_main);
+                getMainExploreOptionTitle(context, SPIRIT_ROVER_INDEX), R.drawable.opp_spirit_main, SPIRIT_SORT_INDEX);
     }
 
     private static MainExploreType createInsightExploreType(Context context) {
         return new MainExploreType(INSIGHT_LANDER_INDEX,
-                getMainExploreOptionTitle(context, INSIGHT_LANDER_INDEX), R.drawable.insight_selfie);
+                getMainExploreOptionTitle(context, INSIGHT_LANDER_INDEX), R.drawable.insight_selfie, INSIGHT_SORT_INDEX);
+    }
+
+    private static MainExploreType createPerseveranceExploreType(Context context) {
+        return new MainExploreType(PERSEVERANCE_ROVER_INDEX,
+                getMainExploreOptionTitle(context, PERSEVERANCE_ROVER_INDEX), R.drawable.perseverance_image, PERSEVERANCE_SORT_INDEX);
     }
 
 }

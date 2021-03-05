@@ -1,10 +1,9 @@
 package com.curtisgetz.marsexplorer.ui.explore_detail.rover_photos;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.widget.ImageView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.curtisgetz.marsexplorer.R;
 import com.github.chrisbanes.photoview.PhotoView;

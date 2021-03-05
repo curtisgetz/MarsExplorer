@@ -8,11 +8,10 @@ package com.curtisgetz.marsexplorer.ui.explore;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.curtisgetz.marsexplorer.data.MarsRepository;
 import com.curtisgetz.marsexplorer.data.rover_manifest.RoverManifest;

@@ -8,8 +8,8 @@ package com.curtisgetz.marsexplorer.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 

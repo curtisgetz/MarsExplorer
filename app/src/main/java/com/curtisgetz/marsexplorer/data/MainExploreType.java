@@ -7,8 +7,8 @@
 package com.curtisgetz.marsexplorer.data;
 
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 /**
  * Object for main explore types. Includes an index for the explore type, a String describing the
@@ -22,11 +22,13 @@ public class MainExploreType {
     private int mTypeIndex;
     private String mText;
     private int mImageID;
+    private int mSortIndex;
 
-    public MainExploreType(int mTypeIndex, String mText, int mImageID) {
-        this.mTypeIndex = mTypeIndex;
-        this.mText = mText;
-        this.mImageID = mImageID;
+    public MainExploreType(int typeIndex, String text, int imageID, int sortIndex) {
+        this.mTypeIndex = typeIndex;
+        this.mText = text;
+        this.mImageID = imageID;
+        this.mSortIndex = sortIndex;
     }
 
     public int getTypeIndex() {
@@ -53,4 +55,10 @@ public class MainExploreType {
     public void setImageID(int mImageID) {
         this.mImageID = mImageID;
     }
+
+    public void setSortIndex(int sortIndex){
+        this.mSortIndex = sortIndex;
+    }
+
+    public int getSortIndex(){return mSortIndex;}
 }

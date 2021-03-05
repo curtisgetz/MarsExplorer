@@ -1,21 +1,21 @@
 package com.curtisgetz.marsexplorer.ui.explore_detail.rover_photos;
 
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +42,7 @@ import butterknife.Unbinder;
  */
 public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.PhotoClickListener {
 
+    //TODO REWRITE THIS FRAGMENT TO REDUCE CODE along with layout. Replace Butterknife with Android Veiw Binding
     public static int SEARCH_BY_DATE = 0;
     public static int SEARCH_BY_SOL = 1;
 
@@ -77,6 +78,39 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     @BindView(R.id.photos_icc_recyclerview)
     RecyclerView mIccRecyclerView;
 
+    @BindView(R.id.photos_rucam_recyclerview)
+    RecyclerView mRucamRecyclerView;
+    @BindView(R.id.photos_rdcam_recyclerview)
+    RecyclerView mRdcamRecyclerView;
+    @BindView(R.id.photos_ddcam_recyclerview)
+    RecyclerView mDdcamRecyclerView;
+    @BindView(R.id.photos_pucam1_recyclerview)
+    RecyclerView mPucam1RecyclerView;
+    @BindView(R.id.photos_pucam2_recyclerview)
+    RecyclerView mPucam2RecyclerView;
+    @BindView(R.id.photos_navcam_left_recyclerview)
+    RecyclerView mNavleftRecyclerView;
+    @BindView(R.id.photos_navcam_right_recyclerview)
+    RecyclerView mNavrightRecyclerView;
+    @BindView(R.id.photos_mcz_left_recyclerview)
+    RecyclerView mMczleftRecyclerView;
+    @BindView(R.id.photos_mcz_right_recyclerview)
+    RecyclerView mMczrightmRecyclerView;
+    @BindView(R.id.photos_fhaz_left_recyclerview)
+    RecyclerView mFhazleftRecyclerView;
+    @BindView(R.id.photos_fhaz_right_recyclerview)
+    RecyclerView mFhazrightRecyclerView;
+    @BindView(R.id.photos_rhaz_right_recyclerview)
+    RecyclerView mRhazrightRecyclerView;
+    @BindView(R.id.photos_rhaz_left_recyclerview)
+    RecyclerView mRhazleftRecyclerView;
+    @BindView(R.id.photos_skycam_recyclerview)
+    RecyclerView mSkycamRecyclerView;
+    @BindView(R.id.photos_sherloc_recyclerview)
+    RecyclerView mSherlocRecyclerView;
+
+
+
     //TextViews for camera name labels
     @BindView(R.id.photos_fhaz_label)
     TextView mFhazLabel;
@@ -100,6 +134,41 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     TextView mIdcLabel;
     @BindView(R.id.photos_icc_label)
     TextView mIccLabel;
+    @BindView(R.id.photos_rucam_label)
+    TextView mRucamLabel;
+    @BindView(R.id.photos_rdcam_label)
+    TextView mRdcamLabel;
+    @BindView(R.id.photos_ddcam_label)
+    TextView mDdcamLabel;
+    @BindView(R.id.photos_pucam1_label)
+    TextView mPucam1Label;
+    @BindView(R.id.photos_pucam2_label)
+    TextView mPucam2Label;
+    @BindView(R.id.photos_navcam_left_label)
+    TextView mNavcamleftLabel;
+    @BindView(R.id.photos_navcam_right_label)
+    TextView mNavcamrightLabel;
+    @BindView(R.id.photos_mcz_left_label)
+    TextView mMczleftLabel;
+    @BindView(R.id.photos_mcz_right_label)
+    TextView mMcarightLabel;
+    @BindView(R.id.photos_fhaz_left_label)
+    TextView mFhazleftLabel;
+    @BindView(R.id.photos_fhaz_right_label)
+    TextView mFhazrightLabel;
+    @BindView(R.id.photos_rhaz_left_label)
+    TextView mRhazleftLabel;
+    @BindView(R.id.photos_rhaz_right_label)
+    TextView mRhazrightLabel;
+    @BindView(R.id.photos_skycam_label)
+    TextView mSkycamLabel;
+    @BindView(R.id.photos_sherloc_label)
+    TextView mSherlocLabel;
+
+
+
+
+
 
     @BindView(R.id.rover_photos_main_progress)
     ProgressBar mMainProgress;
@@ -119,6 +188,22 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
     private RoverPhotosAdapter mMinitesAdapter;
     private RoverPhotosAdapter mIdcAdapter;
     private RoverPhotosAdapter mIccAdapter;
+
+    private RoverPhotosAdapter mRucamAdapter;
+    private RoverPhotosAdapter mRdcamAdapter;
+    private RoverPhotosAdapter mDdcamAdapter;
+    private RoverPhotosAdapter mPucam1Adapter;
+    private RoverPhotosAdapter mPucam2Adapter;
+    private RoverPhotosAdapter mNavleftAdapter;
+    private RoverPhotosAdapter mNavrightAdapter;
+    private RoverPhotosAdapter mMczleftAdapter;
+    private RoverPhotosAdapter mMczrightAdapter;
+    private RoverPhotosAdapter mFhazleftAdapter;
+    private RoverPhotosAdapter mFhazrightAdapter;
+    private RoverPhotosAdapter mRhazleftAdapter;
+    private RoverPhotosAdapter mRhazrightAdapter;
+    private RoverPhotosAdapter mSkycamAdapter;
+    private RoverPhotosAdapter mSherlocAdapter;
 
 
     public static RoverPhotosFragment newInstance(Context context, int roverIndex, String sol, int searchType, String date) {
@@ -158,7 +243,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
                 String date = bundle.getString(getString(R.string.date_extra));
                 SolFromDateVMFactory solDateFactory = new SolFromDateVMFactory(getActivity().getApplication(), mRoverIndex, date);
                 mSolDateViewModel = ViewModelProviders.of(this, solDateFactory).get(SolFromDateViewModel.class);
-                mSolDateViewModel.getSolLiveData().observe(this, new Observer<String>() {
+                mSolDateViewModel.getSolLiveData().observe(getViewLifecycleOwner(), new Observer<String>() {
                     @Override
                     public void onChanged(@Nullable String sol) {
                         if (sol == null) return;
@@ -194,7 +279,7 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
         mSol = sol;
         CamerasVMFactory factory = new CamerasVMFactory(getActivity().getApplication(), mRoverIndex, sol);
         mViewModel = ViewModelProviders.of(this, factory).get(CamerasViewModel.class);
-        mViewModel.getCameras().observe(this, new Observer<Cameras>() {
+        mViewModel.getCameras().observe(getViewLifecycleOwner(), new Observer<Cameras>() {
             @Override
             public void onChanged(@Nullable Cameras cameras) {
                 setupUI();
@@ -329,6 +414,163 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
             mIccLabel.setVisibility(View.VISIBLE);
             anyCameras = true;
         }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_RUCAM_INDEX) != null){
+            mRucamAdapter = new RoverPhotosAdapter(this);
+            mRucamRecyclerView.setLayoutManager(createLayoutManager());
+            mRucamRecyclerView.setAdapter(mRucamAdapter);
+            mRucamAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_RUCAM_INDEX));
+            mRucamRecyclerView.setVisibility(View.VISIBLE);
+            mRucamLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_RDCAM_INDEX) != null){
+            mRdcamAdapter = new RoverPhotosAdapter(this);
+            mRdcamRecyclerView.setLayoutManager(createLayoutManager());
+            mRdcamRecyclerView.setAdapter(mRdcamAdapter);
+            mRdcamAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_RDCAM_INDEX));
+            mRdcamRecyclerView.setVisibility(View.VISIBLE);
+            mRdcamLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_DDCAM_INDEX) != null){
+            mDdcamAdapter = new RoverPhotosAdapter(this);
+            mDdcamRecyclerView.setLayoutManager(createLayoutManager());
+            mDdcamRecyclerView.setAdapter(mDdcamAdapter);
+            mDdcamAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_DDCAM_INDEX));
+            mDdcamRecyclerView.setVisibility(View.VISIBLE);
+            mDdcamLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_PUCAM1_INDEX) != null){
+            mPucam1Adapter = new RoverPhotosAdapter(this);
+            mPucam1RecyclerView.setLayoutManager(createLayoutManager());
+            mPucam1RecyclerView.setAdapter(mPucam1Adapter);
+            mPucam1Adapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_PUCAM1_INDEX));
+            mPucam1RecyclerView.setVisibility(View.VISIBLE);
+            mPucam1Label.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_PUCAM1_INDEX) != null){
+            mPucam1Adapter = new RoverPhotosAdapter(this);
+            mPucam1RecyclerView.setLayoutManager(createLayoutManager());
+            mPucam1RecyclerView.setAdapter(mPucam1Adapter);
+            mPucam1Adapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_PUCAM1_INDEX));
+            mPucam1RecyclerView.setVisibility(View.VISIBLE);
+            mPucam1Label.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_PUCAM2_INDEX) != null){
+            mPucam2Adapter = new RoverPhotosAdapter(this);
+            mPucam2RecyclerView.setLayoutManager(createLayoutManager());
+            mPucam2RecyclerView.setAdapter(mPucam2Adapter);
+            mPucam2Adapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_EDL_PUCAM2_INDEX));
+            mPucam2RecyclerView.setVisibility(View.VISIBLE);
+            mPucam2Label.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_NAVCAM_LEFT_INDEX) != null){
+            mNavleftAdapter = new RoverPhotosAdapter(this);
+            mNavleftRecyclerView.setLayoutManager(createLayoutManager());
+            mNavleftRecyclerView.setAdapter(mNavleftAdapter);
+            mNavleftAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_NAVCAM_LEFT_INDEX));
+            mNavleftRecyclerView.setVisibility(View.VISIBLE);
+            mNavcamleftLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_NAVCAM_RIGHT_INDEX) != null){
+            mNavrightAdapter = new RoverPhotosAdapter(this);
+            mNavrightRecyclerView.setLayoutManager(createLayoutManager());
+            mNavrightRecyclerView.setAdapter(mNavrightAdapter);
+            mNavrightAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_NAVCAM_RIGHT_INDEX));
+            mNavrightRecyclerView.setVisibility(View.VISIBLE);
+            mNavcamrightLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MCZ_RIGHT_INDEX) != null){
+            mMczrightAdapter = new RoverPhotosAdapter(this);
+            mMczrightmRecyclerView.setLayoutManager(createLayoutManager());
+            mMczrightmRecyclerView.setAdapter(mMczrightAdapter);
+            mMczrightAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MCZ_RIGHT_INDEX));
+            mMczrightmRecyclerView.setVisibility(View.VISIBLE);
+            mMcarightLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MCZ_LEFT_INDEX) != null){
+            mMczleftAdapter = new RoverPhotosAdapter(this);
+            mMczleftRecyclerView.setLayoutManager(createLayoutManager());
+            mMczleftRecyclerView.setAdapter(mMczleftAdapter);
+            mMczleftAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_MCZ_LEFT_INDEX));
+            mMczleftRecyclerView.setVisibility(View.VISIBLE);
+            mMczleftLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_FRONT_HAZCAM_LEFT_A_INDEX) != null){
+            mFhazleftAdapter = new RoverPhotosAdapter(this);
+            mFhazleftRecyclerView.setLayoutManager(createLayoutManager());
+            mFhazleftRecyclerView.setAdapter(mFhazleftAdapter);
+            mFhazleftAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_FRONT_HAZCAM_LEFT_A_INDEX));
+            mFhazleftRecyclerView.setVisibility(View.VISIBLE);
+            mFhazleftLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_FRONT_HAZCAM_LEFT_A_INDEX) != null){
+            mFhazleftAdapter = new RoverPhotosAdapter(this);
+            mFhazleftRecyclerView.setLayoutManager(createLayoutManager());
+            mFhazleftRecyclerView.setAdapter(mFhazleftAdapter);
+            mFhazleftAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_FRONT_HAZCAM_LEFT_A_INDEX));
+            mFhazleftRecyclerView.setVisibility(View.VISIBLE);
+            mFhazleftLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_FRONT_HAZCAM_RIGHT_A_INDEX) != null){
+            mFhazrightAdapter = new RoverPhotosAdapter(this);
+            mFhazrightRecyclerView.setLayoutManager(createLayoutManager());
+            mFhazrightRecyclerView.setAdapter(mFhazrightAdapter);
+            mFhazrightAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_FRONT_HAZCAM_RIGHT_A_INDEX));
+            mFhazrightRecyclerView.setVisibility(View.VISIBLE);
+            mFhazrightLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_REAR_HAZCAM_LEFT_INDEX) != null){
+            mRhazleftAdapter = new RoverPhotosAdapter(this);
+            mRhazleftRecyclerView.setLayoutManager(createLayoutManager());
+            mRhazleftRecyclerView.setAdapter(mRhazleftAdapter);
+            mRhazleftAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_REAR_HAZCAM_LEFT_INDEX));
+            mRhazleftRecyclerView.setVisibility(View.VISIBLE);
+            mRhazleftLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_REAR_HAZCAM_RIGHT_INDEX) != null){
+            mRhazrightAdapter = new RoverPhotosAdapter(this);
+            mRhazrightRecyclerView.setLayoutManager(createLayoutManager());
+            mRhazrightRecyclerView.setAdapter(mRhazrightAdapter);
+            mRhazrightAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_REAR_HAZCAM_RIGHT_INDEX));
+            mRhazrightRecyclerView.setVisibility(View.VISIBLE);
+            mRhazrightLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_SKYCAM_INDEX) != null){
+            mSkycamAdapter = new RoverPhotosAdapter(this);
+            mSkycamRecyclerView.setLayoutManager(createLayoutManager());
+            mSkycamRecyclerView.setAdapter(mSkycamAdapter);
+            mSkycamAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_SKYCAM_INDEX));
+            mSkycamRecyclerView.setVisibility(View.VISIBLE);
+            mSkycamLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+        if(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_SHERLOC_INDEX) != null){
+            mSherlocAdapter = new RoverPhotosAdapter(this);
+            mSherlocRecyclerView.setLayoutManager(createLayoutManager());
+            mSherlocRecyclerView.setAdapter(mSherlocAdapter);
+            mSherlocAdapter.setData(mViewModel.getImageUrlsForCamera(HelperUtils.CAM_SHERLOC_INDEX));
+            mSherlocRecyclerView.setVisibility(View.VISIBLE);
+            mSherlocLabel.setVisibility(View.VISIBLE);
+            anyCameras = true;
+        }
+
+
 
         if (!anyCameras) {
             displayNoCameraSnack();
@@ -420,6 +662,39 @@ public class RoverPhotosFragment extends Fragment implements RoverPhotosAdapter.
         mIdcRecyclerView.setVisibility(View.GONE);
         mIccLabel.setVisibility(View.GONE);
         mIccRecyclerView.setVisibility(View.GONE);
+        mRucamRecyclerView.setVisibility(View.GONE);
+        mRdcamRecyclerView.setVisibility(View.GONE);
+        mDdcamRecyclerView.setVisibility(View.GONE);
+        mPucam1RecyclerView.setVisibility(View.GONE);
+        mPucam2RecyclerView.setVisibility(View.GONE);
+        mNavleftRecyclerView.setVisibility(View.GONE);
+        mNavrightRecyclerView.setVisibility(View.GONE);
+        mMczleftRecyclerView.setVisibility(View.GONE);
+        mMczrightmRecyclerView.setVisibility(View.GONE);
+        mFhazleftRecyclerView.setVisibility(View.GONE);
+        mFhazrightRecyclerView.setVisibility(View.GONE);
+        mRhazleftRecyclerView.setVisibility(View.GONE);
+        mRhazrightRecyclerView.setVisibility(View.GONE);
+        mSkycamRecyclerView.setVisibility(View.GONE);
+        mSherlocRecyclerView.setVisibility(View.GONE);
+        mRucamLabel.setVisibility(View.GONE);
+        mRdcamLabel.setVisibility(View.GONE);
+        mDdcamLabel.setVisibility(View.GONE);
+        mPucam1Label.setVisibility(View.GONE);
+        mPucam2Label.setVisibility(View.GONE);
+        mNavcamleftLabel.setVisibility(View.GONE);
+        mNavcamrightLabel.setVisibility(View.GONE);
+        mMczleftLabel.setVisibility(View.GONE);
+        mMcarightLabel.setVisibility(View.GONE);
+        mFhazleftLabel.setVisibility(View.GONE);
+        mFhazrightLabel.setVisibility(View.GONE);
+        mRhazleftLabel.setVisibility(View.GONE);
+        mRhazrightLabel.setVisibility(View.GONE);
+        mSkycamLabel.setVisibility(View.GONE);
+        mSherlocLabel.setVisibility(View.GONE);
+
+
+
     }
 
     private void showAllViews() {

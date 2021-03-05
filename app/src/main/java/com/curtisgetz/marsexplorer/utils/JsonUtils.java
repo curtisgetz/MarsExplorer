@@ -1,7 +1,7 @@
 package com.curtisgetz.marsexplorer.utils;
 
 import android.content.Context;
-import android.support.constraint.solver.widgets.Helper;
+import androidx.constraintlayout.solver.widgets.Helper;
 import android.util.Log;
 
 import com.curtisgetz.marsexplorer.R;
@@ -14,7 +14,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -67,11 +66,15 @@ public final class JsonUtils {
     /**
      * JSON keys for each camera
      */
-    private final static String ROVER_FHAZ = "FHAZ",
-            ROVER_RHAZ = "RHAZ", ROVER_MAST = "MAST",
-            ROVER_CHEMCAM = "CHEMCAM", ROVER_MAHLI = "MAHLI",
-            ROVER_MARDI = "MARDI", ROVER_NAVCAM = "NAVCAM",
-            ROVER_PANCAM = "PANCAM", ROVER_MINITES = "MINITES";
+    private final static String ROVER_FHAZ = "FHAZ", ROVER_RHAZ = "RHAZ", ROVER_MAST = "MAST",
+            ROVER_CHEMCAM = "CHEMCAM", ROVER_MAHLI = "MAHLI", ROVER_MARDI = "MARDI", ROVER_NAVCAM = "NAVCAM",
+            ROVER_PANCAM = "PANCAM", ROVER_MINITES = "MINITES",
+            ROVER_RUCAM = "EDL_RUCAM", ROVER_RDCAM = "EDL_RDCAM", ROVER_DDCAM = "EDL_DDCAM",
+            ROVER_PUCAM1 = "EDL_PUCAM1", ROVER_PUCAM2 = "EDL_PUCAM2", ROVER_NAV_LEFT = "NAVCAM_LEFT",
+            ROVER_NAV_RIGHT = "NAVCAM_RIGHT", ROVER_MCZ_RIGHT = "MCZ_RIGHT", ROVER_MCZ_LEFT = "MCZ_LEFT",
+            ROVER_FHAZ_LEFT = "FRONT_HAZCAM_LEFT_A", ROVER_FHAZ_RIGHT = "FRONT_HAZCAM_RIGHT_A",
+            ROVER_RHAZ_LEFT = "REAR_HAZCAM_LEFT", ROVER_RHAZ_RIGHT = "REAR_HAZCAM_RIGHT", ROVER_SKYCAM = "SKYCAM",
+            ROVER_SHERLOC_WATSON = "SHERLOC_WATSON";
 
     /**
      * Fallback String for JSON parsing
@@ -269,7 +272,11 @@ public final class JsonUtils {
                 chemcam = new ArrayList<>(), mahli = new ArrayList<>(),
                 mardi = new ArrayList<>(), navcam = new ArrayList<>(),
                 pancam = new ArrayList<>(), minites = new ArrayList<>(),
-                idc = new ArrayList<>(), icc = new ArrayList<>();
+                rucam = new ArrayList<>(), rdcam = new ArrayList<>(), ddcam = new ArrayList<>(),
+                pucam1 = new ArrayList<>(), pucam2 = new ArrayList<>(), navcam_left = new ArrayList<>(),
+                navcam_right = new ArrayList<>(), mcz_left = new ArrayList<>(), mcz_right = new ArrayList<>(),
+                fhaz_left = new ArrayList<>(), fhaz_right = new ArrayList<>(), rhaz_left = new ArrayList<>(),
+                rhaz_right = new ArrayList<>(), skycam = new ArrayList<>(), sherloc  = new ArrayList<>();
 
         String earthDate = "";
         String sol;
@@ -323,17 +330,69 @@ public final class JsonUtils {
                     case ROVER_MINITES:
                         minites.add(imgSrcString);
                         break;
+                    case ROVER_RUCAM:
+                        rucam.add(imgSrcString);
+                        break;
+                    case ROVER_RDCAM:
+                        rdcam.add(imgSrcString);
+                        break;
+                    case ROVER_DDCAM:
+                        ddcam.add(imgSrcString);
+                        break;
+                    case ROVER_PUCAM1:
+                        pucam1.add(imgSrcString);
+                        break;
+                    case ROVER_PUCAM2:
+                        pucam2.add(imgSrcString);
+                        break;
+                    case ROVER_NAV_LEFT:
+                        navcam_left.add(imgSrcString);
+                        break;
+                    case ROVER_NAV_RIGHT:
+                        navcam_right.add(imgSrcString);
+                        break;
+                    case ROVER_MCZ_LEFT:
+                        mcz_left.add(imgSrcString);
+                        break;
+                    case ROVER_MCZ_RIGHT:
+                        mcz_right.add(imgSrcString);
+                        break;
+                    case ROVER_FHAZ_LEFT:
+                        fhaz_left.add(imgSrcString);
+                        break;
+                    case ROVER_FHAZ_RIGHT:
+                        fhaz_right.add(imgSrcString);
+                        break;
+
+                    //TODO Change these back after testing.
+                    case ROVER_RHAZ_LEFT:
+                        rhaz_left.add(imgSrcString);
+                        skycam.add(imgSrcString);
+                        break;
+                    case ROVER_RHAZ_RIGHT:
+                        rhaz_right.add(imgSrcString);
+                        sherloc.add(imgSrcString);
+                        break;
+
+
+                    case ROVER_SKYCAM:
+                        skycam.add(imgSrcString);
+                    case ROVER_SHERLOC_WATSON:
+                        sherloc.add(imgSrcString);
+
                     default:
                         break;
                 }
             }
         } else {
-            //return null to tell there are no images.  Instead of returning empty lists
+            //return null when there are no images.  Instead of returning empty lists
             Log.d("JSON", "RETURNING NULL FOR NO CAMERAS");
             return null;
         }
         return new Cameras(roverIndex, fhaz, rhaz, navcam, mast, chemcam, mahli, mardi, pancam,
-                minites,idc, icc, earthDate, sol);
+                minites, rucam, rdcam, ddcam, pucam1, pucam2, navcam_left, navcam_right,
+                mcz_left, mcz_right, fhaz_left, fhaz_right, rhaz_left, rhaz_right, skycam, sherloc,
+                earthDate, sol);
     }
 
     /**

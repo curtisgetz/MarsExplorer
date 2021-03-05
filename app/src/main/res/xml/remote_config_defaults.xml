@@ -23,4 +23,8 @@
         <value>https://sites.google.com/view/mars-explorer/policy</value>
     </entry>
 
+    <entry>
+        <key>insight_mission_status</key>
+        <value>Active</value>
+    </entry>
 </defaultsMap>

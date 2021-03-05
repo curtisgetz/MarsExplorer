@@ -24,7 +24,7 @@
    <style name="DatePickerDialogStyle" parent="android:Widget.Material.DatePicker">
        <item name="android:headerBackground">@color/marsLightOrange</item>
        <item name="android:dayOfWeekBackground">@color/lightText</item>
-       <item name="android:headerMonthTextAppearance"></item>
+       <!--<item name="android:headerMonthTextAppearance"></item>-->
 
 
 

@@ -56,8 +56,8 @@
         Mars Explorer can notify you when Curiosity Rover publishes a Tweet. These tweets will
         be saved after you receive a notification</string>
     <string name="shown_photos_info_dialog">The rovers have taken a lot of photos from the surface of Mars.
-        Mars Explorer limits the number of photos by default. If you would like to get all available
-        photos when searching you can enable this in Settings. This may use more data and take longer. </string>
+        Mars Explorer shows all photos by default. If you would like to limit the number of
+        photos when searching, you can enable this in Settings. </string>
 
 
     <string name="info_index_key" translatable="false">info_index_key</string>
@@ -88,6 +88,23 @@
     <string name="rover_photo_cd">Photo from Mars rover.</string>
     <string name="IDC">Instrument Deployment Camera</string>
     <string name="ICC">Instrument Context Complex</string>
+    <string name="RUCAM">Rover Up-Look Camera</string>
+    <string name="RDCAM">Rover Down-Look Camera</string>
+    <string name="DDCAM">Descent Stage Down-Look Camera</string>
+    <string name="PUCAM1">Parachute Up-Look Camera A</string>
+    <string name="PUCAM2">Parachute Up-Look Camera B</string>
+    <string name="NAVCAM_LEFT">Navigation Camera - Left</string>
+    <string name="NAVCAM_RIGHT">Navigation Camera - Right</string>
+    <string name="MCZ_RIGHT">Mast Camera Zoom - Right</string>
+    <string name="MCZ_LEFT">Mast Camera Zoom - Left</string>
+    <string name="FHAZ_LEFT">Front Hazard Avoidance Camera - Left</string>
+    <string name="FHAZ_RIGHT">Front Hazard Avoidance Camera - Right</string>
+    <string name="RHAZ_LEFT">Rear Hazard Avoidance Camera - Left</string>
+    <string name="RHAZ_RIGHT">Rear Hazard Avoidance Camera - Right</string>
+    <string name="SKYCAM">MEDA Skycam</string>
+    <string name="SHERLOC_WATSON">SHERLOC WATSON Camera</string>
+
+
 
     <!-- Science instrument names for TABs-->
     <string name="science_mast" translatable="false">MAST</string>
@@ -170,7 +187,7 @@
     <string name="add_to_favorites_menu">Add To Favorites</string>
 
     <!-- Sharing -->
-    <string name="share_pic_text" formatted="false">Check out this picture from the Mars Explorer
+    <string name="share_pic_text" formatted="true">Check out this picture from the Mars Explorer
         app!\nTaken by %1$s Rover on %2$s.\n\n%3$s</string>
 
     <string name="simple_share_pic_text">Check out this picture from the Mars Explorer app!</string>
@@ -211,6 +228,7 @@
     <string name="pref_rover_job_summary_off">Not keeping rover data up to date in background. Will still update when app is open</string>
     <string name="pref_rover_job_summary_on">Allowing rover data to update in the background a couple times a day.</string>
     <string name="pref_shown_photos_info" translatable="false">shown_photos_dialog</string>
+    <string name="pref_insight_latest_max_date" translatable="false">insight_latest_max_date</string>
 
 
     <string name="rover_category_cd">Rover Category</string>
@@ -241,7 +259,7 @@
     <string name="link_to_fact_source">Link to fact source</string>
     <string name="enter_sol">Enter Sol</string>
     <string name="search_by_sol">Search By Sol</string>
-    <string name="sol_search_dialog_message" formatted="false">Sol Range: %1$s</string>
+    <string name="sol_search_dialog_message" formatted="true">Sol Range: %1$s</string>
     <string name="sol_dialog_cancel">Cancel</string>
     <string name="sol_dialog_positive_button">Search</string>
     <string name="sol_range_bundle_key">sol_range_bundle_key</string>
@@ -250,6 +268,7 @@
     <string name="date_extra">date_extra</string>
     <string name="select_date">Select Date</string>
     <string name="privacy_policy">Privacy Policy</string>
-    <string name="insight_lander_title">Insight Lander-BETA</string>
+    <string name="insight_lander_title">Insight Lander</string>
+    <string name="perseverance_rover_title">Perseverance</string>
 
 </resources>

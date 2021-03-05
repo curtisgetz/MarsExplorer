@@ -6,10 +6,13 @@
 
 package com.curtisgetz.marsexplorer.data.rover_manifest;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 
 /**
@@ -52,12 +55,12 @@ public class RoverManifest {
         switch (mRoverIndex) {
             case HelperUtils.CURIOSITY_ROVER_INDEX:
                 return HelperUtils.CURIOSITY_SOL_START;
-            case HelperUtils.OPPORTUNITY_ROVER_INDEX:
-                return HelperUtils.OPPORTUNITY_SOL_START;
             case HelperUtils.SPIRIT_ROVER_INDEX:
                 return HelperUtils.SPIRIT_SOL_START;
             case HelperUtils.INSIGHT_LANDER_INDEX:
                     return HelperUtils.INSIGHT_SOL_START;
+            case HelperUtils.PERSEVERANCE_ROVER_INDEX:
+                return HelperUtils.PERSEVERANCE_SOL_START;
             default:
                 //if no match then use 1 as sol start to be safe
                 return HelperUtils.OPPORTUNITY_SOL_START;

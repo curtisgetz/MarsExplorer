@@ -7,12 +7,11 @@
 package com.curtisgetz.marsexplorer.data;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.util.Log;
 
-import com.curtisgetz.marsexplorer.data.insight_lander.InsightPhoto;
 import com.curtisgetz.marsexplorer.data.insight_lander.InsightResponse;
 import com.curtisgetz.marsexplorer.data.room.AppDataBase;
 import com.curtisgetz.marsexplorer.data.room.MarsDao;

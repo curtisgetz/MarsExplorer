@@ -2,7 +2,7 @@
 
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             app:layout_constraintBottom_toBottomOf="@id/fact_name_text"
             />
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             app:cardCornerRadius="@dimen/default_cardview_corner_radius"
             android:layout_height="0dp"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 />
        </ScrollView>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
         <ImageView
@@ -80,4 +80,4 @@
             app:layout_constraintStart_toEndOf="@id/fact_link_icon"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

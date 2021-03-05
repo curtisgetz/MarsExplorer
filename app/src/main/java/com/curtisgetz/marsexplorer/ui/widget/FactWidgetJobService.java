@@ -3,8 +3,7 @@ package com.curtisgetz.marsexplorer.ui.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
-import android.support.annotation.NonNull;
-import android.util.Log;
+import androidx.annotation.NonNull;
 
 import com.curtisgetz.marsexplorer.data.MarsFact;
 import com.curtisgetz.marsexplorer.utils.RealtimeDatabaseUtils;

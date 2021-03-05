@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     android:layout_width="@dimen/favorite_photo_card_width"
     android:layout_height="@dimen/favorite_photo_card_height"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,4 +18,4 @@
 
 
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

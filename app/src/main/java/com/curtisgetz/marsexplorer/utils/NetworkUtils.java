@@ -20,7 +20,7 @@ import javax.net.ssl.HttpsURLConnection;
 public final class NetworkUtils {
 
 
-    //TODO  Use "DEMO_KEY" for limited use.  If you reach limits you can apply for a key at https://api.nasa.gov/index.html#apply-for-an-api-key
+    //  Use "DEMO_KEY" for limited use.  If you reach limits you can apply for a key at https://api.nasa.gov/index.html#apply-for-an-api-key
     private static final String NASA_API = Config.MY_NASA_API;
     //private static final String NASA_API = "DEMO_KEY";
 
@@ -55,7 +55,6 @@ public final class NetworkUtils {
         //get rover name from HelperUtils
         String rover = HelperUtils.getRoverNameByIndex(context, roverIndex);
 
-
         Uri builtUri = Uri.parse(baseUrl).buildUpon()
                 .appendPath(ROVERS)
                 .appendPath(rover)
@@ -78,9 +77,7 @@ public final class NetworkUtils {
         //Get BASE Url from Firebase Remote Config
         FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         String baseUrl = firebaseRemoteConfig.getString(PHOTOS_BASE_REMOTE_CONFIG_KEY);
-
         String rover = HelperUtils.getRoverNameByIndex(context, roverIndex);
-
         Uri builtUri = Uri.parse(baseUrl).buildUpon()
                 .appendPath(ROVERS)
                 .appendPath(rover)
@@ -119,7 +116,6 @@ public final class NetworkUtils {
         String baseUrl = firebaseRemoteConfig.getString(PHOTOS_BASE_REMOTE_CONFIG_KEY);
         //get rover name from HelperUtils
         String rover = HelperUtils.getRoverNameByIndex(context, roverIndex);
-
         Uri builtUri;
         if (seeAllPhotos) {
             //if user chooses to limit photos then only get 1st page of photos
@@ -141,7 +137,6 @@ public final class NetworkUtils {
                     .appendQueryParameter(API_KEY, NASA_API)
                     .build();
         }
-
 
         URL url = null;
         try {

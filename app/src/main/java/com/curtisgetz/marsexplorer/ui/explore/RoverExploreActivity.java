@@ -7,41 +7,25 @@
 package com.curtisgetz.marsexplorer.ui.explore;
 
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.solver.widgets.Helper;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.solver.widgets.Helper;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import com.google.android.material.snackbar.Snackbar;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PagerSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -60,16 +44,11 @@ import com.curtisgetz.marsexplorer.ui.explore_detail.rover_photos.RoverPhotosFra
 import com.curtisgetz.marsexplorer.ui.explore_detail.rover_science.RoverScienceFragment;
 import com.curtisgetz.marsexplorer.ui.explore_detail.tweets.TweetsFragment;
 import com.curtisgetz.marsexplorer.ui.info.InfoDialogFragment;
-import com.curtisgetz.marsexplorer.ui.main.MainActivity;
 import com.curtisgetz.marsexplorer.utils.HelperUtils;
 import com.curtisgetz.marsexplorer.utils.InformationUtils;
 import com.curtisgetz.marsexplorer.utils.JsonUtils;
-import com.curtisgetz.marsexplorer.utils.NetworkUtils;
-import com.squareup.picasso.Picasso;
 
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 import butterknife.BindView;
@@ -216,8 +195,7 @@ public class RoverExploreActivity extends MarsBaseActivity implements
         } else {
             return new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         }
-        //isSw600 ? new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        //      : new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
     }
 
     /**
@@ -281,12 +259,15 @@ public class RoverExploreActivity extends MarsBaseActivity implements
 
     @Override
     public void onCalendarSolClick(int catIndex) {
-        if (mRoverIndex == HelperUtils.INSIGHT_LANDER_INDEX){
+
+        SolDatePickerDialogFragment dialogFragment = SolDatePickerDialogFragment.newInstance(this, mRoverIndex);
+        dialogFragment.show(getSupportFragmentManager(), SolDatePickerDialogFragment.class.getSimpleName());
+       /* if (mRoverIndex == HelperUtils.INSIGHT_LANDER_INDEX){
             Toast.makeText(this, "Coming Soon", Toast.LENGTH_LONG).show();
         }else {
             SolDatePickerDialogFragment dialogFragment = SolDatePickerDialogFragment.newInstance(this, mRoverIndex);
             dialogFragment.show(getSupportFragmentManager(), SolDatePickerDialogFragment.class.getSimpleName());
-        }
+        }*/
 
     }
 

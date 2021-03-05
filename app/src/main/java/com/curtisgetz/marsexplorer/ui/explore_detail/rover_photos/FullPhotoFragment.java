@@ -1,20 +1,20 @@
 package com.curtisgetz.marsexplorer.ui.explore_detail.rover_photos;
 
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.ShareCompat;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.core.app.ShareCompat;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -166,8 +166,10 @@ public class FullPhotoFragment extends Fragment {
             shareMessage = getString(R.string.simple_share_pic_text)
                     + "\n\n" + mUrls.get(mViewPager.getCurrentItem());
         } else {
+            //shareMessage = getString(R.string.share_pic_text,
+                    //roverName, mDateString, mUrls.get(mViewPager.getCurrentItem()));
             shareMessage = getString(R.string.share_pic_text,
-                    roverName, mDateString, mUrls.get(mViewPager.getCurrentItem()));
+                roverName, mDateString, mUrls.get(mViewPager.getCurrentItem()));
         }
         Intent intentToShare = ShareCompat.IntentBuilder.from(activity)
                 .setType("text/plain")

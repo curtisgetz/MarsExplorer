@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/information_icon_height" />
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
@@ -34,6 +34,6 @@
 
              />
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
